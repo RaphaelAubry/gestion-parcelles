@@ -1,0 +1,35 @@
+<h1>Nouvelle parcelle</h1>
+<%= form_for @parcelle do |form| %>
+  <div>
+    <div><%= form.label :reference_cadastrale %></div>
+    <div><%= form.text_field :reference_cadastrale %></div>
+  </div>
+  <div>
+    <div><%= form.label :lieu_dit %></div>
+    <div><%= form.text_field :lieu_dit %></div>
+  </div>
+  <div>
+    <div><%= form.label :code_officiel_geographique %></div>
+    <div><%= form.text_field :code_officiel_geographique %></div>
+  </div>
+  <div>
+    <div><%= form.label :surface %></div>
+    <div><%= form.text_field :surface %></div>
+  </div>
+  <div>
+    <div><%= form.label :annee_plantation %></div>
+    <div><%= form.text_field :annee_plantation %></div>
+  </div>
+    <div>
+    <div><%= form.label :distance_rang %></div>
+    <div><%= form.text_field :distance_rang %></div>
+  </div>
+  <div>
+    <div><%= form.label :distance_pieds %></div>
+    <div><%= form.text_field :distance_pieds %></div>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+<%= link_to :parcelles, parcelles_path %>
