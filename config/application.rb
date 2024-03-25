@@ -18,5 +18,6 @@ module GestionParcelles
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.eager_load_paths += %W(#{config.root}/lib/modules)
   end
 end
