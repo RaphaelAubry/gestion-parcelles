@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_21_124136) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_22_124831) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "postgis"
 
   create_table "parcelles", force: :cascade do |t|
     t.string "reference_cadastrale", default: ""
@@ -24,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_21_124136) do
     t.integer "distance_pieds", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.geography "polygon", limit: {:srid=>4326, :type=>"st_polygon", :geographic=>true}
   end
 
 end

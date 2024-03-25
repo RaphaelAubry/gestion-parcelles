@@ -1,13 +1,16 @@
 class Parcelle < ApplicationRecord
+
   INSTANCE_VARIABLES = [:reference_cadastrale,
                         :lieu_dit,
                         :code_officiel_geographique,
                         :surface,
                         :annee_plantation,
                         :distance_rang,
-                        :distance_pieds]
+                        :distance_pieds,
+                        :polygon]
 
-  after_create :request_api_carto
+  after_create :update_polygon_coordinates
+  attribute :polygon, :st_polygon, srid: 4326, geographic: true
 
   def code_section
     # résultat à 2 caractères
@@ -30,21 +33,10 @@ class Parcelle < ApplicationRecord
     string
   end
 
-  def request_api_carto
-    require 'net/http'
-
-    begin
-      uri = URI('https://apicarto.ign.fr/api/cadastre/parcelle')
-      params = { code_insee: code_officiel_geographique, section: code_section, numero: numero_parcelle }
-      uri.query = URI.encode_www_form(params)
-      resultat = Net::HTTP.get_response(uri)
-      if resultat.is_a?(Net::HTTPSuccess)
-        update(distance_rang: 1)
-      end
-    rescue Exception => e
-      p e.class
-      p e.message
-      print e.backtrace.join("\n")
-    end
+  def update_polygon_coordinates
+    geojson = APICarto.request({ code_insee: code_officiel_geographique, section: code_section, numero: numero_parcelle })
+    polygon = APICarto.coordinates(geojson)
+    data = RGeo::Geographic.spherical_factory(srid: 4326).parse_wkt(polygon)
+    update(polygon: data)
   end
 end
