@@ -14,9 +14,9 @@ module APICarto
     end
   end
 
-  def self.coordinates(geojson)
+  def self.coordinates(type, geojson)
     response = JSON.parse(geojson)['features'][0]['geometry']['coordinates'][0][0]
     coordinates = response.map { |c| p c.join(' ') }.join(',')
-    "POLYGON ((#{coordinates}))"
+    "#{type.to_s.upcase} ((#{coordinates}))"
   end
 end
