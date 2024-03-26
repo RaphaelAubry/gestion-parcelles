@@ -35,7 +35,7 @@ class Parcelle < ApplicationRecord
 
   def update_polygon_coordinates
     geojson = APICarto.request({ code_insee: code_officiel_geographique, section: code_section, numero: numero_parcelle })
-    polygon = APICarto.coordinates(geojson)
+    polygon = APICarto.coordinates(:polygon, geojson)
     data = RGeo::Geographic.spherical_factory(srid: 4326).parse_wkt(polygon)
     update(polygon: data)
   end
