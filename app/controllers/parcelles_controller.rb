@@ -5,6 +5,13 @@ class ParcellesController < ApplicationController
     @parcelles = Parcelle.all
   end
 
+  def carte
+    require './lib/modules/r_geo.rb'
+    @parcelles = Parcelle.all
+    @multipolygon = Parcelle::Factory.multi_polygon(@parcelles.pluck(:polygon))
+    @geometry_type = 'MultiPolygon'
+  end
+
   def new
     @parcelle = Parcelle.new
   end
@@ -15,6 +22,7 @@ class ParcellesController < ApplicationController
   end
 
   def show
+    @geometry_type = 'Polygon'
   end
 
   def edit

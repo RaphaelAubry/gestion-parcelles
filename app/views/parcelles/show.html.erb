@@ -1,9 +1,11 @@
 <h1>La parcelle <%= @parcelle.reference_cadastrale %></h1>
-<%= link_to :parcelles, parcelles_path %>
 <div data-controller='mapbox'>
-  <div id='map' data-mapbox-target='parcelle'
-                data-coordinates='<%= @parcelle.polygon.coordinates %>'
-                data-centroid='<%= @parcelle.polygon.centroid.coordinates %>'
-  >
-  </div>
+  <%= render partial: 'map',
+    locals: {
+      geometry_type: @geometry_type,
+      coordinates: @parcelle.polygon.coordinates ,
+      centroid: @parcelle.polygon.centroid.coordinates
+    }
+  %>
 </div>
+<%= link_to :parcelles, parcelles_path %>

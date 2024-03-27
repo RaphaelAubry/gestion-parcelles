@@ -1,5 +1,4 @@
 class Parcelle < ApplicationRecord
-
   INSTANCE_VARIABLES = [:reference_cadastrale,
                         :lieu_dit,
                         :code_officiel_geographique,
@@ -8,6 +7,8 @@ class Parcelle < ApplicationRecord
                         :distance_rang,
                         :distance_pieds,
                         :polygon]
+
+  Factory = RGeo::Geographic.spherical_factory(srid: 4326)
 
   after_create :update_polygon_coordinates
   attribute :polygon, :st_polygon, srid: 4326, geographic: true
@@ -36,7 +37,13 @@ class Parcelle < ApplicationRecord
   def update_polygon_coordinates
     geojson = APICarto.request({ code_insee: code_officiel_geographique, section: code_section, numero: numero_parcelle })
     polygon = APICarto.coordinates(:polygon, geojson)
-    data = RGeo::Geographic.spherical_factory(srid: 4326).parse_wkt(polygon)
-    update(polygon: data)
+    begin
+      data = Factory.parse_wkt(polygon)
+      update(polygon: data)
+    rescue Exception => e
+      Rails.logger.debug e.class
+      Rails.logger.debug e.message
+      Rails.logger.debug e.backtrace.join("\n")
+    end
   end
 end
