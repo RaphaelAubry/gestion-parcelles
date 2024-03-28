@@ -2,7 +2,8 @@ class ParcellesController < ApplicationController
   before_action :parcelle, only: [:show, :edit, :update, :destroy]
 
   def index
-    @parcelles = Parcelle.all
+    @parcelle = Parcelle.new
+    @parcelles = params[:sort].present? ? Parcelle.sort_with_params(params) : Parcelle.all
   end
 
   def carte
@@ -18,7 +19,13 @@ class ParcellesController < ApplicationController
 
   def create
     @parcelle = Parcelle.create(parcelle_params)
-    redirect_to parcelles_path
+    if @parcelle.save
+      respond_to do |format|
+        format.html { redirect_to parcelles_path, notice: "La parcelle est enregistrée avec succès" }
+      end
+    else
+      render new:, status: :unprocessable_entity
+    end
   end
 
   def show

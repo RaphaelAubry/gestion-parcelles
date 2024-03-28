@@ -13,6 +13,7 @@ export default class extends Controller {
       center: JSON.parse(this.mapTarget.dataset.centroid),
       zoom: 15
     });
+    map.addControl(new mapboxgl.FullscreenControl());
     const geometryType = this.mapTarget.dataset.geometryType
     const coordinates = JSON.parse(this.mapTarget.dataset.coordinates)
     this.#addPolygon(map, geometryType, coordinates)

@@ -1,4 +1,4 @@
-<h1>La parcelle <%= @parcelle.reference_cadastrale %></h1>
+<h1><%= @parcelle.lieu_dit %>: <%= @parcelle.reference_cadastrale %></h1>
 <div data-controller='mapbox'>
   <%= render partial: 'map',
     locals: {
@@ -8,4 +8,4 @@
     }
   %>
 </div>
-<%= link_to :parcelles, parcelles_path %>
+<p><%= link_to :parcelles, parcelles_path %></p>
