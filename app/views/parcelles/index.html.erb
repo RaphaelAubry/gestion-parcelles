@@ -1,49 +1,5 @@
 <h1>Parcelles</h1>
-<% unless @parcelles.length.zero? %>
-  <table>
-    <thead>
-      <tr>
-        <% Parcelle::INSTANCE_VARIABLES.each do |variable| %>
-          <td><%= variable.to_s.humanize %></td>
-        <% end %>
-      </tr>
-    </thead>
-    <tbody>
-      <% @parcelles.each do |parcelle| %>
-        <% if parcelle %>
-
-        <tr>
-          <td>
-            <%= link_to parcelle_path(parcelle) do %>
-            <%= parcelle.reference_cadastrale %>
-            <% end%>
-          </td>
-          <td><%= parcelle.lieu_dit %></td>
-          <td><%= parcelle.code_officiel_geographique %></td>
-          <td><%= parcelle.surface %></td>
-          <td><%= parcelle.annee_plantation %></td>
-          <td><%= parcelle.distance_rang %></td>
-          <td><%= parcelle.distance_pieds %></td>
-          <td><%= parcelle.polygon %></td>
-          <td><%= link_to :modifier, edit_parcelle_path(parcelle) %></td>
-          <td><%= link_to :supprimer, parcelle_path(parcelle), data: { turbo_method: :delete, turbo_confirm: 'Etes-vous sûr ?'} %></td>
-      </tr>
-
-        <% end %>
-      <% end %>
-    <tbody>
-    <tfoot>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tfoot>
-  </table>
-<% end %>
-<%= link_to :home, root_path %>
-<p><%= link_to :nouvelle_parcelle, new_parcelle_path %><p>
+<%= render partial: 'table', locals: { parcelles: @parcelles } %>
+<p><%= link_to :home, root_path %></p>
+<p><%= link_to :carte, carte_path %><p>
+<p><%= link_to 'nouvelle parcelle', new_parcelle_path %><p>

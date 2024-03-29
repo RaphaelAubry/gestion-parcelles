@@ -1,0 +1,17 @@
+<thead>
+  <tr>
+    <% (Parcelle::INSTANCE_VARIABLES - [:polygon]).each do |column_name| %>
+    <td>
+      <%= column_name.to_s.humanize %>
+    </td>
+    <% end %>
+  </tr>
+  <tr>
+    <% (Parcelle::INSTANCE_VARIABLES - [:polygon]).each do |column_name| %>
+    <td>
+      <%= link_to :asc, parcelles_path(sort: { column_name => :asc }) %>
+      <%= link_to :desc, parcelles_path(sort: { column_name => :desc }) %>
+    </td>
+    <% end %>
+  </tr>
+</thead>

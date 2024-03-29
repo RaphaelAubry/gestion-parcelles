@@ -1,0 +1,35 @@
+<%= form_for @parcelle do |form| %>
+    <td>
+      <div><%= form.label :reference_cadastrale %></div>
+      <div><%= form.text_field :reference_cadastrale %></div>
+    </td>
+    <td>
+      <div><%= form.label :lieu_dit %></div>
+      <div><%= form.text_field :lieu_dit %></div>
+    </td>
+    <td>
+      <div><%= form.label :code_officiel_geographique %></div>
+      <div><%= form.text_field :code_officiel_geographique %></div>
+    </td>
+    <td>
+      <div><%= form.label :surface %></div>
+      <div><%= form.text_field :surface %></div>
+    </td>
+    <td>
+      <div><%= form.label :annee_plantation %></div>
+      <div><%= form.text_field :annee_plantation %></div>
+    </td>
+      <td>
+      <div><%= form.label :distance_rang %></div>
+      <div><%= form.text_field :distance_rang %></div>
+    </td>
+    <td>
+      <div><%= form.label :distance_pieds %></div>
+      <div><%= form.text_field :distance_pieds %></div>
+    </td>
+  <tr>
+  <div>
+      <%= form.submit %>
+      <%= link_to :annuler, :back %>
+    </div>
+  <% end %>
