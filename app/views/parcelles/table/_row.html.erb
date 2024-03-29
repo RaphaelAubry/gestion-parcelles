@@ -1,4 +1,4 @@
-<tr>
+
   <td><%= link_to parcelle.reference_cadastrale, parcelle_path(parcelle) %></td>
   <td><%= parcelle.lieu_dit %></td>
   <td><%= parcelle.code_officiel_geographique %></td>
@@ -8,4 +8,3 @@
   <td><%= parcelle.distance_pieds %></td>
   <td><%= link_to :modifier, edit_parcelle_path(parcelle) %></td>
   <td><%= link_to :supprimer, parcelle_path(parcelle), data: { turbo_method: :delete, turbo_confirm: 'Etes-vous sûr ?'} %></td>
-</tr>

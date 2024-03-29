@@ -13,7 +13,19 @@ export default class extends Controller {
       center: JSON.parse(this.mapTarget.dataset.centroid),
       zoom: 15
     });
-    map.addControl(new mapboxgl.FullscreenControl());
+    map.addControl(new mapboxgl.FullscreenControl())
+    map.addControl(
+      new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        // When active the map will receive updates to the device's location as it changes.
+        trackUserLocation: true,
+        // Draw an arrow next to the location dot to indicate which direction the device is heading.
+        showUserHeading: true
+      })
+    )
+
     const geometryType = this.mapTarget.dataset.geometryType
     const coordinates = JSON.parse(this.mapTarget.dataset.coordinates)
     this.#addPolygon(map, geometryType, coordinates)

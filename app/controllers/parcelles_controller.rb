@@ -33,19 +33,26 @@ class ParcellesController < ApplicationController
   end
 
   def edit
-    render :new
   end
 
   def update
     @parcelle.update(parcelle_params)
 
-    redirect_to parcelles_path
+    if @parcelle.save
+      respond_to do |format|
+        format.html { redirect_to parcelles_path, notice: "La parcelle est modifiée avec succès" }
+      end
+    else
+      render edit:, status: :unprocessable_entity
+    end
   end
 
   def destroy
     @parcelle.destroy
 
-    redirect_to parcelles_path
+    respond_to do |format|
+      format.html { redirect_to parcelles_path, notice: "Parcelle supprimée avec succès" }
+    end
   end
 
   private

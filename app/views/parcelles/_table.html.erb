@@ -3,7 +3,9 @@
   <%= render partial: 'parcelles/table/header', locals: { parcelles: parcelles } %>
     <tbody>
       <% parcelles.each do |parcelle| %>
-        <%= render partial: 'parcelles/table/row', locals: { parcelle: parcelle } %>
+        <tr id="parcelle_<%= parcelle.id %>">
+          <%= render partial: 'parcelles/table/row', locals: { parcelle: parcelle } %>
+        </tr>
       <% end %>
     <tbody>
   <%= render partial: 'parcelles/table/footer', locals: { parcelles: parcelles } %>
