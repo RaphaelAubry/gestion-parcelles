@@ -1,35 +1,34 @@
 <%= form_for @parcelle do |form| %>
-    <td>
-      <div><%= form.label :reference_cadastrale %></div>
-      <div><%= form.text_field :reference_cadastrale %></div>
-    </td>
-    <td>
-      <div><%= form.label :lieu_dit %></div>
-      <div><%= form.text_field :lieu_dit %></div>
-    </td>
-    <td>
-      <div><%= form.label :code_officiel_geographique %></div>
-      <div><%= form.text_field :code_officiel_geographique %></div>
-    </td>
-    <td>
-      <div><%= form.label :surface %></div>
-      <div><%= form.text_field :surface %></div>
-    </td>
-    <td>
-      <div><%= form.label :annee_plantation %></div>
-      <div><%= form.text_field :annee_plantation %></div>
-    </td>
-      <td>
-      <div><%= form.label :distance_rang %></div>
-      <div><%= form.text_field :distance_rang %></div>
-    </td>
-    <td>
-      <div><%= form.label :distance_pieds %></div>
-      <div><%= form.text_field :distance_pieds %></div>
-    </td>
-  <tr>
-  <div>
-      <%= form.submit %>
-      <%= link_to :annuler, :back %>
-    </div>
-  <% end %>
+  <input-group>
+    <%= form.label :reference_cadastrale %>
+    <%= form.text_field :reference_cadastrale %>
+  </input-group>
+  <input-group>
+    <%= form.label :lieu_dit %>
+    <%= form.text_field :lieu_dit %>
+  </input-group>
+  <input-group>
+    <%= form.label :code_officiel_geographique %>
+    <%= form.text_field :code_officiel_geographique %>
+  </input-group>
+  <input-group>
+    <%= form.label :surface %>
+    <%= form.text_field :surface %>
+  </input-group>
+  <input-group>
+    <%= form.label :annee_plantation %>
+    <%= form.text_field :annee_plantation %>
+  </input-group>
+    <input-group>
+    <%= form.label :distance_rang%>
+    <%= form.text_field :distance_rang %>
+  </input-group>
+  <input-group>
+    <%= form.label :distance_pieds %>
+    <%= form.text_field :distance_pieds %>
+  </input-group>
+  <button-group>
+    <%= form.submit 'valider', class: 'button approuve' %>
+    <%= link_to :annuler, :back %>
+  </button-group>
+<% end %>

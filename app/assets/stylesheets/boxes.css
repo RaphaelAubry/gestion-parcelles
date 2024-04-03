@@ -1,0 +1,24 @@
+/* widescreen */
+@media (min-width: 901px) {
+  container-c1 {
+    display: block;
+    width: 66vw;
+  }
+}
+
+/* smartphone */
+@media (max-width: 900px) {
+  container-c1 {
+    display: block;
+    width: 95vw;
+    }
+}
+
+container-flex {
+  display: flex;
+  justify-content: center;
+}
+
+container-c1 {
+  padding: var(--padding-min);
+}

@@ -1,0 +1,35 @@
+table {
+  border-collapse: collapse;
+  border: 2px solid var(--grey-light-2);
+  font-size: var(--font-small);
+  }
+
+th, td {
+  border: 1px solid var(--grey-light-1);
+  padding: 2px 10px;
+}
+
+th[scope='col']#lieu_dit {
+  width: 200px;
+}
+
+th[scope='col']#reference_cadastrale,
+th[scope='col']#code_officiel_geographique,
+th[scope='col']#annee_plantation {
+  width: 100px;
+}
+
+th[scope='col']#distance_rang,
+th[scope='col']#distance_pieds {
+  width: 50px;
+}
+
+tr[scope='footer'] {
+  font-weight: bold;
+}
+
+i {
+  display: block;
+  height: 50px;
+  width: 50px;
+}

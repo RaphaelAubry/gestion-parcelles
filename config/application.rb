@@ -6,6 +6,9 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# Load .env file in development and test environments
+
+
 module GestionParcelles
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
