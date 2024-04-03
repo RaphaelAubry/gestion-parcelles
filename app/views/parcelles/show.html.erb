@@ -1,9 +1,9 @@
-<h1><%= @parcelle.lieu_dit %>: <%= @parcelle.reference_cadastrale %></h1>
+<h1><%= @parcelle.lieu_dit %> <%= @parcelle.reference_cadastrale %></h1>
 <div data-controller='mapbox'>
   <%= render partial: 'map',
     locals: {
       geometry_type: @geometry_type,
-      coordinates: @parcelle.polygon.coordinates ,
+      coordinates: @parcelle.polygon.coordinates,
       centroid: @parcelle.polygon.centroid.coordinates
     }
   %>
