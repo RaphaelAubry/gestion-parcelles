@@ -1,0 +1,11 @@
+container-navbar {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: var(--padding-min);
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  height: 30px;
+  width: 100%;
+}

@@ -13,8 +13,9 @@
   --padding-min: 5px;
   --padding-medium: 15px;
 
-  --break-point-1: 900px;
-  --break-point-2: 901px;
+  --break-point-1: 576px;
+  --break-point-2: 768px;
+  --break-point-2: 992px;
 }
 
 body {
