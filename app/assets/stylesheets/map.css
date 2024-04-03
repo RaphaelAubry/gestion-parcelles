@@ -1,14 +1,21 @@
-@media (min-width: 901px) {
+@media (min-width: 992px) {
   #map {
     height: 50vh;
-    width: 50vw;
+    width: 100%;
   }
 }
 
-@media (max-width: 900px) {
+@media (min-width: 769px) and (max-width: 991px) {
   #map {
-    height:80vh;
-    width: 95vw;
+    height: 75vh;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  #map {
+    height:75vh;
+    width: 100%;
   }
 }
 
