@@ -14,6 +14,8 @@ class Parcelle < ApplicationRecord
 
   after_create :update_polygon_coordinates
   attribute :polygon, :st_polygon, srid: 4326, geographic: true
+  before_update :default!
+  before_create :default!
 
   def code_section
     # résultat à 2 caractères
@@ -47,5 +49,12 @@ class Parcelle < ApplicationRecord
       Rails.logger.debug e.message
       Rails.logger.debug e.backtrace.join("\n")
     end
+  end
+
+  def default!
+    self.surface = 0 if self.surface.nil?
+    self.annee_plantation = nil if self.annee_plantation.nil?
+    self.distance_rang = 100 if self.distance_rang.nil?
+    self.distance_pieds = 110 if self.distance_pieds.nil?
   end
 end

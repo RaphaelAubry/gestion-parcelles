@@ -21,7 +21,8 @@ label {
   padding: var(--padding-min);
   font-size: var(--font-small);
   position: relative;
-    top: 25px;
+  font-size: var(--font-small);
+    top: 26px;
     left: 0px;
     padding: 5px;
     pointer-events: none;
