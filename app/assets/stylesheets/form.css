@@ -1,0 +1,70 @@
+form {
+  display: block;
+  width: 300px;
+  padding: var(--padding-min);
+}
+
+input-group {
+    display: grid;
+    width: 100%;
+    grid-template-rows: 25px;
+    padding: var(--padding-min);
+}
+
+input-group input {
+  width: 200px;
+  height: 25px;
+  transition: all 0.7s ease;
+}
+
+label {
+  padding: var(--padding-min);
+  font-size: var(--font-small);
+  position: relative;
+    top: 25px;
+    left: 0px;
+    padding: 5px;
+    pointer-events: none;
+    transition: all 0.7s ease;
+    &.move {
+      top: -5px;
+      left: 0;
+      color: green;
+      font-size: 10px;
+    }
+}
+
+/* general behaviour */
+
+input:-webkit-autofill {
+  background-color: transparent;
+  color: var(--grey-light-2);
+  box-shadow: 0 0 0 0 transparent !important;
+  background-image: none !important;
+  filter: none;
+}
+
+input:autofill:enabled {
+  background-color: transparent;
+  color: var(--grey-light-2);
+  box-shadow: 0 0 0 0 transparent !important;
+  background-image: none !important;
+  filter: none;
+}
+
+*:focus {
+  outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none;
+  -webkit-text-fill-color: none;
+}

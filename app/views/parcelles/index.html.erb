@@ -1,5 +1,7 @@
 <h1>Parcelles</h1>
 <%= render partial: 'table', locals: { parcelles: @parcelles } %>
-<p><%= link_to :home, root_path %></p>
-<p><%= link_to :carte, carte_path %><p>
-<p><%= link_to 'nouvelle parcelle', new_parcelle_path %><p>
+<%= link_to :home, root_path %>
+<%= link_to :carte, carte_path %>
+<button-group>
+  <%= link_to 'nouvelle parcelle', new_parcelle_path %>
+</button-group>

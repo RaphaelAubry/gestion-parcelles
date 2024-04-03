@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" %>
+    <%= javascript_include_tag "https://kit.fontawesome.com/4c22da3313.js", crossorigin: :anonymous %>
     <%= javascript_importmap_tags %>
-  </head>
-
   <body>
-    <%= yield %>
+    <container-flex>
+      <container-c1>
+        <%= yield %>
+      <container-c1>
+    </container-flex>
   </body>
 </html>

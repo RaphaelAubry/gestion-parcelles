@@ -1,0 +1,31 @@
+:root {
+  --blue-serious:#293947;
+  --green-strong:#869514;
+  --green-light: #CAD04A;
+  --grey-light-1: #eff0f1;
+  --grey-light-2: #ababab;
+  --grey-medium: #3F4144;
+  --grey-dark: #272C2F;
+
+
+  --font-small: 14px;
+
+  --padding-min: 5px;
+  --padding-medium: 15px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--color-grey-dark);
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-grey-dark);
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,42 @@
+button-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: var(--padding-min);
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  border-radius: 3px;
+  background-color: var(--green-strong);
+  border: 1px solid var(--green-strong);
+  font-size: var(--font-small);
+  color: var(--grey-light-1);
+  font-weight: bold;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+input.button {
+  box-sizing: content-box;
+  width: 75px;
+}
+
+a.button {
+  height: 25px;
+  padding: var(--padding-medium);
+}
+
+.approuve {
+
+}
+
+.cancel {
+
+
+}

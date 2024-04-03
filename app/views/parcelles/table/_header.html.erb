@@ -1,17 +1,15 @@
-<thead>
-  <tr>
-    <% (Parcelle::INSTANCE_VARIABLES - [:polygon]).each do |column_name| %>
-    <td>
-      <%= column_name.to_s.humanize %>
-    </td>
-    <% end %>
-  </tr>
-  <tr>
-    <% (Parcelle::INSTANCE_VARIABLES - [:polygon]).each do |column_name| %>
-    <td>
-      <%= link_to :asc, parcelles_path(sort: { column_name => :asc }) %>
-      <%= link_to :desc, parcelles_path(sort: { column_name => :desc }) %>
-    </td>
-    <% end %>
-  </tr>
-</thead>
+<tr>
+  <% (Parcelle::INSTANCE_VARIABLES - [:polygon]).each do |column_name| %>
+  <th id='<%= column_name %>' scope='col'>
+    <%= column_name.to_s.humanize %>
+  </th>
+  <% end %>
+</th>
+<tr>
+  <% (Parcelle::INSTANCE_VARIABLES - [:polygon]).each do |column_name| %>
+  <td>
+    <%= link_to '', parcelles_path(sort: { column_name => :asc }), class: 'fas fa-arrow-down' %>
+    <%= link_to '', parcelles_path(sort: { column_name => :desc }), class: 'fas fa-arrow-up' %>
+  </td>
+  <% end %>
+</tr>
