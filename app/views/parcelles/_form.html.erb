@@ -1,31 +1,91 @@
 <%= form_for @parcelle do |form| %>
-  <input-group>
-    <%= form.label :reference_cadastrale %>
-    <%= form.text_field :reference_cadastrale %>
+
+  <input-group data-controller='input-group'>
+    <%= form.label :reference_cadastrale,
+      data: { input_group_target: 'label' }
+    %>
+    <%= form.text_field :reference_cadastrale,
+      data: { input_group_target: 'input',
+              action: 'focus->input-group#focusLabel
+                       focusout->input-group#focusoutLabel
+                       change->input-group#focusLabel'
+            }
+    %>
   </input-group>
-  <input-group>
-    <%= form.label :lieu_dit %>
-    <%= form.text_field :lieu_dit %>
+  <input-group data-controller='input-group'>
+    <%= form.label :lieu_dit,
+      data: { input_group_target: 'label' }
+    %>
+    <%= form.text_field :lieu_dit,
+      data: { input_group_target: 'input',
+              action: 'focus->input-group#focusLabel
+                       focusout->input-group#focusoutLabel
+                       change->input-group#focusLabel'
+            }
+    %>
   </input-group>
-  <input-group>
-    <%= form.label :code_officiel_geographique %>
-    <%= form.text_field :code_officiel_geographique %>
+  <input-group data-controller='input-group'>
+    <%= form.label :code_officiel_geographique,
+      data: { input_group_target: 'label' }
+    %>
+    <%= form.text_field :code_officiel_geographique,
+      data: { input_group_target: 'input',
+              action: 'focus->input-group#focusLabel
+                      focusout->input-group#focusoutLabel
+                      change->input-group#focusLabel'
+            }
+    %>
   </input-group>
-  <input-group>
-    <%= form.label :surface %>
-    <%= form.text_field :surface %>
+  <input-group data-controller='input-group'>
+    <%= form.label :surface,
+      data: { input_group_target: 'label' }
+    %>
+    <%= form.text_field :surface,
+      value: '',
+      data: { input_group_target: 'input',
+              action: 'focus->input-group#focusLabel
+                    focusout->input-group#focusoutLabel
+                    change->input-group#focusLabel'
+            }
+    %>
   </input-group>
-  <input-group>
-    <%= form.label :annee_plantation %>
-    <%= form.text_field :annee_plantation %>
+  <input-group data-controller='input-group'>
+    <%= form.label :annee_plantation,
+      data: { input_group_target: 'label' }
+    %>
+    <%= form.text_field :annee_plantation,
+      value: '',
+      data: { input_group_target: 'input',
+          action: 'focus->input-group#focusLabel
+                  focusout->input-group#focusoutLabel
+                  change->input-group#focusLabel'
+            }
+    %>
   </input-group>
-    <input-group>
-    <%= form.label :distance_rang%>
-    <%= form.text_field :distance_rang %>
+    <input-group data-controller='input-group'>
+    <%= form.label :distance_rang,
+      data: { input_group_target: 'label' }
+    %>
+    <%= form.text_field :distance_rang,
+      value: '',
+      data: { input_group_target: 'input',
+          action: 'focus->input-group#focusLabel
+                  focusout->input-group#focusoutLabel
+                  change->input-group#focusLabel'
+            }
+    %>
   </input-group>
-  <input-group>
-    <%= form.label :distance_pieds %>
-    <%= form.text_field :distance_pieds %>
+  <input-group data-controller='input-group'>
+    <%= form.label :distance_pieds,
+      data: { input_group_target: 'label' } %>
+    <%= form.text_field :distance_pieds,
+      value: '',
+      data: { input_group_target: 'input',
+              action: 'focus->input-group#focusLabel
+                    focusout->input-group#focusoutLabel
+                    change->input-group#focusLabel'
+            }
+    %>
   </input-group>
   <button-group>
     <%= form.submit 'valider', class: 'button approuve' %>

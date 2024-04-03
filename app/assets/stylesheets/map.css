@@ -1,4 +1,17 @@
+@media (min-width: 901px) {
+  #map {
+    height: 50vh;
+    width: 50vw;
+  }
+}
+
+@media (max-width: 900px) {
+  #map {
+    height:80vh;
+    width: 95vw;
+  }
+}
+
 #map {
-  height: 50vh;
-  width: 50vw;
+  box-sizing: content-box;
 }
