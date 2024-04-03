@@ -27,10 +27,10 @@ label {
     pointer-events: none;
     transition: all 0.7s ease;
     &.move {
-      top: -5px;
+      top: 0px;
       left: 0;
-      color: green;
-      font-size: 10px;
+      color: var(--green-strong);
+      font-size: 12px;
     }
 }
 
