@@ -81,7 +81,7 @@ test:
 production:
   <<: *default
   adapter: postgis
-  url: <%= ENV.fetch("DATABASE_URL").gsub(/postgres/, 'postgis') if ENV.has_key? "DATABASE_URL" %>
+  url: <%= ENV.fetch("DATABASE_URL").gsub(/postgres/, 'postgis') %>
   database: gestion_parcelles_production
   username: gestion_parcelles
   password: <%= ENV["GESTION_PARCELLES_DATABASE_PASSWORD"] %>
