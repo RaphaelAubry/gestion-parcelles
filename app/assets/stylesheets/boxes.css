@@ -19,6 +19,10 @@
 
 /* smartphone */
 @media (max-width: 768px) {
+  container-flex {
+    justify-content: center;
+  }
+
   container-c1 {
     display: block;
     width: 95vw;

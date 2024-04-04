@@ -3,13 +3,19 @@ class ParcellesController < ApplicationController
 
   def index
     @parcelle = Parcelle.new
-    @parcelles = params[:sort].present? ? Parcelle.sort_with_params(params) : Parcelle.all
+    @parcelles = if params[:sort].present?
+                    Parcelle.sort_with_params(params)
+                 elsif params[:filter].present?
+                    Parcelle.filter_with_params(params)
+                 else
+                    Parcelle.all
+                 end
   end
 
   def carte
     require './lib/modules/r_geo.rb'
     @parcelles = Parcelle.all
-    @multipolygon = Parcelle::Factory.multi_polygon(@parcelles.pluck(:polygon))
+    @multipolygon = Parcelle::Factory.multi_polygon(@parcelles.pluck(:polygon).compact)
     @geometry_type = 'MultiPolygon'
   end
 
