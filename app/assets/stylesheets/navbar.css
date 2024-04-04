@@ -3,9 +3,20 @@ container-navbar {
   align-items: center;
   gap: 25px;
   padding: var(--padding-min);
+  z-index: 3;
   overflow: hidden;
   position: fixed;
   top: 0;
-  height: 30px;
+  height: 50px;
   width: 100%;
+  background-color: var(--grey-dark);
+  color: var(--grey-light-1);
+  a {
+    color: var(--grey-light-1);
+    text-decoration: none;
+  }
+}
+
+.shine {
+  color: var(--green-strong)
 }

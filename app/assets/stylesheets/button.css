@@ -10,7 +10,7 @@ button-group {
   justify-content: center;
   align-items: center;
   height: 25px;
-  border-radius: 3px;
+  border-radius: var(--border-radius);
   background-color: var(--green-strong);
   border: 1px solid var(--green-strong);
   font-size: var(--font-small);
@@ -30,13 +30,4 @@ input.button {
 a.button {
   height: 25px;
   padding: var(--padding-medium);
-}
-
-.approuve {
-
-}
-
-.cancel {
-
-
 }

@@ -35,5 +35,13 @@ container-flex {
 
 container-c1 {
   padding: var(--padding-min);
-  margin-top: 25px;
+  margin-top: 75px;
+}
+
+container-c1 a {
+  text-decoration: none;
+  color: var(--grey-light);
+  &:hover {
+    text-decoration: underline;
+  }
 }

@@ -5,7 +5,7 @@
   --grey-light-1: #eff0f1;
   --grey-light-2: #ababab;
   --grey-medium: #3F4144;
-  --grey-dark: #272C2F;
+  --grey-dark: #1e2123;
 
 
   --font-small: 14px;
@@ -15,19 +15,12 @@
 
   --break-point-1: 576px;
   --break-point-2: 768px;
-  --break-point-2: 992px;
+  --break-point-3: 992px;
+
+  --border-radius: 5px;
 }
 
 body {
-  color: var(--grey-dark);
   background-color: rgb(253, 254, 253);
   margin: 0;
-}
-
-a {
-  text-decoration: none;
-  color: var(--grey-dark);
-  &:hover {
-    text-decoration: underline;
-  }
 }

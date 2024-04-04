@@ -4,7 +4,7 @@ class ParcellesController < ApplicationController
   def index
     @parcelle = Parcelle.new
     @parcelles = if params[:sort].present?
-                    Parcelle.sort_with_params(params)
+                    Parcelle.where(id: params[:sort][:ids]).sort_with_params(params)
                  elsif params[:filter].present?
                     Parcelle.filter_with_params(params)
                  else
