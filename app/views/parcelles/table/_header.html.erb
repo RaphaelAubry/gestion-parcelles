@@ -9,13 +9,17 @@
   <% (Parcelle::INSTANCE_VARIABLES - [:polygon]).each do |column_name| %>
   <td>
     <table-tool>
-      <%= link_to '', parcelles_path(sort: { column_name => :asc }), class: 'fas fa-arrow-down' %>
-      <%= link_to '', parcelles_path(sort: { column_name => :desc }), class: 'fas fa-arrow-up' %>
+      <%= link_to '', parcelles_path(sort: { column_name => :asc, ids: @parcelles.map(&:id) }), class: 'fas fa-arrow-down' %>
+      <%= link_to '', parcelles_path(sort: { column_name => :desc, ids: @parcelles.map(&:id) }), class: 'fas fa-arrow-up' %>
       <%= form_with url: "/parcelles", method: :get, scope: :filter, data: { controller: 'form-filter' } do |form| %>
-        <%= form.select(column_name, @parcelles.pluck(column_name).uniq, {include_blank: 'filtrer', selected: 'filtrer'}, { data: {  form_filter_target: 'dropdown', action: 'change->form-filter#submit' } }) %>
+        <%= form.select(column_name, @parcelles.pluck(column_name).uniq,
+            {include_blank: 'filtrer', selected: 'filtrer'},
+            { data: {  form_filter_target: 'dropdown', action: 'change->form-filter#submit' }
+          })
+        %>
       <%= link_to '', parcelles_path(), data: { form_filter_target: 'link' }, hidden: true %><% end %>
+      <%= link_to '', parcelles_path(), class: 'fas fa-solid fa-retweet' %>
     </table-tool>
-
   </td>
   <% end %>
 </tr>
