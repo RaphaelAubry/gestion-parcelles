@@ -12,5 +12,16 @@ module ModelConcern
         end
       end
     end
+
+    def filter_with_params(params)
+      if params[:filter]
+        column_name = params[:filter].keys[0]
+        if column_names.include? column_name.to_s
+          where(column_name => params[:filter][column_name])
+        end
+      else
+        all
+      end
+    end
   end
 end
