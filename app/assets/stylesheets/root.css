@@ -9,8 +9,10 @@
 
 
   --font-small: 14px;
+  --font-tall: 25px;
 
   --padding-min: 5px;
+  --padding-icon-menu: 7px;
   --padding-medium: 15px;
 
   --break-point-1: 576px;

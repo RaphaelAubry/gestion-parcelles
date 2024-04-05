@@ -35,7 +35,7 @@ container-flex {
 
 container-c1 {
   padding: var(--padding-min);
-  margin-top: 75px;
+  margin-top: 20px;
 }
 
 container-c1 a {
