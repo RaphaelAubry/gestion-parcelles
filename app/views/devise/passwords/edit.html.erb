@@ -1,0 +1,28 @@
+<h2>Modifier mon mot de passe</h2>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= f.hidden_field :reset_password_token %>
+
+  <input-group data-controller='input-group'>
+    <%= f.label :password, "Nouveau mot de passe", data: { input_group_target: 'label' } %>
+    <% if @minimum_password_length %>
+      <p><%= "#{@minimum_password_length} caractères minimum" %></p>
+    <% end %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+  </input-group>
+
+  <input-group data-controller='input-group'>
+    <%= f.label :password_confirmation, "Confirmer mon nouveau mot de passe", data: { input_group_target: 'label' } %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </input-group>
+
+  <submit-group>
+    <%= f.submit "Valider", class: 'button' %>
+    <%= link_to 'annuler', :back %>
+  </submit-group>
+<% end %>
+
+<link-group>
+  <%= render "devise/shared/links" %>
+</link-group>

@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ['link']
+  static targets = ['link', 'menu']
   static values = { path: String }
 
   pathValueChanged() {
@@ -12,5 +12,14 @@ export default class extends Controller {
         target.classList.remove('shine')
       }
     })
+  }
+
+  displayMenu() {
+    if (this.menuTarget.style.display === "flex" ||
+        this.menuTarget.style.display === "" ) {
+      this.menuTarget.style.display = "none";
+    } else {
+      this.menuTarget.style.display = "flex";
+    }
   }
 }

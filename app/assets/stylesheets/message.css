@@ -1,0 +1,6 @@
+message-group {
+  padding: var(--padding-min);
+  li {
+    font-size: var(--font-small);
+  }
+}

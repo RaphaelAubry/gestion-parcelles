@@ -8,6 +8,7 @@ input-group {
     display: grid;
     width: 100%;
     grid-template-rows: 25px;
+    font-size: var(--font-small);
     padding: var(--padding-min);
 }
 
@@ -15,24 +16,43 @@ input-group input {
   width: 200px;
   height: 25px;
   transition: all 0.7s ease;
+  border: 2px solid var(--grey-light-2);
 }
 
-label {
+input-group label {
   padding: var(--padding-min);
   font-size: var(--font-small);
   position: relative;
-  font-size: var(--font-small);
-    top: 26px;
-    left: 0px;
-    padding: 5px;
-    pointer-events: none;
-    transition: all 0.7s ease;
+  top: 26px;
+  left: 0px;
+  padding: 5px;
+  pointer-events: none;
+  transition: all 0.7s ease;
     &.move {
       top: 0px;
       left: 0;
       color: var(--green-strong);
-      font-size: 12px;
+      font-size: var(--font-xsmall);
     }
+}
+
+input-group p {
+  margin: 0;
+  font-style: italic;
+  font-size: var(--font-xsmall);
+}
+
+link-group {
+  display: block;
+  padding: var(--padding-min);
+  a {
+    display: block;
+    margin: 10px 0;
+  }
+}
+
+checkbox-group {
+  font-size: var(--font-xsmall);
 }
 
 /* general behaviour */
@@ -55,6 +75,8 @@ input:autofill:enabled {
 
 *:focus {
   outline: none;
+  border: none;
+  border: 2px solid var(--green-strong);
 }
 
 input:-webkit-autofill,

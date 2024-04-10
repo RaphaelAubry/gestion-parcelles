@@ -7,10 +7,13 @@
   --grey-medium: #3F4144;
   --grey-dark: #1e2123;
 
-
+  --font-xsmall: 12px;
   --font-small: 14px;
+  --font-medium: 16px;
+  --font-tall: 25px;
 
   --padding-min: 5px;
+  --padding-icon-menu: 7px;
   --padding-medium: 15px;
 
   --break-point-1: 576px;
@@ -23,4 +26,14 @@
 body {
   background-color: rgb(253, 254, 253);
   margin: 0;
+  a {
+    font-size: var(--font-small);
+  }
+  p {
+    font-size: var(--font-small);
+  }
+}
+
+a:focus {
+  border: none;
 }

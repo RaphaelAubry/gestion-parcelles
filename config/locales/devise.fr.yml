@@ -1,0 +1,133 @@
+fr:
+  devise:
+    confirmations:
+      account_confirmation: "Confirmation du compte"
+      send_instructions: "Vous allez recevoir un email contenant des instructions pour activer votre compte."
+      confirmed: "Votre compte a été activé. Vous êtes maintenant connecté."
+      new:
+        resend_confirmation_instructions: "Renvoyer l'email de confirmation"
+        resend: "Renvoyer"
+    failure:
+      unauthenticated: "Vous devez vous connecter ou vous inscrire pour continuer."
+      unconfirmed: "Vous devez confirmer votre compte pour continuer."
+      locked: "Votre compte est verrouillé."
+      invalid: "email ou mot de passe incorrect."
+      invalid_token: "Jeton d'authentification incorrect."
+      timeout: "Votre session est expirée, veuillez vous reconnecter pour continuer."
+      inactive: "Votre compte n'est pas encore activé."
+      user:
+        not_found_in_database: "Compte inexistant"
+        already_authenticated: "Déjà authentifié"
+    mailer:
+      confirmation_instructions: "Instructions de confirmation"
+      reset_password_instructions: "Instructions pour changer le mot de passe"
+      unlock_instructions: "Instructions pour déverrouiller le compte"
+      common:
+        hello: "Bonjour"
+        your_login: "Votre identifiant"
+        best_regards: "Cordialement"
+        signature: "L'équipe Gateau Violet"
+      confirmation_instructions:
+        welcome: "Bienvenu(e)"
+        you_can_confirm_your_account_through_the_link_below: "Vous pouvez confirmer votre compte en cliquant sur le lien ci-dessous"
+        confirm_my_account: "Confirmer mon compte"
+      email_changed:
+        email_changed_in_progress: "Sous réserve de confirmation, votre email va être"
+        email_changed_completed: "Votre email est maintenant"
+      password_change:
+        changed: "Votre mot de passe a bien été modifié"
+      reset_password_instructions:
+        reset_password_instruction: "Un changement de mot de passe a été demandé. Vous pouvez le faire en cliquant sur le lien ci-dessous."
+        change_my_password: "Changer mon mot de passe"
+        wrong_request_instruction: "Si vous n'avez pas demandé ce changement, ignorez ce message."
+        unchange_password_message: "Votre mot de passe ne sera pas changé tant que vous n'aurez pas activé le lien ci-dessus pour en créer un nouveau."
+      unlock_instructions:
+        locked_account_message: "Votre compte a été verrouillé à la suite d'un trop grand nombre de tentatives d'authentification."
+        unlock_account_instruction: "Cliquez sur le lien ci-dessous pour déverrouiller votre compte"
+        unlock_my_account: "Déverrouiller mon compte"
+    omniauth_callbacks:
+      failure: "Je n'ai pas pu vous authentifier en %{kind} à cause de \"%{reason}\"."
+      success: "Authentification réussie sur ce compte %{kind} ."
+    passwords:
+      edit:
+        new_password: "Nouveau mot de passe"
+        change_your_password: "Changez votre mot de passe"
+        change_my_password: "Changer mon mot de passe"
+        change: "Changer"
+        password_confirmation: "Confirmation du mot de passe"
+        confirm_your_new_password: "Confirmer votre nouveau mot de passe"
+        characters_minimum: "caractère(s) minimum"
+      new:
+        password: "Mot de passe"
+        forgot_your_password?: "Mot de passe oublié ?"
+        send_me_reset_password_instructions: "Envoyez-moi un email pour changer mon mot de passe"
+        Your_email_is_required_to_send_instructions_to_reset_your_password: "Nous avons besoin de votre email pour réinitialiser votre mot de passe."
+        reset: "Réinitialiser"
+      user:
+        send_instructions: "Vous allez recevoir un email contenant des instructions pour changer votre mot de passe."
+        updated: "Votre mot de passe a été changé. Vous êtes maintenant connecté."
+    registrations:
+      signed_up: "Votre inscription est enregistrée. Si demandé, un email de confirmation vous a été envoyé."
+      updated: "Votre mise à jour a été prise en compte."
+      destroyed: "Votre compte a été supprimé. Nous espérons vous revoir bientôt."
+      forgot_your_password?: "Mot de passe oublié ?"
+      edit:
+        my_profile: "Mon profil"
+        my_account: "Mon compte"
+        edit: "Modifier"
+        # For "leave blank if you don't want to change it"
+        password_instruction: "Laisser vide si vous ne voulez pas le changer"
+        # For "we need your current password to confirm your changes"
+        current_password_instruction: "Vous devez saisir votre mot de passe actuel pour confirmer vos changements"
+        update: "Mettre à jour"
+        password: "Mot de passe"
+        password_confirmation: "Confirmation du mot de passe"
+        current_password: "Mot de passe actuel"
+        cancel_my_account: "Supprimer mon compte"
+        characters_minimum: "caractère(s) minimum"
+        delete: "Supprimer"
+        unhappy?: "Mécontent(e) ?"
+        are_you_sure?: "Êtes-vous sûr ?"
+        back: "Retour"
+        confirmation_email: "En attente de confirmation de l'email pour:"
+      new:
+        registration: "Inscription"
+        sign_up: "S'inscrire"
+        log_in: "Se connecter"
+        password: "Mot de passe"
+        characters_minimum: "caractère(s) minimum"
+        password_confirmation: "Confirmation du mot de passe"
+      user:
+        destroyed: "Votre compte a été supprimé. Nous espérons vous revoir bientôt."
+        signed_up: "Votre inscription est enregistrée."
+        updated: "Modifié"
+    sessions:
+      session: "Connexion"
+      signed_in: "Connecté"
+      signed_out: "Déconnecté"
+      forgot_your_password?: "Mot de passe oublié ?"
+      sign_in: "Se connecter"
+      log_in: "Se connecter"
+      sign_up: "S'inscrire"
+      remember_me: "Se souvenir de moi"
+    unlocks:
+      unlock_intstructions: "Déverouiller mon compte"
+      send_instructions: "Vous allez recevoir un email avec des instructions pour déverrouiller votre compte."
+      unlocked: "Votre compte est déverrouillé. Vous êtes maintenant connecté."
+      new:
+        resend_unlock_instructions: "Renvoyez le mail pour déverrouiller mon compte"
+        resend: "Renvoyer"
+    shared:
+      links:
+        didnt_receive_confirmation_instructions?: "Vous n'avez pas reçu l'email de confirmation ?"
+        didnt_receive_unlock_instructions?: "Vous n'avez pas reçu l'email pour déverrouiller de votre compte ?"
+        forgot_your_password?: "Mot de passe oublié ?"
+        log_in: "Se connecter"
+        sign_up: "S'inscrire"
+        sign_in_with: "Se connecter avec"
+  errors:
+    messages:
+      not_found: "n'a pas été trouvé(e)"
+      already_confirmed: "a déjà été confirmé(e)"
+      not_locked: "n'était pas verrouillé(e)"
+      not_saved: "non enregistré(e)"

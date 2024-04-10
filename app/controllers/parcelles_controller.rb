@@ -1,5 +1,7 @@
 class ParcellesController < ApplicationController
+  before_action :authenticate_user!
   before_action :parcelle, only: [:show, :edit, :update, :destroy]
+
 
   def index
     @parcelle = Parcelle.new
@@ -26,11 +28,9 @@ class ParcellesController < ApplicationController
   def create
     @parcelle = Parcelle.create(parcelle_params)
     if @parcelle.save
-      respond_to do |format|
-        format.html { redirect_to parcelles_path, notice: "La parcelle est enregistrée avec succès" }
-      end
+      redirect_to parcelles_path, notice: "La parcelle est enregistrée avec succès"
     else
-      render new:, status: :unprocessable_entity
+      render 'new'
     end
   end
 
@@ -45,20 +45,15 @@ class ParcellesController < ApplicationController
     @parcelle.update(parcelle_params)
 
     if @parcelle.save
-      respond_to do |format|
-        format.html { redirect_to parcelles_path, notice: "La parcelle est modifiée avec succès" }
-      end
+      redirect_to parcelles_path, notice: "La parcelle est modifiée avec succès"
     else
-      render edit:, status: :unprocessable_entity
+      render 'edit'
     end
   end
 
   def destroy
     @parcelle.destroy
-
-    respond_to do |format|
-      format.html { redirect_to parcelles_path, notice: "Parcelle supprimée avec succès" }
-    end
+    redirect_to parcelles_path, notice: "Parcelle supprimée avec succès"
   end
 
   private

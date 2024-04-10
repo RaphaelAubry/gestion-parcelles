@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Gestion parcelles</title>
+    <title>Gestion Parcelles</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= favicon_link_tag 'favicon.ico' %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
@@ -10,10 +11,11 @@
     <%= javascript_include_tag "https://kit.fontawesome.com/4c22da3313.js", crossorigin: :anonymous %>
     <%= javascript_importmap_tags %>
   </head>
-  <body>
+  <body data-controller='window' data-window-target='width'>
     <%= render 'shared/navbar' %>
     <container-flex>
       <container-c1>
+        <%= render 'shared/messages' %>
         <%= yield %>
       <container-c1>
     </container-flex>

@@ -1,0 +1,32 @@
+fr:
+  hello: "Bonjour le monde"
+  back: "Retour"
+  activerecord:
+    attributes:
+      user:
+        email: "Email"
+        password: "Mot de passe"
+        avatar: "Photo"
+        password_confirmation: "Confirmation du mot de passe"
+        current_password: "Mot de passe actuel"
+      message:
+        content: 'Message'
+        subject: 'Objet'
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "doit être complété"
+              invalid: "non conforme"
+              taken: "déjà pris"
+            password:
+              blank: "doit être complété"
+              too_short: "trop court"
+              invalid: "non conforme"
+            password_confirmation:
+              confirmation: "doit être identique au mot de passe"
+              invalid: "non conforme"
+            current_password:
+              blank: "doit être complété"
+              invalid: "non conforme"
