@@ -1,6 +1,9 @@
 class Parcelle < ApplicationRecord
   include ModelConcern
 
+  has_many :user_parcelles
+  has_many :users, through: :user_parcelles
+
   INSTANCE_VARIABLES = [:reference_cadastrale,
                         :lieu_dit,
                         :code_officiel_geographique,

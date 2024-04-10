@@ -1,8 +1,9 @@
-button-group {
+submit-group {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: var(--padding-min);
+  margin-top: 20px;
 }
 
 .button {
@@ -19,6 +20,10 @@ button-group {
   text-decoration: none;
   &:hover {
     cursor: pointer;
+  }
+  &:focus {
+    margin: 0;
+    border-width: 0.8px;
   }
 }
 

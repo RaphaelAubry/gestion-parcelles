@@ -36,8 +36,9 @@ container-navbar {
     list-style-type: none;
     width: 100%;
     transition: display 2s allow-discrete;
-    li a {
+    li a, navbar-dropdown a {
         color: var(--grey-light-1);
+        font-size: var(--font-medium);
         text-align: center;
         text-decoration: none;
         &:hover {
@@ -48,7 +49,7 @@ container-navbar {
     }
   navbar-icon {
     position: absolute;
-    right: 15px;
+    left: 15px;
     top: 15px;
     color: var(--grey-light-1);
     border: 1px solid var(--grey-light-2);
@@ -60,8 +61,30 @@ container-navbar {
         cursor: pointer;
     }
   }
+  navbar-account {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+  }
+  p {
+    color: var(--grey-light-1);
+    font-size: var(--font-small);
+  }
 }
 
 .shine {
   color: var(--green-strong);
+}
+
+navbar-account {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  a {
+    text-decoration: none;
+    color: var(--grey-light-1);
+        &:hover {
+          text-decoration: underline;
+        }
+  }
 }

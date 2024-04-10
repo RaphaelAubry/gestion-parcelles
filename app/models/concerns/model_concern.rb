@@ -4,7 +4,7 @@ module ModelConcern
   class_methods do
     def sort_with_params(params)
       if params[:sort]
-        column_name = params[:sort].keys[1]
+        column_name = params[:sort].except(:ids).keys[0]
         if column_names.include? column_name.to_s
           all.order(column_name => params[:sort][column_name])
         else

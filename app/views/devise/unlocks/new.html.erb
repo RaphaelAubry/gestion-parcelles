@@ -1,0 +1,23 @@
+<h2>Déverrouiller mon compte</h2>
+
+<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <input-group data-controller='input-group'>
+    <%= f.label :email, data: { input_group_target: 'label' } %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",
+      data: { input_group_target: 'input',
+              action: 'focus->input-group#focusLabel
+                       focusout->input-group#focusoutLabel
+                       change->input-group#focusLabel'
+            } %>
+  </input-group>
+
+  <input-group>
+    <%= f.submit "Envoyer", class: 'button' %>
+  </input-group>
+<% end %>
+
+<link-group>
+  <%= render "devise/shared/links" %>
+</link-group>

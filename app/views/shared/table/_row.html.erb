@@ -1,0 +1,10 @@
+<% columns.each do |column_name| %>
+  <td><%= instance.send column_name %></td>
+<% end%>
+
+<td><%= link_to '', send("edit_#{instance.model_name.singular}_path", instance), class: 'fas fa-pen' %></td>
+<td><%= link_to '', send("#{instance.model_name.singular}_path", instance),
+                            data: { turbo_method: :delete, turbo_confirm: 'Etes-vous sûr ?'},
+                            class: "fas fa-trash"
+    %>
+</td>

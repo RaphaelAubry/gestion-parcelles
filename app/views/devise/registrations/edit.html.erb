@@ -1,0 +1,63 @@
+<h2>Modifier mon compte <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <input-group data-controller='input-group'>
+    <%= f.label :email, data: { input_group_target: 'label' } %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",
+      data: { input_group_target: 'input',
+              action: 'focus->input-group#focusLabel
+                       focusout->input-group#focusoutLabel
+                       change->input-group#focusLabel'
+            } %>
+  </input-group>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>En attente de confirmation: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <input-group data-controller='input-group'>
+    <%= f.label :password, data: { input_group_target: 'label' } %>
+    <%= f.password_field :password, autocomplete: "new-password",
+      data: { input_group_target: 'input',
+              action: 'focus->input-group#focusLabel
+                       focusout->input-group#focusoutLabel
+                       change->input-group#focusLabel'
+            } %>
+    <p>Ne pas remplir si vous voulez le garder</p>
+    <% if @minimum_password_length %>
+      <p><%= "#{@minimum_password_length} caractères minimum" %></p>
+    <% end %>
+  </input-group>
+
+  <input-group data-controller='input-group'>
+    <%= f.label :password_confirmation, data: { input_group_target: 'label' } %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",
+      data: { input_group_target: 'input',
+              action: 'focus->input-group#focusLabel
+                       focusout->input-group#focusoutLabel
+                       change->input-group#focusLabel'
+            } %>
+  </input-group>
+
+  <input-group data-controller='input-group'>
+    <%= f.label :current_password, data: { input_group_target: 'label' } %>
+    <%= f.password_field :current_password, autocomplete: "current-password",
+      data: { input_group_target: 'input',
+              action: 'focus->input-group#focusLabel
+                       focusout->input-group#focusoutLabel
+                       change->input-group#focusLabel'
+            } %>
+    <p>Votre mot de passe actuel est requis</p>
+  </input-group>
+
+  <submit-group>
+    <%= f.submit "Valider", class: 'button' %>
+    <%= link_to 'annuler', :back %>
+  </submit-group>
+<% end %>
+
+<link-group>
+  <%= link_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, data: { turbo_method: :delete } %>
+</link-group>

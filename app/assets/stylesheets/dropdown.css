@@ -1,0 +1,23 @@
+navbar-dropdown {
+  position: relative;
+  display: block;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  min-width: 120px;
+  z-index: 1;
+  background-color: var(--grey-medium);
+  border-radius: var(--border-radius);
+  padding: var(--padding-medium);
+  a {
+    display: block;
+    margin: 5px 0;
+  }
+}

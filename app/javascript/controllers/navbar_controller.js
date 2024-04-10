@@ -15,7 +15,6 @@ export default class extends Controller {
   }
 
   displayMenu() {
-    console.log(this.menuTarget.style.display)
     if (this.menuTarget.style.display === "flex" ||
         this.menuTarget.style.display === "" ) {
       this.menuTarget.style.display = "none";
