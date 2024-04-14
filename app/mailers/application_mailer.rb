@@ -1,4 +1,3 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "g.parcelles@gmail.com"
-  layout "mailer"
+  default from: '"Gestion Parcelles" <g.parcelles@gmail.com>'
 end

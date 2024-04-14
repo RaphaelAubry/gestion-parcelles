@@ -1,0 +1,8 @@
+<%= render partial: 'shared/table', locals: { instances: @guests,
+                                              controller: :guests,
+                                                options: {
+                                                  columns: User::Guest_INSTANCE_VARIABLES,
+                                                  formulas: []
+                                                }
+                                            }
+%>

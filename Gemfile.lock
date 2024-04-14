@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    action_policy (0.6.8)
+      ruby-next-core (>= 1.0)
     actioncable (7.0.8.1)
       actionpack (= 7.0.8.1)
       activesupport (= 7.0.8.1)
@@ -196,6 +198,7 @@ GEM
     rgeo-activerecord (7.0.1)
       activerecord (>= 5.0)
       rgeo (>= 1.0.0)
+    ruby-next-core (1.0.2)
     rubyzip (2.3.2)
     selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -242,6 +245,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  action_policy
   activerecord-postgis-adapter
   bootsnap
   capybara

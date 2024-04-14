@@ -25,6 +25,10 @@ th[scope='col']#distance_pieds {
   width: 50px;
 }
 
+tr:hover {
+  cursor: pointer;
+}
+
 tr[scope='footer'] {
   font-weight: bold;
 }

@@ -1,5 +1,5 @@
 class Parcelle < ApplicationRecord
-  include ModelConcern
+  include FilterModelConcern
 
   has_many :user_parcelles
   has_many :users, through: :user_parcelles
@@ -20,9 +20,11 @@ class Parcelle < ApplicationRecord
   before_update :default!
   before_create :default!
 
+  scope :access_shared_between, -> (users) { joins(:user_parcelles).where(user_parcelles: { user: users }) }
+
   def code_section
     # résultat à 2 caractères
-    result = reference_cadastrale.scan(/\D/).join
+    result = reference_cadastrale.scan(/\D/).join.upcase
     prepend_zero(result, 2)
   end
 

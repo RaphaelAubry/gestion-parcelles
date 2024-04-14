@@ -4,33 +4,41 @@ class ParcellesController < ApplicationController
 
 
   def index
-    @parcelle = Parcelle.new
     @parcelles = if params[:sort].present?
-                    Parcelle.where(id: params[:sort][:ids]).sort_with_params(params)
+                    authorized_scope(Parcelle, type: :relation, as: :access).where(id: params[:sort][:ids]).sort_with_params(params)
                  elsif params[:filter].present?
-                    Parcelle.filter_with_params(params)
+                    authorized_scope(Parcelle, type: :relation, as: :access).filter_with_params(params)
                  else
-                    Parcelle.all
+                    authorized_scope(Parcelle, type: :relation, as: :access)
                  end
+    authorize! @parcelles
   end
 
   def carte
     require './lib/modules/r_geo.rb'
-    @parcelles = Parcelle.all
+    @parcelles = authorized_scope(Parcelle, type: :relation, as: :access)
     @multipolygon = Parcelle::Factory.multi_polygon(@parcelles.pluck(:polygon).compact)
     @geometry_type = 'MultiPolygon'
+    authorize! @parcelles
   end
 
   def new
     @parcelle = Parcelle.new
+    authorize! @parcelle
   end
 
   def create
     @parcelle = Parcelle.create(parcelle_params)
+    authorize! @parcelle
+
     if @parcelle.save
-      redirect_to parcelles_path, notice: "La parcelle est enregistrée avec succès"
+      current_user.parcelles << @parcelle
+
+      respond_to do |format|
+        format.html { redirect_to parcelles_path, notice: "La parcelle est enregistrée avec succès" }
+      end
     else
-      render 'new'
+      render new:, status: :unprocessable_entity
     end
   end
 
@@ -45,15 +53,20 @@ class ParcellesController < ApplicationController
     @parcelle.update(parcelle_params)
 
     if @parcelle.save
-      redirect_to parcelles_path, notice: "La parcelle est modifiée avec succès"
+      respond_to do |format|
+        format.html { redirect_to parcelles_path, notice: "La parcelle est modifiée avec succès" }
+      end
     else
-      render 'edit'
+      render edit:, status: :unprocessable_entity
     end
   end
 
   def destroy
     @parcelle.destroy
-    redirect_to parcelles_path, notice: "Parcelle supprimée avec succès"
+
+    respond_to do |format|
+      format.html { redirect_to parcelles_path, notice: "Parcelle supprimée avec succès" }
+    end
   end
 
   private
@@ -64,5 +77,6 @@ class ParcellesController < ApplicationController
 
   def parcelle
     @parcelle = Parcelle.find(params[:id])
+    authorize! @parcelle
   end
 end

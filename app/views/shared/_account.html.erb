@@ -5,9 +5,16 @@
 </account-status>
 <navbar-dropdown data-controller='dropdown' data-action='click->dropdown#displayMenu'>
   <%= image_tag 'user.png', width: '50px' %>
+  <account-connexion data-controller='connexion'
+                     data-connexion-status-value='<%= user_signed_in? %>'
+                     data-connexion-target='circle'
+  >
+  </account-connexion>
     <dropdown-menu data-dropdown-target='menu'>
       <%= link_to 'mon compte', edit_user_registration_path(current_user) %>
       <% if user_signed_in? %>
+        <%= link_to 'inviter', edit_guests_path %>
+        <%= link_to 'invités', guests_path %>
         <%= link_to "déconnexion", destroy_user_session_path, data: { turbo_method: :delete } %>
       <% end %>
     </dropdown-menu>

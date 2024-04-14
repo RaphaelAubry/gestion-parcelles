@@ -1,10 +1,23 @@
 <% columns.each do |column_name| %>
-  <td><%= instance.send column_name %></td>
-<% end%>
-
-<td><%= link_to '', send("edit_#{instance.model_name.singular}_path", instance), class: 'fas fa-pen' %></td>
-<td><%= link_to '', send("#{instance.model_name.singular}_path", instance),
-                            data: { turbo_method: :delete, turbo_confirm: 'Etes-vous sûr ?'},
-                            class: "fas fa-trash"
-    %>
+  <td  data-table-target='row'
+       data-action='click->table#linkTo'
+  >
+    <%= instance.send column_name %>
+  </td>
+<% end %>
+<td>
 </td>
+<%= controller %>
+<% if allowed_to?(:edit?, instance, with: ((controller.to_s.classify + 'Policy').constantize)) %>
+  <td><%= link_to '', send("edit_#{controller.to_s.singularize}_path", instance),
+                          class: 'fas fa-pen'
+      %>
+  </td>
+<% end %>
+<% if allowed_to?(:destroy?, instance, with: ((controller.to_s.classify + 'Policy').constantize)) %>
+  <td><%= link_to '', send("#{controller.to_s.singularize}_path", instance),
+                          data: { turbo_method: :delete, turbo_confirm: 'Etes-vous sûr ?'},
+                          class: "fas fa-trash"
+      %>
+  </td>
+<% end %>

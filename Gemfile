@@ -56,8 +56,11 @@ gem 'rgeo-activerecord'
 # dotenv
 gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
 
-# authntication
+# authentication
 gem "devise"
+
+# authorization
+gem "action_policy"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
