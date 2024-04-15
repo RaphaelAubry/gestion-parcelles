@@ -1,0 +1,8 @@
+Bonjour,
+
+<% username = (@user.name.nil? || @user.surname.nil?) ? 'Un contact' : "#{@user.surname} #{@user.name}" %>
+
+<%= mail_to @user.email, username %> vous retire l'accès à liste de ses parcelles.
+
+Bonne récolte
+L'équipe GP

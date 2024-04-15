@@ -1,0 +1,10 @@
+<p>Bonjour,</p>
+
+<% username = (@user.name.nil? || @user.surname.nil?) ? 'Un contact' : "#{@user.surname} #{@user.name}" %>
+
+<p><%= mail_to @user.email, username %> vous partage l'accès à liste de ses parcelles.</p>
+
+<p>Rendez-vous sur votre <%= link_to 'liste', parcelles_url %>.</p>
+
+<p>Bonne récolte</p>
+<p>L'équipe GP</p>
