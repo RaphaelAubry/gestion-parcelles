@@ -5,9 +5,6 @@
     <%= instance.send column_name %>
   </td>
 <% end %>
-<td>
-</td>
-<%= controller %>
 <% if allowed_to?(:edit?, instance, with: ((controller.to_s.classify + 'Policy').constantize)) %>
   <td><%= link_to '', send("edit_#{controller.to_s.singularize}_path", instance),
                           class: 'fas fa-pen'

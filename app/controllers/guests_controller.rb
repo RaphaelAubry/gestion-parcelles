@@ -19,12 +19,15 @@ class GuestsController < ApplicationController
 
   def update_guests
     guest = User.find_by(email: params[:user][:guest_email])
+    authorize! guest, with: GuestPolicy
 
     if guest
       @user.guests << guest
       guest.owners << @user
 
       if @user.save && guest.save
+        GuestMailer.with(user: @user, guest: guest).notify_create_guest.deliver_now
+
         respond_to do |format|
           format.html { redirect_to guests_path, notice: "Invité(e) enregistré(e)" }
         end
@@ -47,11 +50,12 @@ class GuestsController < ApplicationController
     @guest = User.find(params[:guest_id])
     authorize! @guest, with: GuestPolicy
 
+    GuestMailer.with(user: @user, guest: @guest).notify_destroy_guest.deliver_now
     @guest.owners.delete(@user.id)
     @user.guests.delete(@guest.id)
 
     respond_to do |format|
-      format.html { redirect_to guests_path, notice: "Invité supprimée avec succès" }
+      format.html { redirect_to guests_path, notice: "Invité(e) supprimé(e) avec succès" }
     end
   end
 
