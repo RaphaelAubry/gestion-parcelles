@@ -4,7 +4,6 @@ export default class extends Controller {
   static targets = ['menu']
 
   displayMenu() {
-    console.log('yes')
     if (this.menuTarget.style.display === "block") {
       this.menuTarget.style.display = "none";
     } else {

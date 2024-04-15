@@ -2,6 +2,7 @@
   --blue-serious:#293947;
   --green-strong:#149523;
   --green-light: #89d04a;
+  --green-fluo: #7fff7f;
   --grey-light-1: #eff0f1;
   --grey-light-2: #ababab;
   --grey-medium: #3F4144;
@@ -31,6 +32,7 @@ body {
   }
   p {
     font-size: var(--font-small);
+    padding: var(--padding-min);
   }
 }
 

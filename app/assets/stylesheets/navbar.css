@@ -88,3 +88,14 @@ navbar-account {
         }
   }
 }
+
+account-connexion {
+  display: block;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background-color: white;
+}

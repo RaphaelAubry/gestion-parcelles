@@ -18,6 +18,6 @@ dropdown-menu {
   padding: var(--padding-medium);
   a {
     display: block;
-    margin: 5px 0;
+    margin: 10px 0;
   }
 }

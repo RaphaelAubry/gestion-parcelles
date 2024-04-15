@@ -1,9 +1,13 @@
 <div data-controller='mapbox'>
-  <%= render partial: 'map',
-    locals: {
-      geometry_type: @geometry_type,
-      coordinates: @parcelle.polygon.coordinates,
-      centroid: @parcelle.polygon.centroid.coordinates
-    }
-  %>
+  <% if @parcelle.polygon.present? %>
+    <%= render partial: 'map',
+      locals: {
+        geometry_type: @geometry_type,
+        coordinates: @parcelle.polygon.coordinates,
+        centroid: @parcelle.polygon.centroid.coordinates
+      }
+    %>
+  <% else %>
+    <%= link_to t(:back), :back %>
+  <% end %>
 </div>

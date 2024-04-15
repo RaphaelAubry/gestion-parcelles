@@ -1,6 +1,6 @@
 fr:
   hello: "Bonjour le monde"
-  back: "Retour"
+  back: "retour"
   activerecord:
     attributes:
       user:
@@ -9,6 +9,7 @@ fr:
         avatar: "Photo"
         password_confirmation: "Confirmation du mot de passe"
         current_password: "Mot de passe actuel"
+        guests: 'Invité'
       message:
         content: 'Message'
         subject: 'Objet'

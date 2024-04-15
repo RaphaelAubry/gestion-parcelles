@@ -13,6 +13,7 @@
   <navbar-icon class='fas fa-bars' data-action='click->navbar#displayMenu'>
   </navbar-icon>
   <navbar-account>
+    <p><%= current_user.email if user_signed_in? %></p>
     <%= render 'shared/account' %>
   </navbar-account>
 </container-navbar>

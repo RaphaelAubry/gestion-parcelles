@@ -1,4 +1,5 @@
 <%= render partial: 'shared/table', locals: { instances: @parcelles,
+                                              controller: :parcelles,
                                                 options: {
                                                   columns: Parcelle::INSTANCE_VARIABLES - [:polygon],
                                                   formulas: [

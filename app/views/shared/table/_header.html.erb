@@ -9,16 +9,17 @@
   <% columns.each do |column_name| %>
     <td>
       <table-tool>
-        <%= link_to '', send("#{instances.first.model_name.plural}_path", sort: { column_name => :asc, ids: instances.map(&:id) }), class: 'fas fa-arrow-down' %>
-        <%= link_to '', send("#{instances.first.model_name.plural}_path", sort: { column_name => :desc, ids: instances.map(&:id) }), class: 'fas fa-arrow-up' %>
-        <%= form_with url: "/#{instances.first.model_name.plural}", method: :get, scope: :filter, data: { controller: 'form-filter' } do |form| %>
+        <%= link_to '', send("#{controller}_path", sort: { column_name => :asc, ids: instances.map(&:id) }), class: 'fas fa-arrow-down' %>
+        <%= link_to '', send("#{controller}_path", sort: { column_name => :desc, ids: instances.map(&:id) }), class: 'fas fa-arrow-up' %>
+        <%= form_with url: "/#{controller}", method: :get, scope: :filter, data: { controller: 'form-filter' } do |form| %>
           <%= form.select(column_name, instances.pluck(column_name).uniq,
               {include_blank: 'filtrer', selected: 'filtrer'},
               { data: {  form_filter_target: 'dropdown', action: 'change->form-filter#submit' }
             })
           %>
-        <%= link_to '', send("#{instances.first.model_name.plural}_path", ), data: { form_filter_target: 'link' }, hidden: true %><% end %>
-        <%= link_to '', send("#{instances.first.model_name.plural}_path", ), class: 'fas fa-solid fa-retweet' %>
+          <%= link_to '', send("#{controller}_path", ), data: { form_filter_target: 'link' }, hidden: true %>
+        <% end %>
+        <%= link_to '', send("#{controller}_path", ), class: 'fas fa-solid fa-retweet' %>
       </table-tool>
     </td>
   <% end %>

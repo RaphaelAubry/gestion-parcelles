@@ -19,29 +19,31 @@ fr:
         not_found_in_database: "Compte inexistant"
         already_authenticated: "Déjà authentifié"
     mailer:
-      confirmation_instructions: "Instructions de confirmation"
-      reset_password_instructions: "Instructions pour changer le mot de passe"
-      unlock_instructions: "Instructions pour déverrouiller le compte"
       common:
         hello: "Bonjour"
         your_login: "Votre identifiant"
         best_regards: "Cordialement"
         signature: "L'équipe Gateau Violet"
       confirmation_instructions:
+        subject: "Confirmation de votre adresse email"
         welcome: "Bienvenu(e)"
         you_can_confirm_your_account_through_the_link_below: "Vous pouvez confirmer votre compte en cliquant sur le lien ci-dessous"
         confirm_my_account: "Confirmer mon compte"
       email_changed:
+        subject: "Changement d'adresse email"
         email_changed_in_progress: "Sous réserve de confirmation, votre email va être"
         email_changed_completed: "Votre email est maintenant"
       password_change:
+        subject: "Changement de mot de passe"
         changed: "Votre mot de passe a bien été modifié"
       reset_password_instructions:
+        subject: "Réinitialisation de votre mot de passe"
         reset_password_instruction: "Un changement de mot de passe a été demandé. Vous pouvez le faire en cliquant sur le lien ci-dessous."
         change_my_password: "Changer mon mot de passe"
         wrong_request_instruction: "Si vous n'avez pas demandé ce changement, ignorez ce message."
         unchange_password_message: "Votre mot de passe ne sera pas changé tant que vous n'aurez pas activé le lien ci-dessus pour en créer un nouveau."
       unlock_instructions:
+        subject: "Dévérrouiller mon compte"
         locked_account_message: "Votre compte a été verrouillé à la suite d'un trop grand nombre de tentatives d'authentification."
         unlock_account_instruction: "Cliquez sur le lien ci-dessous pour déverrouiller votre compte"
         unlock_my_account: "Déverrouiller mon compte"
