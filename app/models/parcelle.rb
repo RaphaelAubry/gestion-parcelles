@@ -4,14 +4,15 @@ class Parcelle < ApplicationRecord
   has_many :user_parcelles
   has_many :users, through: :user_parcelles
 
-  INSTANCE_VARIABLES = [:reference_cadastrale,
-                        :lieu_dit,
-                        :code_officiel_geographique,
-                        :surface,
-                        :annee_plantation,
-                        :distance_rang,
-                        :distance_pieds,
-                        :polygon]
+  INSTANCE_VARIABLES = %i[reference_cadastrale
+                          lieu_dit
+                          code_officiel_geographique
+                          surface
+                          annee_plantation
+                          distance_rang
+                          distance_pieds
+                          polygon
+                         ]
 
   Factory = RGeo::Geographic.spherical_factory(srid: 4326)
 

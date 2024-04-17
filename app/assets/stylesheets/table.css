@@ -45,3 +45,7 @@ table-tool {
   width: 100%;
   gap: 5px;
 }
+
+column-options {
+  display: block;
+}

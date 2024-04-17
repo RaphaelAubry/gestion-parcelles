@@ -1,13 +1,16 @@
 <tr>
   <% columns.each do |column_name| %>
-    <th id='<%= column_name %>' scope='col'>
+    <th id='<%= column_name %>'
+        data-column-name=<%= column_name %>
+    >
       <%= column_name.to_s.humanize %>
     </th>
   <% end %>
-</th>
+</tr>
 <tr>
   <% columns.each do |column_name| %>
-    <td>
+    <td data-column-name=<%= column_name %>
+    >
       <table-tool>
         <%= link_to '', send("#{controller}_path", sort: { column_name => :asc, ids: instances.map(&:id) }), class: 'fas fa-arrow-down' %>
         <%= link_to '', send("#{controller}_path", sort: { column_name => :desc, ids: instances.map(&:id) }), class: 'fas fa-arrow-up' %>
