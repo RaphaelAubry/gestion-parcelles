@@ -18,8 +18,7 @@ class GuestsController < ApplicationController
   end
 
   def update_guests
-    guest = User.find_by(email: params[:user][:guest_email])
-    authorize! guest, with: GuestPolicy
+    authorize! guest = User.find_by(email: params[:user][:guest_email]), with: GuestPolicy
 
     if guest
       @user.guests << guest
@@ -42,13 +41,11 @@ class GuestsController < ApplicationController
   end
 
   def edit
-    @guest = User.find(params[:id])
-    authorize! @guest, with: GuestPolicy
+    authorize! @guest = User.find(params[:id]), with: GuestPolicy
   end
 
   def destroy
-    @guest = User.find(params[:guest_id])
-    authorize! @guest, with: GuestPolicy
+    authorize! @guest = User.find(params[:guest_id]), with: GuestPolicy
 
     GuestMailer.with(user: @user, guest: @guest).notify_destroy_guest.deliver_now
     @guest.owners.delete(@user.id)

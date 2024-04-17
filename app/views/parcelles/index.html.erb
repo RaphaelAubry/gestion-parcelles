@@ -3,13 +3,33 @@
                                                 options: {
                                                   columns: Parcelle::INSTANCE_VARIABLES - [:polygon],
                                                   formulas: [
-                                                              { column_name: :surface,
+                                                             {
+                                                                column_name: :surface,
                                                                 formula: 'sum_of_surfaces'
-                                                              }
-                                                            ]
+                                                             }
+                                                  ]
                                                 }
-                                            }
+                                    }
 %>
 <link-group>
-  <%= link_to 'nouvelle parcelle', new_parcelle_path, data: { navbar_target: 'link'} %>
+  <%= link_to 'nouvelle parcelle', new_parcelle_path, data: { navbar_target: 'link' } %>
 </link-group>
+
+<column-options data-controller='boxes'>
+  <% (Parcelle::INSTANCE_VARIABLES - [:polygon]).each do |column_name| %>
+    <%= form_for @user, html: { data: { controller: 'column', column_target: 'form' } } do |form| %>
+      <checkbox-group>
+        <% checked = current_user.send([controller_name, column_name].join('_').to_sym) %>
+        <% checked = checked.nil? ? true : checked %>
+        <%= form.check_box [controller_name, column_name].join('_').to_sym,
+            { data: { column_target: 'checkbox', boxes_target: 'checkbox', action: 'click->column#display change->boxes#display' },
+              checked: checked
+            },
+            'true', 'false'
+        %>
+        <%= form.label column_name, name: column_name,
+          data: { column_target: 'col' } %>
+      </checkbox-group>
+    <% end %>
+  <% end %>
+</column-options>

@@ -1,19 +1,19 @@
 <% if instances.present? %>
   <table>
-    <%= render partial: 'shared/table/header', locals: { instances: instances,
+    <%= render partial: 'shared/table/1_header', locals: { instances: instances,
                                                          controller: controller,
                                                          columns: options[:columns]
-                                                        }
+                                                       }
 
 
     %>
       <tbody>
         <% instances.each do |instance| %>
           <tr id="<%= instance.model_name.singular %>_<%= instance.id %>"
-              data-controller='table'
+              data-controller="row"
               href="<%= send("#{instance.model_name.singular}_path", instance) %>"
           >
-            <%= render partial: 'shared/table/row', locals: { instance: instance,
+            <%= render partial: 'shared/table/2_row', locals: { instance: instance,
                                                               controller: controller,
                                                               columns: options[:columns]
                                                             }
@@ -21,10 +21,10 @@
           </tr>
         <% end %>
       <tbody>
-    <%= render partial: 'shared/table/footer', locals: { instances: instances,
+    <%= render partial: 'shared/table/3_footer', locals: { instances: instances,
                                                           columns: options[:columns],
                                                           formulas: options[:formulas]
-                                                        }
+                                                       }
     %>
   </table>
 <% else %>

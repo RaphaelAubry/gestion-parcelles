@@ -2,34 +2,33 @@ class ParcellesController < ApplicationController
   before_action :authenticate_user!
   before_action :parcelle, only: [:show, :edit, :update, :destroy]
 
-
   def index
-    @parcelles = if params[:sort].present?
-                    authorized_scope(Parcelle, type: :relation, as: :access).where(id: params[:sort][:ids]).sort_with_params(params)
-                 elsif params[:filter].present?
-                    authorized_scope(Parcelle, type: :relation, as: :access).filter_with_params(params)
-                 else
-                    authorized_scope(Parcelle, type: :relation, as: :access)
-                 end
-    authorize! @parcelles
+    authorize! @parcelles = if params[:sort].present?
+                              authorized_scope(Parcelle, type: :relation, as: :access)
+                              .where(id: params[:sort][:ids])
+                              .sort_with_params(params)
+                            elsif params[:filter].present?
+                              authorized_scope(Parcelle, type: :relation, as: :access)
+                              .filter_with_params(params)
+                            else
+                              authorized_scope(Parcelle, type: :relation, as: :access)
+                            end
+    authorize! @user = current_user, to: :edit?, with: UserPolicy
   end
 
   def carte
     require './lib/modules/r_geo.rb'
-    @parcelles = authorized_scope(Parcelle, type: :relation, as: :access)
+    authorize! @parcelles = authorized_scope(Parcelle, type: :relation, as: :access)
     @multipolygon = Parcelle::Factory.multi_polygon(@parcelles.pluck(:polygon).compact)
     @geometry_type = 'MultiPolygon'
-    authorize! @parcelles
   end
 
   def new
-    @parcelle = Parcelle.new
-    authorize! @parcelle
+    authorize! @parcelle = Parcelle.new
   end
 
   def create
-    @parcelle = Parcelle.create(parcelle_params)
-    authorize! @parcelle
+    authorize! @parcelle = Parcelle.create(parcelle_params)
 
     if @parcelle.save
       current_user.parcelles << @parcelle
@@ -76,7 +75,6 @@ class ParcellesController < ApplicationController
   end
 
   def parcelle
-    @parcelle = Parcelle.find(params[:id])
-    authorize! @parcelle
+    authorize! @parcelle = Parcelle.find(params[:id])
   end
 end
