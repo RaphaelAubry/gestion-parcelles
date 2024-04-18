@@ -32,10 +32,12 @@ class GuestsController < ApplicationController
         end
       else
         @user.errors.add :guests, :not_found, message: 'adresse email introuvable, votre invité doit s\'inscrire'
+        GuestMailer.with(user: @user, mail: params[:user][:guest_email]).invite.deliver_now
         render :edit_guests, status: :unprocessable_entity
       end
     else
       @user.errors.add :guests, :not_found, message: 'adresse email introuvable, votre invité doit s\'inscrire'
+      GuestMailer.with(user: @user, mail: params[:user][:guest_email]).invite.deliver_now
       render :edit_guests, status: :unprocessable_entity
     end
   end

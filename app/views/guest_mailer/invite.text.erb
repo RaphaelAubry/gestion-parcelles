@@ -1,0 +1,10 @@
+Bonjour,
+
+<% username = (@user.name.nil? || @user.surname.nil?) ? 'Un contact' : "#{@user.surname} #{@user.name}" %>
+
+<%= mail_to @user.email, username %> vous partage l'accès à liste de ses parcelles.
+
+Rendez-vous sur <%= link_to 'Gestion Parcelles', new_user_registration_url %> pour vous inscrire avant de la consulter.
+
+Bonne récolte
+L'équipe GP
