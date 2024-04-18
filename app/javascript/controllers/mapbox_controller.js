@@ -85,9 +85,8 @@ export default class extends Controller {
     } catch (error) {
       // error comes from centroid format must be [float, float]
       // from average coordinates x and y of polygons
-    } finally {
-      // default Mont-Blanc coordinates
+      // Mont-Blanc coordinates
       return [6.865575, 45.832119]
     }
-   }
+  }
 }
