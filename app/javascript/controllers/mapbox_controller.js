@@ -26,6 +26,16 @@ export default class extends Controller {
         showUserHeading: true
       })
     )
+    map.on('style.load', () => {
+      map.addSource('mapbox-dem', {
+        'type': 'raster-dem',
+        'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+        'tileSize': 512,
+        'maxzoom': 15
+      });
+      // add the DEM source as a terrain layer with exaggerated height
+      map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+    });
 
     const geometryType = this.mapTarget.dataset.geometryType
     const coordinates = JSON.parse(this.mapTarget.dataset.coordinates)
