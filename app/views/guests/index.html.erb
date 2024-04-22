@@ -1,8 +1,12 @@
 <%= render partial: 'shared/table', locals: { instances: @guests,
                                               controller: :guests,
-                                                options: {
-                                                  columns: User::Guest_INSTANCE_VARIABLES,
-                                                  formulas: []
+                                              options: {
+                                                columns: User::Guest_INSTANCE_VARIABLES,
+                                                formulas: [],
+                                                link_show: false
                                                 }
                                             }
 %>
+<link-group>
+  <%= link_to 'inviter', edit_guests_path %>
+</link-group>

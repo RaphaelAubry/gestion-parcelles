@@ -32,7 +32,6 @@ body {
   }
   p {
     font-size: var(--font-small);
-    padding: var(--padding-min);
   }
 }
 

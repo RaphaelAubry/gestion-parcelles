@@ -1,9 +1,6 @@
 class Parcelle < ApplicationRecord
   include FilterModelConcern
 
-  has_many :user_parcelles
-  has_many :users, through: :user_parcelles
-
   INSTANCE_VARIABLES = %i[reference_cadastrale
                           lieu_dit
                           code_officiel_geographique
@@ -12,16 +9,24 @@ class Parcelle < ApplicationRecord
                           distance_rang
                           distance_pieds
                           polygon
+                          tag_id
                          ]
 
   Factory = RGeo::Geographic.spherical_factory(srid: 4326)
 
+  has_many :user_parcelles
+  has_many :users, through: :user_parcelles
+  belongs_to :tag, optional: true
   after_create :update_polygon_coordinates
   attribute :polygon, :st_polygon, srid: 4326, geographic: true
   before_update :default!
   before_create :default!
 
-  scope :access_shared_between, -> (users) { joins(:user_parcelles).where(user_parcelles: { user: users }) }
+  scope :access_shared_between, ->(users) { joins(:user_parcelles).where(user_parcelles: { user: users }) }
+  scope :tags, ->() { Tag.joins(:parcelles).where(parcelles: self) }
+
+  validates :reference_cadastrale, presence: { message: 'doit être renseigné' }
+  validates :code_officiel_geographique, presence: { message: 'doit être renseigné' }
 
   def code_section
     # résultat à 2 caractères

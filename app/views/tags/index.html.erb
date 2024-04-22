@@ -1,0 +1,12 @@
+<%= render partial: 'shared/table', locals: { instances: @tags,
+                                              controller: :tags,
+                                              options: {
+                                                columns: [:name, :description, :color],
+                                                formulas: [],
+                                                link_show: false
+                                              }
+                                    }
+%>
+<link-group>
+  <%= link_to 'nouveau marqueur', new_tag_path, data: { navbar_target: 'link' } %>
+</link-group>

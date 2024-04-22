@@ -1,23 +1,34 @@
 <% columns.each do |column_name| %>
   <td  data-row-target='cell'
+       data-link-show=<%= link_show %>
        data-action='click->row#linkTo'
        data-column-name=<%= column_name %>
   >
     <%= instance.send column_name %>
   </td>
 <% end %>
-  <% if allowed_to?(:edit?, instance, with: ((controller.to_s.classify + 'Policy').constantize)) %>
-    <td data-boxes-target='action'>
-        <%= link_to '', send("edit_#{controller.to_s.singularize}_path", instance),
-                            class: 'fas fa-pen'
-        %>
-    </td>
-  <% end %>
-  <% if allowed_to?(:destroy?, instance, with: ((controller.to_s.classify + 'Policy').constantize)) %>
-    <td data-boxes-target='action'>
-        <%= link_to '', send("#{controller.to_s.singularize}_path", instance),
-                            data: { turbo_method: :delete, turbo_confirm: 'Etes-vous sûr ?'},
-                            class: "fas fa-trash"
-        %>
-    </td>
-  <% end %>
+<% if tag_show %>
+  <td  data-row-target='cell'
+       data-link-show=<%= link_show %>
+       data-action='click->row#linkTo'
+       data-column-name=<%= :tag_id %>
+  >
+    <% tag = instance.send(:tag) %>
+    <%= tag.send(:name) unless tag.nil? %>
+  </td>
+<% end %>
+<% if allowed_to?(:edit?, instance, with: ((controller.to_s.classify + 'Policy').constantize)) %>
+  <td data-boxes-target='action'>
+      <%= link_to '', send("edit_#{controller.to_s.singularize}_path", instance),
+                          class: 'fas fa-pen'
+      %>
+  </td>
+<% end %>
+<% if allowed_to?(:destroy?, instance, with: ((controller.to_s.classify + 'Policy').constantize)) %>
+  <td data-boxes-target='action'>
+      <%= link_to '', send("#{controller.to_s.singularize}_path", instance),
+                          data: { turbo_method: :delete, turbo_confirm: 'Etes-vous sûr ?'},
+                          class: "fas fa-trash"
+      %>
+  </td>
+<% end %>

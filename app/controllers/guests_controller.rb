@@ -1,5 +1,4 @@
 class GuestsController < ApplicationController
-  before_action :authenticate_user!
   before_action :user
 
   def index

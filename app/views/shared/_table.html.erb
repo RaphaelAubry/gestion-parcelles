@@ -1,9 +1,10 @@
 <% if instances.present? %>
   <table>
     <%= render partial: 'shared/table/1_header', locals: { instances: instances,
-                                                         controller: controller,
-                                                         columns: options[:columns]
-                                                       }
+                                                           controller: controller,
+                                                           columns: options[:columns],
+                                                           tag_show: options[:tag_show]
+                                                         }
 
 
     %>
@@ -14,17 +15,19 @@
               href="<%= send("#{instance.model_name.singular}_path", instance) %>"
           >
             <%= render partial: 'shared/table/2_row', locals: { instance: instance,
-                                                              controller: controller,
-                                                              columns: options[:columns]
-                                                            }
+                                                                controller: controller,
+                                                                columns: options[:columns],
+                                                                link_show: options[:link_show],
+                                                                tag_show: options[:tag_show]
+                                                              }
             %>
           </tr>
         <% end %>
       <tbody>
     <%= render partial: 'shared/table/3_footer', locals: { instances: instances,
-                                                          columns: options[:columns],
-                                                          formulas: options[:formulas]
-                                                       }
+                                                           columns: options[:columns],
+                                                           formulas: options[:formulas]
+                                                         }
     %>
   </table>
 <% else %>

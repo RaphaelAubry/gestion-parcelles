@@ -31,3 +31,8 @@ fr:
             current_password:
               blank: "doit être complété"
               invalid: "non conforme"
+        parcelle:
+          attributes:
+            tag:
+              required: "requis"
+        tag: "marqueur"

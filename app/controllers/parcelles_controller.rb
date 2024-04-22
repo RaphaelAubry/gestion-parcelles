@@ -1,5 +1,4 @@
 class ParcellesController < ApplicationController
-  before_action :authenticate_user!
   before_action :parcelle, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -37,7 +36,7 @@ class ParcellesController < ApplicationController
         format.html { redirect_to parcelles_path, notice: "La parcelle est enregistrée avec succès" }
       end
     else
-      render new:, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 

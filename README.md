@@ -1,25 +1,19 @@
 # README
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Gestion-Parcelles
 
-Things you may want to cover:
+Bienvenue dans le monde agricole.
 
-* Ruby version
+Cette application permet de lister des parcelles cadastrales.
+De partager les informations de cette liste avec vos prestataires ou associés.
+De trier et filtrer votre collection de parcelles.
+Mais surtout de les localiser facilement sur le terrain.
 
-* System dependencies
+D'autres fonctionaliéts sont en cours de développement.
+- états des lieux
+- récoltes
+- valorisation
+- suivi des traitements phyto
+- suivi des travaux de cultures.
+- budgets
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-=======
-# gestion-parcelles
+Alors bonne récolte !

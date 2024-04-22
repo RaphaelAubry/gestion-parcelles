@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   include FilterModelConcern
 
+  Guest_INSTANCE_VARIABLES = [:email]
+
   before_destroy :remove_associations
 
   # Include default devise modules. Others available are:
@@ -12,10 +14,9 @@ class User < ApplicationRecord
   has_many :parcelles, through: :user_parcelles
   has_many :guests, class_name: "User", foreign_key: "owner_id"
   has_many :owners, class_name: "User", foreign_key: "guest_id"
+  has_many :tags, dependent: :destroy
 
   store :table_preferences, accessors: Parcelle::INSTANCE_VARIABLES, prefix: :parcelles
-
-  Guest_INSTANCE_VARIABLES = [:email]
 
   def owns_parcelle?(parcelle)
     parcelles.include?(parcelle)

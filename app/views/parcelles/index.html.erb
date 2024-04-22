@@ -1,18 +1,16 @@
 <%= render partial: 'shared/table', locals: { instances: @parcelles,
                                               controller: :parcelles,
-                                                options: {
-                                                  columns: Parcelle::INSTANCE_VARIABLES - [:polygon],
-                                                  formulas: [
-                                                             {
-                                                                column_name: :surface,
-                                                                formula: 'sum_of_surfaces'
-                                                             }
-                                                  ]
-                                                }
+                                              options: {
+                                                columns: Parcelle::INSTANCE_VARIABLES - [:polygon, :tag_id],
+                                                formulas: [ { column_name: :surface, formula: 'sum_of_surfaces'} ],
+                                                link_show: true,
+                                                tag_show: true
+                                              }
                                     }
 %>
 <link-group>
   <%= link_to 'nouvelle parcelle', new_parcelle_path, data: { navbar_target: 'link' } %>
+  <%= link_to 'marqueurs', tags_path, data: { navbar_target: 'link' } %>
 </link-group>
 
 <column-options data-controller='boxes'>

@@ -6,6 +6,13 @@
       <%= column_name.to_s.humanize %>
     </th>
   <% end %>
+  <% if tag_show %>
+    <th id='<%= :tag %>'
+        data-column-name=<%= :tag_id %>
+    >
+      <%= :tag.to_s.humanize %>
+    </th>
+  <% end %>
 </tr>
 <tr>
   <% columns.each do |column_name| %>
@@ -16,7 +23,30 @@
         <%= link_to '', send("#{controller}_path", sort: { column_name => :desc, ids: instances.map(&:id) }), class: 'fas fa-arrow-up' %>
         <%= form_with url: "/#{controller}", method: :get, scope: :filter, data: { controller: 'form-filter' } do |form| %>
           <%= form.select(column_name, instances.pluck(column_name).uniq,
-              {include_blank: 'filtrer', selected: 'filtrer'},
+              { include_blank: 'filtrer', selected: 'filtrer' },
+              { data: {  form_filter_target: 'dropdown', action: 'change->form-filter#submit' }
+            })
+          %>
+          <%= link_to '', send("#{controller}_path", ), data: { form_filter_target: 'link' }, hidden: true %>
+        <% end %>
+        <%= link_to '', send("#{controller}_path", ), class: 'fas fa-solid fa-retweet' %>
+      </table-tool>
+    </td>
+  <% end %>
+  <% if tag_show %>
+    <% tags = current_user.parcelles.tags %>
+    <td data-column-name=<%= :tag_id %>
+    >
+      <table-tool>
+        <%= link_to '', send("#{controller}_path", sort: { :tag_name => :asc, ids: instances.map(&:id) }), class: 'fas fa-arrow-down' %>
+        <%= link_to '', send("#{controller}_path", sort: { :tag_name => :desc, ids: instances.map(&:id) }), class: 'fas fa-arrow-up' %>
+        <%= form_with url: "/tags", method: :get, scope: :filter, data: { controller: 'form-filter' } do |form| %>
+          <% list = tags.collect { |t| [t.name, t.id] }.uniq %>
+          <% list << ['sans marqueur', "nil"] if tags.size < instances.size %>
+          <%= form.select(
+              :tag_id,
+              list,
+              { include_blank: 'filtrer', selected: 'filtrer' },
               { data: {  form_filter_target: 'dropdown', action: 'change->form-filter#submit' }
             })
           %>

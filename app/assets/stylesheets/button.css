@@ -2,7 +2,6 @@ submit-group {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: var(--padding-min);
   margin-top: 20px;
 }
 
