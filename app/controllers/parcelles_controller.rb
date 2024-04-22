@@ -12,6 +12,7 @@ class ParcellesController < ApplicationController
                             else
                               authorized_scope(Parcelle, type: :relation, as: :access)
                             end
+                            p @parcelles
     authorize! @user = current_user, to: :edit?, with: UserPolicy
   end
 
@@ -48,9 +49,12 @@ class ParcellesController < ApplicationController
   end
 
   def update
+    p @parcelle
+    p parcelle_params
     @parcelle.update(parcelle_params)
 
     if @parcelle.save
+      p @parcelle
       respond_to do |format|
         format.html { redirect_to parcelles_path, notice: "La parcelle est modifiée avec succès" }
       end
