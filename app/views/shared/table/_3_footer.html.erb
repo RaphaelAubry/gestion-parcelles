@@ -1,12 +1,14 @@
 <% if formulas.present? %>
-  <tr>
-    <% columns.each do |column_name| %>
-      <% object = formulas.select { |object| object.has_value? column_name }[0] %>
-      <% formula =  object[:formula] if object.present? %>
-      <td data-column-name=<%= column_name %>
-      >
-        <%= send(formula, instances) if formula %>
-      </td>
-    <% end %>
-  </tr>
+  <tfoot>
+    <tr>
+      <% columns.each do |column_name| %>
+        <% object = formulas.select { |object| object.has_value? column_name }[0] %>
+        <% formula =  object[:formula] if object.present? %>
+        <td data-column-name=<%= column_name %>
+        >
+          <%= send(formula, instances) if formula %>
+        </td>
+      <% end %>
+    </tr>
+  </tfoot>
 <% end %>

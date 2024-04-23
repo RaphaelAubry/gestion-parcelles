@@ -1,5 +1,6 @@
 class Parcelle < ApplicationRecord
   include FilterModelConcern
+  include ToMapbox
 
   INSTANCE_VARIABLES = %i[reference_cadastrale
                           lieu_dit
@@ -38,6 +39,17 @@ class Parcelle < ApplicationRecord
     # résultat à 4 caractères
     result = reference_cadastrale.scan(/\d/).join
     prepend_zero(result, 4)
+  end
+
+
+  def to_hash
+    { attributes: {
+        reference_cadastrale: reference_cadastrale,
+        surface: surface
+        },
+      coordinates: polygon.present? ? polygon.coordinates : nil,
+      tag_color: tag.present? ? tag.color : nil
+    }
   end
 
   private

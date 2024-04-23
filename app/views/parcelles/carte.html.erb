@@ -2,8 +2,8 @@
   <%= render partial: 'map',
     locals: {
       geometry_type: @geometry_type,
-      coordinates: @multipolygon.coordinates ,
-      centroid: @multipolygon.centroid
+      parcelles: @parcelles,
+      centroid: @centroid
     }
   %>
 </div>

@@ -1,6 +1,9 @@
 fr:
   hello: "Bonjour le monde"
   back: "retour"
+  Name: 'Nom'
+  Description: 'Description'
+  Color: 'Couleur'
   activerecord:
     attributes:
       user:

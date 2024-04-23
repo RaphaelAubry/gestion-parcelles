@@ -10,6 +10,10 @@ th, td {
   padding: 2px 10px;
 }
 
+tfoot {
+  font-weight: bold;
+}
+
 th[scope='col']#lieu_dit {
   min-width: 200px;
 }
@@ -48,4 +52,13 @@ table-tool {
 
 column-options {
   display: block;
+}
+
+td-tag {
+  display: flex;
+  align-items: center;
+}
+
+td-tag-name {
+  flex-grow: 1;
 }

@@ -1,0 +1,6 @@
+tag-box {
+  display: block;
+  width: 25px;
+  height: 15px;
+  border-radius: var(--border-radius);
+}
