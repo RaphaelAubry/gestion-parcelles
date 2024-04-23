@@ -12,15 +12,15 @@ class ParcellesController < ApplicationController
                             else
                               authorized_scope(Parcelle, type: :relation, as: :access)
                             end
-                            p @parcelles
     authorize! @user = current_user, to: :edit?, with: UserPolicy
   end
 
   def carte
     require './lib/modules/r_geo.rb'
-    authorize! @parcelles = authorized_scope(Parcelle, type: :relation, as: :access)
-    @multipolygon = Parcelle::Factory.multi_polygon(@parcelles.pluck(:polygon).compact)
-    @geometry_type = 'MultiPolygon'
+    authorize! selection = authorized_scope(Parcelle, type: :relation, as: :access).where.not(polygon: nil)
+    @centroid = Parcelle::Factory.multi_polygon(selection.pluck(:polygon).compact).centroid
+    @geometry_type = 'Polygon'
+    @parcelles = selection.to_mapbox
   end
 
   def new
@@ -42,6 +42,8 @@ class ParcellesController < ApplicationController
   end
 
   def show
+    @centroid = @parcelle.polygon.centroid.coordinates if @parcelle.polygon
+    @parcelle = @parcelle.to_mapbox
     @geometry_type = 'Polygon'
   end
 
@@ -49,12 +51,9 @@ class ParcellesController < ApplicationController
   end
 
   def update
-    p @parcelle
-    p parcelle_params
     @parcelle.update(parcelle_params)
 
     if @parcelle.save
-      p @parcelle
       respond_to do |format|
         format.html { redirect_to parcelles_path, notice: "La parcelle est modifiée avec succès" }
       end

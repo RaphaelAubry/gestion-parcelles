@@ -1,10 +1,10 @@
 <div data-controller='mapbox'>
-  <% if @parcelle.polygon.present? %>
+  <% if @centroid.present? %>
     <%= render partial: 'map',
       locals: {
         geometry_type: @geometry_type,
-        coordinates: @parcelle.polygon.coordinates,
-        centroid: @parcelle.polygon.centroid.coordinates
+        parcelles: @parcelle,
+        centroid: @centroid
       }
     %>
   <% else %>

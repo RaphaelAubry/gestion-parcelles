@@ -3,7 +3,7 @@
     <th id='<%= column_name %>'
         data-column-name=<%= column_name %>
     >
-      <%= column_name.to_s.humanize %>
+      <%= t(column_name.to_s.humanize) %>
     </th>
   <% end %>
   <% if tag_show %>

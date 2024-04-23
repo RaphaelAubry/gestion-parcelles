@@ -1,22 +1,35 @@
 <% columns.each do |column_name| %>
+
   <td  data-row-target='cell'
        data-link-show=<%= link_show %>
        data-action='click->row#linkTo'
        data-column-name=<%= column_name %>
   >
-    <%= instance.send column_name %>
+    <% unless instance.is_a?(Tag) && column_name == :color %>
+      <%= instance.send column_name %>
+    <% else %>
+      <%= render partial: 'shared/table/td_tag', locals: { content: instance.send(column_name),
+                                                           color: instance.send(column_name)
+                                                         }
+      %>
+    <% end %>
   </td>
 <% end %>
+
+
 <% if tag_show %>
   <td  data-row-target='cell'
        data-link-show=<%= link_show %>
        data-action='click->row#linkTo'
        data-column-name=<%= :tag_id %>
   >
-    <% tag = instance.send(:tag) %>
-    <%= tag.send(:name) unless tag.nil? %>
+  <% tag = instance.send(:tag) %>
+  <% unless tag.nil? %>
+    <%= render partial: 'shared/table/td_tag', locals: { content: tag.name, color: tag.color } %>
+  <% end %>
   </td>
 <% end %>
+
 <% if allowed_to?(:edit?, instance, with: ((controller.to_s.classify + 'Policy').constantize)) %>
   <td data-boxes-target='action'>
       <%= link_to '', send("edit_#{controller.to_s.singularize}_path", instance),

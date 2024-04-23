@@ -38,13 +38,18 @@ export default class extends Controller {
     });
 
     const geometryType = this.mapTarget.dataset.geometryType
-    const coordinates = JSON.parse(this.mapTarget.dataset.coordinates)
-    this.#addPolygon(map, geometryType, coordinates)
+    const parcelles = JSON.parse(this.mapTarget.dataset.parcelles)
+
+    map.on('load', () => {
+      parcelles.forEach((parcelle, index) => {
+        let color = parcelle.tag_color == null ? '#0080ff' : parcelle.tag_color
+        this.#addPolygon(map, `${index}`, color, geometryType, parcelle.coordinates)
+      })
+    })
   }
 
-  #addPolygon(map, geometryType, coordinates) {
-    map.on('load', () => {
-      map.addSource('parcelle', {
+  #addPolygon(map, source, color, geometryType, coordinates) {
+      map.addSource(source, {
         'type': 'geojson',
         'data': {
           'type': 'Feature',
@@ -56,27 +61,26 @@ export default class extends Controller {
       })
 
       map.addLayer({
-        'id': 'parcelle',
+        'id': 'Background' + source,
         'type': 'fill',
-        'source': 'parcelle',
+        'source': source,
         'layout': {},
         'paint': {
-          'fill-color': '#0080ff',
-          'fill-opacity': 0.5
+          'fill-color': color,
+          'fill-opacity': 0.75
         }
       })
 
       map.addLayer({
-        'id': 'outline',
+        'id': 'Border' + source,
         'type': 'line',
-        'source': 'parcelle',
+        'source': source,
         'layout': {},
         'paint': {
           'line-color': '#000',
-          'line-width': 2
+          'line-width': 1
         }
       })
-    })
   }
 
   #center() {
