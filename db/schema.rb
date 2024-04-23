@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_18_123009) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_23_213948) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "invitations", force: :cascade do |t|
+    t.integer "guest_id"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "parcelles", force: :cascade do |t|
     t.string "reference_cadastrale", default: ""
@@ -68,16 +75,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_18_123009) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "owner_id"
-    t.bigint "guest_id"
     t.text "table_preferences"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["guest_id"], name: "index_users_on_guest_id"
-    t.index ["owner_id"], name: "index_users_on_owner_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "parcelles", "tags"
-  add_foreign_key "users", "users", column: "guest_id"
-  add_foreign_key "users", "users", column: "owner_id"
 end

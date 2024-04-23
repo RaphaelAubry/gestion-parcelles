@@ -1,18 +1,14 @@
-class GuestPolicy < ApplicationPolicy
+class InvitationPolicy < ApplicationPolicy
   def index?
     true
   end
 
-  def edit_guests?
+  def new?
     true
   end
 
-  def update_guests?
+  def create?
     true
-  end
-
-  def edit?
-    false
   end
 
   def destroy?

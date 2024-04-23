@@ -1,5 +1,5 @@
-<%= form_for @user, url: :update_guests do |form| %>
-  <%= render 'shared/error_messages', resource: @user %>
+<%= form_for @invitation do |form| %>
+  <%= render 'shared/error_messages', resource: @invitation %>
 
   <input-group data-controller='input-group'>
     <%= form.label 'invité', data: { input_group_target: 'label' }

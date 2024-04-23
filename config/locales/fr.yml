@@ -4,6 +4,8 @@ fr:
   Name: 'Nom'
   Description: 'Description'
   Color: 'Couleur'
+  guest: 'invité'
+  owner: 'hôte'
   activerecord:
     attributes:
       user:
@@ -12,12 +14,17 @@ fr:
         avatar: "Photo"
         password_confirmation: "Confirmation du mot de passe"
         current_password: "Mot de passe actuel"
-        guests: 'Invité'
+        guests: 'invités'
       message:
         content: 'Message'
         subject: 'Objet'
+      invitation:
+        guest: 'invité'
     errors:
       models:
+        invitation:
+          attributes:
+            guest:
         user:
           attributes:
             email:
