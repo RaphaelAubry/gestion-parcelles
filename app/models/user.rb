@@ -12,8 +12,14 @@ class User < ApplicationRecord
 
   has_many :user_parcelles
   has_many :parcelles, through: :user_parcelles
-  has_many :guests, class_name: "User", foreign_key: "owner_id"
-  has_many :owners, class_name: "User", foreign_key: "guest_id"
+  has_many :invitations, foreign_key: :owner_id, dependent: :destroy
+  has_many :invitations, foreign_key: :guest_id, dependent: :destroy
+
+  has_many :invitations_to_guest, foreign_key: :owner_id, class_name: 'Invitation', dependent: :destroy
+  has_many :guests, through: :invitations_to_guest, source: :guest
+  has_many :invitations_from_owner, foreign_key: :guest_id, class_name: 'Invitation', dependent: :destroy
+  has_many :owners, through: :invitations_from_owner, source: :owner
+
   has_many :tags, dependent: :destroy
 
   store :table_preferences, accessors: Parcelle::INSTANCE_VARIABLES, prefix: :parcelles

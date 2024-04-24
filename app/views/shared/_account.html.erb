@@ -13,7 +13,7 @@
     <dropdown-menu data-dropdown-target='menu'>
       <%= link_to 'mon compte', edit_user_registration_path(current_user) %>
       <% if user_signed_in? %>
-        <%= link_to 'mes invités', guests_path %>
+        <%= link_to 'mes invités', invitations_path %>
         <%= link_to "déconnexion", destroy_user_session_path, data: { turbo_method: :delete } %>
       <% end %>
     </dropdown-menu>

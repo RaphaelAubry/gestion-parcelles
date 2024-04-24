@@ -1,5 +1,5 @@
 <%= render partial: 'shared/table', locals: { instances: @guests,
-                                              controller: :guests,
+                                              controller: :invitations,
                                               options: {
                                                 columns: User::Guest_INSTANCE_VARIABLES,
                                                 formulas: [],
@@ -8,5 +8,5 @@
                                             }
 %>
 <link-group>
-  <%= link_to 'inviter', edit_guests_path %>
+  <%= link_to 'inviter', new_invitation_path %>
 </link-group>
