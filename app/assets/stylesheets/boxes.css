@@ -4,10 +4,6 @@
     display: block;
     width: 66vw;
   }
-
-  container-flex {
-    justify-content: center;
-  }
 }
 
 /* medium */
@@ -19,10 +15,6 @@
 
 /* smartphone */
 @media (max-width: 768px) {
-  container-flex {
-    justify-content: center;
-  }
-
   container-c1 {
     display: block;
     width: 95vw;
@@ -31,6 +23,7 @@
 
 container-flex {
   display: flex;
+  justify-content: center;
   overflow: auto;
 }
 
@@ -45,4 +38,10 @@ container-c1 a {
   &:hover {
     text-decoration: underline;
   }
+}
+
+container-c2 {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
 }

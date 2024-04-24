@@ -1,4 +1,10 @@
 <container-navbar data-controller='navbar' data-controller='window'>
+  <navbar-logo>
+    <%= image_tag 'Gestion Parcelles Logo 1.png', width: '40px', height: '40px' %>
+  </navbar-logo>
+  <navbar-icon data-action='click->navbar#displayMenu'>
+    <%= image_tag 'Gestion Parcelles Logo 1.png', width: '40px', height: '40px' %>
+  </navbar-icon>
   <ul data-navbar-target='menu' data-window-target='menu'>
     <li>
       <%= link_to :home, root_path, data: { navbar_target: 'link'} %>
@@ -10,8 +16,7 @@
       <%= link_to :parcelles, parcelles_path, data: { navbar_target: 'link'} %>
     </li>
   </ul>
-  <navbar-icon class='fas fa-bars' data-action='click->navbar#displayMenu'>
-  </navbar-icon>
+
   <navbar-account>
     <p><%= current_user.email if user_signed_in? %></p>
     <%= render 'shared/account' %>
