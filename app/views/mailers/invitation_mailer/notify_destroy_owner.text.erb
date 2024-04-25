@@ -1,0 +1,8 @@
+Bonjour,
+
+<% username = (@guest.name.blank? || @guest.surname.blank? || @guest.name.nil? || @guest.surname.nil?) ? 'Un contact' : "#{@guest.surname} #{@guest.name}" %>
+
+<%= mail_to @guest.email, username %> a décliné votre invitation.
+
+Bonne récolte
+L'équipe GP

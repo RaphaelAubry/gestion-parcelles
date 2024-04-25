@@ -12,6 +12,7 @@
             }
     %>
   </input-group>
+
   <input-group data-controller='input-group'>
     <%= form.label :lieu_dit,
       data: { input_group_target: 'label' }
@@ -24,6 +25,7 @@
             }
     %>
   </input-group>
+
   <input-group data-controller='input-group'>
     <%= form.label :code_officiel_geographique,
       data: { input_group_target: 'label' }
@@ -36,6 +38,7 @@
             }
     %>
   </input-group>
+
   <input-group data-controller='input-group'>
     <%= form.label :surface,
       data: { input_group_target: 'label' }
@@ -48,30 +51,25 @@
             }
     %>
   </input-group>
+
+  <select-group>
+    <%= form.label :annee_plantation %>
+    <%= form.select :annee_plantation, (Time.zone.now.year - 100)..(Time.zone.now.year) %>
+  </select-group>
+
   <input-group data-controller='input-group'>
-    <%= form.label :annee_plantation,
-      data: { input_group_target: 'label' }
-    %>
-    <%= form.text_field :annee_plantation,
-      data: { input_group_target: 'input',
-          action: 'focus->input-group#focusLabel
-                  focusout->input-group#focusoutLabel
-                  change->input-group#focusLabel'
-            }
-    %>
+  <%= form.label :distance_rang,
+    data: { input_group_target: 'label' }
+  %>
+  <%= form.text_field :distance_rang,
+    data: { input_group_target: 'input',
+        action: 'focus->input-group#focusLabel
+                focusout->input-group#focusoutLabel
+                change->input-group#focusLabel'
+          }
+  %>
   </input-group>
-    <input-group data-controller='input-group'>
-    <%= form.label :distance_rang,
-      data: { input_group_target: 'label' }
-    %>
-    <%= form.text_field :distance_rang,
-      data: { input_group_target: 'input',
-          action: 'focus->input-group#focusLabel
-                  focusout->input-group#focusoutLabel
-                  change->input-group#focusLabel'
-            }
-    %>
-  </input-group>
+
   <input-group data-controller='input-group'>
     <%= form.label :distance_pieds,
       data: { input_group_target: 'label' } %>

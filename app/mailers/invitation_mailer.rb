@@ -1,4 +1,6 @@
-class GuestMailer < ApplicationMailer
+class InvitationMailer < ApplicationMailer
+  prepend_view_path "app/views/mailers"
+
   def notify_create_guest
     @user = params[:user]
     guest = params[:guest]
@@ -13,6 +15,15 @@ class GuestMailer < ApplicationMailer
     guest = params[:guest]
     mail(
       to: guest.email,
+      subject: 'Invitation révoquée'
+    )
+  end
+
+  def notify_destroy_owner
+    user = params[:user]
+    @guest = params[:guest]
+    mail(
+      to: user.email,
       subject: 'Invitation révoquée'
     )
   end

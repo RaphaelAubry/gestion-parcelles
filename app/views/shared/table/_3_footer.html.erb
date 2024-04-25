@@ -6,7 +6,7 @@
         <% formula =  object[:formula] if object.present? %>
         <td data-column-name=<%= column_name %>
         >
-          <%= send(formula, instances) if formula %>
+          <%= send(formula, instances).truncate(4) if formula %>
         </td>
       <% end %>
     </tr>

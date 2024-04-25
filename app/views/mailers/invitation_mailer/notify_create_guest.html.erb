@@ -1,6 +1,6 @@
 <p>Bonjour,</p>
 
-<% username = (@user.name.nil? || @user.surname.nil?) ? 'Un contact' : "#{@user.surname} #{@user.name}" %>
+<% username = (@user.name.blank? || @user.surname.blank? || @user.name.nil? || @user.surname.nil?) ? 'Un contact' : "#{@user.surname} #{@user.name}" %>
 
 <p><%= mail_to @user.email, username %> vous partage l'accès à liste de ses parcelles.</p>
 
