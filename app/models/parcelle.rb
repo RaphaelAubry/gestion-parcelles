@@ -27,7 +27,9 @@ class Parcelle < ApplicationRecord
   scope :tags, ->() { Tag.joins(:parcelles).where(parcelles: self) }
 
   validates :reference_cadastrale, presence: { message: 'doit être renseigné' }
+  validates :reference_cadastrale, format: { with: /\A[a-zA-Z]{1,2}\d{1,4}\z/, message: 'le code section à 2 caractères maximum suivi du numéro à 4 chiffres maximum, ex: 0A1251 ou B123'}
   validates :code_officiel_geographique, presence: { message: 'doit être renseigné' }
+  validates :code_officiel_geographique, format: { with: /\A(\d{1})(\d|B{1})\d{3}/, message: 'ce code INSEE ne doit pas être confondu avec le code postal '}
 
   def code_section
     # résultat à 2 caractères

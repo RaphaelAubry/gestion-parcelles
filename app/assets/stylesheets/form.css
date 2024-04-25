@@ -104,11 +104,15 @@ input:autofill:enabled {
   filter: none;
 }
 
-input:focus, textarea:focus {
+input:focus, textarea:focus, select:focus {
   outline: none;
   border: none;
   border: 1px solid var(--green-strong);
   border-radius: var(--border-radius);
+}
+
+select:focus {
+  padding-left: 5px;
 }
 
 input:-webkit-autofill,

@@ -1,0 +1,8 @@
+<p>Bonjour,</p>
+
+<% username = (@guest.name.blank? || @guest.surname.blank? || @guest.name.nil? || @guest.surname.nil?) ? 'Un contact' : "#{@guest.surname} #{@guest.name}" %>
+
+<p><%= mail_to @guest.email, username %> a décliné votre invitation.</p>
+
+<p>Bonne récolte</p>
+<p>L'équipe GP</p>

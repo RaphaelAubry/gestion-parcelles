@@ -58,7 +58,7 @@ class ParcellesController < ApplicationController
         format.html { redirect_to parcelles_path, notice: "La parcelle est modifiée avec succès" }
       end
     else
-      render edit:, status: :unprocessable_entity
+      render 'edit'
     end
   end
 
