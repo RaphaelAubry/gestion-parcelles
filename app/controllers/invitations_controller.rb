@@ -3,13 +3,14 @@ class InvitationsController < ApplicationController
 
   def index
     @people = if params[:sort].present?
-            @user.send(params[:users]).where(id: params[:sort][:ids]).sort_with_params(params)
-          elsif params[:filter].present?
-            @user.send(params[:users]).filter_with_params(params)
-          else
-            @user.send(params[:users])
-          end
+                @user.send(params[:users]).where(id: params[:sort][:ids]).sort_with_params(params)
+              elsif params[:filter].present?
+                @user.send(params[:users]).filter_with_params(params)
+              else
+                @user.send(params[:users])
+              end
     authorize! @people, with: InvitationPolicy
+    @link = Invitation::CONFIG[:link][params[:users].to_sym]
   end
 
   def new

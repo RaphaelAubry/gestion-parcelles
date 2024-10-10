@@ -1,6 +1,6 @@
 class UserPolicy < ApplicationPolicy
   def show?
-    false
+    allow! if user.owners.include?(record)
   end
 
   def edit?

@@ -1,0 +1,21 @@
+<p><%= @user.name %></p>
+<p><%= @user.surname %></p>
+<p><%= @user.phone %></p>
+<p><%= @user.email %></p>
+
+<%= render partial: 'shared/table', locals: { instances: @user.parcelles,
+                                              controller: :users,
+                                              options: {
+                                                columns: Parcelle::INSTANCE_VARIABLES - [:polygon, :tag_id],
+                                                formulas: [ { column_name: :surface, formula: 'sum_of_surfaces'} ],
+                                                link_show: false,
+                                                tag_show: false,
+                                                tool_show: false
+
+                                              }
+                                    }
+%>
+
+<%= link_to :carte, carte_path(user_id: @user.id) %>
+
+<%= console %>

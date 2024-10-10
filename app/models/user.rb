@@ -21,6 +21,8 @@ class User < ApplicationRecord
   has_many :owners, through: :invitations_from_owner, source: :owner
 
   has_many :tags, dependent: :destroy
+  has_many :suppliers, dependent: :destroy
+  has_many :offers, through: :suppliers
 
   store :table_preferences, accessors: Parcelle::INSTANCE_VARIABLES, prefix: :parcelles
 

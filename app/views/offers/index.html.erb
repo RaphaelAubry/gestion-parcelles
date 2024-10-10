@@ -1,0 +1,16 @@
+<%= render partial: 'shared/table', locals: { instances: @offers,
+                                              controller: :offers,
+                                              options: {
+                                                columns: Offer::INSTANCE_VARIABLES - [:supplier_id] + [:supplier],
+                                                formulas: [],
+                                                link_show: false,
+                                                tag_show: false,
+                                                tool_show: true
+                                              }
+                                    }
+%>
+
+
+<link-group>
+  <%= link_to 'nouveau fournisseur', new_supplier_path, data: { navbar_target: 'link' } %>
+</link-group>
