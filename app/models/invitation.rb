@@ -5,6 +5,8 @@ class Invitation < ApplicationRecord
   validates :guest, uniqueness: { scope: :owner, message: 'déjà convié' }
   validate :dont_invite_yourself
 
+  CONFIG = { link: { guests: false, owners: true } }
+
   def dont_invite_yourself
     if guest.email == owner.email
       errors.add(:mail, 'vous avez saisi votre propre adresse email, choisissze l\'adresse de votre invité')

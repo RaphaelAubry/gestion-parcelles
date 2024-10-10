@@ -25,17 +25,16 @@ class ParcellePolicy < ApplicationPolicy
   end
 
   def show?
-    authorized_scope(Parcelle, type: :relation, as: :access).include?(record)
+    authorized_scope(Parcelle, type: :relation, as: :access, scope_options: { user: user }).include?(record)
   end
 
   def destroy?
     edit?
   end
 
-  scope_for :relation, :access do |relation|
-    users = [user] + user.owners
+  scope_for :relation, :access do |relation, scope_options|
     relation
       .joins(:user_parcelles)
-      .where(user_parcelles: { user: users })
+      .where(user_parcelles: { user: [scope_options[:user]] })
   end
 end

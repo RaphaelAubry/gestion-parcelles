@@ -3,7 +3,8 @@
     <%= render partial: 'shared/table/1_header', locals: { instances: instances,
                                                            controller: controller,
                                                            columns: options[:columns],
-                                                           tag_show: options[:tag_show]
+                                                           tag_show: options[:tag_show],
+                                                           tool_show: options[:tool_show]
                                                          }
 
 
@@ -18,7 +19,8 @@
                                                                 controller: controller,
                                                                 columns: options[:columns],
                                                                 link_show: options[:link_show],
-                                                                tag_show: options[:tag_show]
+                                                                tag_show: options[:tag_show],
+                                                                tool_show: options[:tool_show]
                                                               }
             %>
           </tr>

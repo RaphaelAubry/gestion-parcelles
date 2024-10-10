@@ -13,7 +13,6 @@ class InvitationPolicy < ApplicationPolicy
   end
 
   def destroy?
-    p record
     if record.is_a? User
       return user.guests.include?(record) || user.owners.include?(record)
     end

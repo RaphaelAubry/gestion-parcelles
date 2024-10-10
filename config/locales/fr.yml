@@ -6,6 +6,11 @@ fr:
   Color: 'Couleur'
   guest: 'invité'
   owner: 'hôte'
+  Phone: 'Téléphone'
+  Price: 'Prix'
+  Unit: 'Unité'
+  Supplier: 'Fournisseur'
+  Tag: 'Marqueur'
   activerecord:
     attributes:
       user:
@@ -20,8 +25,20 @@ fr:
         subject: 'Objet'
       invitation:
         guest: 'invité'
+      supplier:
+        email: 'Email'
+        name: 'Nom'
+        phone: 'Téléphone'
+      offer:
+        name: 'Désignation'
+        unit: 'Unité'
+        price: 'Prix'
     errors:
       models:
+        supplier:
+          attributes:
+            user:
+              required: 'requis'
         invitation:
           attributes:
             guest:
