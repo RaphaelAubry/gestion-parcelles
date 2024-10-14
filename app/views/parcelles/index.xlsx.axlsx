@@ -1,0 +1,28 @@
+wb = xlsx_package.workbook
+style = wb.styles.add_style font_name: 'calibri',
+                            alignment: { horizontal: :left }
+
+
+wb.add_worksheet name: 'parcelles' do |sheet|
+  # en tête de colonne
+  sheet.add_row [ 'reference_cadastrale',
+                  'surface',
+                  'lieu_dit',
+                  'code_officiel_geographique',
+                  'annee_plantation',
+                  'marqueur'
+                ],
+                style: style
+
+  # données
+  @parcelles.each do |parcelle|
+    sheet.add_row [ parcelle.reference_cadastrale,
+                    parcelle.surface,
+                    parcelle.lieu_dit,
+                    parcelle.code_officiel_geographique,
+                    parcelle.annee_plantation,
+                    parcelle.tag ? parcelle.tag.name : nil
+                  ],
+                  style: style
+  end
+end

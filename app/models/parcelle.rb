@@ -50,6 +50,7 @@ class Parcelle < ApplicationRecord
         surface: surface
         },
       coordinates: polygon.present? ? polygon.coordinates : nil,
+      centroid: polygon.present? ? [polygon.centroid.x, polygon.centroid.y] : nil,
       tag_color: tag.present? ? tag.color : nil
     }
   end

@@ -40,12 +40,16 @@ export default class extends Controller {
     const geometryType = this.mapTarget.dataset.geometryType
     const parcelles = JSON.parse(this.mapTarget.dataset.parcelles)
 
+    // add polygons
     map.on('load', () => {
       parcelles.forEach((parcelle, index) => {
         let color = parcelle.tag_color == null ? '#0080ff' : parcelle.tag_color
         this.#addPolygon(map, `${index}`, color, geometryType, parcelle.coordinates)
+
       })
     })
+
+    this.#addPopups(map, parcelles)
   }
 
   #addPolygon(map, source, color, geometryType, coordinates) {
@@ -92,5 +96,34 @@ export default class extends Controller {
       // Mont-Blanc coordinates
       return [6.865575, 45.832119]
     }
+  }
+
+  #addPopups(map, parcelles) {
+    // Create a popup, but don't add it to the map yet.
+    const popup = new mapboxgl.Popup({
+      closeButton: false,
+      closeOnClick: false
+    });
+
+    // add pop ups
+    parcelles.forEach((parcelle, index) => {
+      console.log(parcelle)
+      map.on('mouseenter', 'Background' + index, (e) => {
+        // Change the cursor style as a UI indicator.
+        map.getCanvas().style.cursor = 'pointer'
+        popup.setLngLat(parcelle.centroid).setHTML(this.#description(parcelle)).addTo(map);
+      })
+
+      map.on('mouseleave', 'Background' + index, () => {
+        map.getCanvas().style.cursor = ''
+        popup.remove()
+      })
+    })
+
+  }
+
+  #description(parcelle) {
+    return `Référence: ${parcelle.attributes.reference_cadastrale}<br />` +
+           `Surface: ${parcelle.attributes.surface} ha`
   }
 }
