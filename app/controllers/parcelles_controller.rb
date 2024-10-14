@@ -1,5 +1,8 @@
 class ParcellesController < ApplicationController
+  include Filenaming
+
   before_action :parcelle, only: [:show, :edit, :update, :destroy]
+
 
   def index
     authorize! @parcelles = if params[:sort].present?
@@ -13,6 +16,12 @@ class ParcellesController < ApplicationController
                               authorized_scope(Parcelle, type: :relation, as: :access,  scope_options: { user: current_user })
                             end
     authorize! @user = current_user, to: :edit?, with: UserPolicy
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @parcelles }
+      format.xlsx { response.headers['Content-Disposition'] = "attachment; filename=parcelles_#{Filenaming.now}" }
+    end
   end
 
   def carte

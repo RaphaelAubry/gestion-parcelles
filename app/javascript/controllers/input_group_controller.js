@@ -29,7 +29,8 @@ export default class extends Controller {
 
   #setPlaceholder() {
     const placeholders = { parcelle_reference_cadastrale: 'AD250',
-                           parcelle_code_officiel_geographique: 51422
+                           parcelle_code_officiel_geographique: 51422,
+                           invitation_guest_email: 'email@domaine.com'
     }
     const key = this.inputTarget.getAttribute('id')
     if (key in placeholders) {
