@@ -1,0 +1,6 @@
+import './mapbox/add_polygons'
+import './mapbox/add_source_city'
+import './mapbox/add_city'
+import './mapbox/add_popups'
+import './mapbox/display_parcelle'
+import './mapbox/add_source_parcelle'

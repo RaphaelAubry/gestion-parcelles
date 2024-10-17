@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
-import mapboxgl from 'mapbox-gl';
+import mapboxgl from 'mapbox-gl'
+import '../modules/mapbox'
 
 export default class extends Controller {
   static targets = ['map']
@@ -13,78 +14,39 @@ export default class extends Controller {
       style: 'mapbox://styles/mapbox/satellite-streets-v12',
       center: this.#center(),
       zoom: 15
-    });
+    })
     map.addControl(new mapboxgl.FullscreenControl())
-    map.addControl(
-      new mapboxgl.GeolocateControl({
+    map.addControl(new mapboxgl.GeolocateControl({
         positionOptions: {
           enableHighAccuracy: true
         },
-        // When active the map will receive updates to the device's location as it changes.
         trackUserLocation: true,
-        // Draw an arrow next to the location dot to indicate which direction the device is heading.
         showUserHeading: true
       })
     )
     map.on('style.load', () => {
       map.addSource('mapbox-dem', {
-        'type': 'raster-dem',
-        'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
-        'tileSize': 512,
-        'maxzoom': 15
-      });
-      // add the DEM source as a terrain layer with exaggerated height
-      map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
-    });
+        type: 'raster-dem',
+        url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
+        tileSize: 512,
+        maxzoom: 15
+      })
+      map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 })
+    })
 
     const geometryType = this.mapTarget.dataset.geometryType
     const parcelles = JSON.parse(this.mapTarget.dataset.parcelles)
 
-    // add polygons
     map.on('load', () => {
-      parcelles.forEach((parcelle, index) => {
-        let color = parcelle.tag_color == null ? '#0080ff' : parcelle.tag_color
-        this.#addPolygon(map, `${index}`, color, geometryType, parcelle.coordinates)
-
+      map.addPolygons(parcelles, {
+        geometryType: geometryType
       })
     })
-
-    this.#addPopups(map, parcelles)
-  }
-
-  #addPolygon(map, source, color, geometryType, coordinates) {
-      map.addSource(source, {
-        'type': 'geojson',
-        'data': {
-          'type': 'Feature',
-          'geometry': {
-            'type': geometryType,
-            'coordinates': coordinates
-          }
-        }
-      })
-
-      map.addLayer({
-        'id': 'Background' + source,
-        'type': 'fill',
-        'source': source,
-        'layout': {},
-        'paint': {
-          'fill-color': color,
-          'fill-opacity': 0.75
-        }
-      })
-
-      map.addLayer({
-        'id': 'Border' + source,
-        'type': 'line',
-        'source': source,
-        'layout': {},
-        'paint': {
-          'line-color': '#000',
-          'line-width': 1
-        }
-      })
+    map.addPopups(parcelles)
+    map.addSourceCity()
+    map.addCity()
+    map.addSourceParcelle()
+    map.displayParcelle()
   }
 
   #center() {
@@ -96,34 +58,5 @@ export default class extends Controller {
       // Mont-Blanc coordinates
       return [6.865575, 45.832119]
     }
-  }
-
-  #addPopups(map, parcelles) {
-    // Create a popup, but don't add it to the map yet.
-    const popup = new mapboxgl.Popup({
-      closeButton: false,
-      closeOnClick: false
-    });
-
-    // add pop ups
-    parcelles.forEach((parcelle, index) => {
-      console.log(parcelle)
-      map.on('mouseenter', 'Background' + index, (e) => {
-        // Change the cursor style as a UI indicator.
-        map.getCanvas().style.cursor = 'pointer'
-        popup.setLngLat(parcelle.centroid).setHTML(this.#description(parcelle)).addTo(map);
-      })
-
-      map.on('mouseleave', 'Background' + index, () => {
-        map.getCanvas().style.cursor = ''
-        popup.remove()
-      })
-    })
-
-  }
-
-  #description(parcelle) {
-    return `Référence: ${parcelle.attributes.reference_cadastrale}<br />` +
-           `Surface: ${parcelle.attributes.surface} ha`
   }
 }

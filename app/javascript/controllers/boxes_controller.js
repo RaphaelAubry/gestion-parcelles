@@ -13,7 +13,7 @@ export default class extends Controller {
 
   #setColumn() {
     let count = 0
-    this.checkboxTargets.forEach(box => { if (box.checked == false ) { count += 1 } })
+    this.checkboxTargets.forEach(box => { if (box.checked == false) { count += 1 } })
     const actionTargets = document.querySelectorAll('[data-boxes-target="action"]')
     const displayValue = this.checkboxTargets.length == count ? "none" : ""
     actionTargets.forEach(target => { target.style.display = displayValue })
