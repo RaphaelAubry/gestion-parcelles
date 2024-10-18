@@ -10,7 +10,7 @@ mapboxgl.Map.prototype.addCity = function () {
         return Requests.getAPICarto({ code_insee: codeINSEE }, { type: 'commune' })
       })
       .then(data => {
-        const source = this.getSource('city')
+        const source = this.getSource('current city')
         if (data) {
           mapboxgl.Map.prototype.city = new City(data.features[0])
           source.setData(data)

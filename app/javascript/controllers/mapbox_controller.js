@@ -34,29 +34,31 @@ export default class extends Controller {
       map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 })
     })
 
-    const geometryType = this.mapTarget.dataset.geometryType
-    const parcelles = JSON.parse(this.mapTarget.dataset.parcelles)
+    if (this.mapTarget.dataset.parcelles) {
+      const geometryType = this.mapTarget.dataset.geometryType
+      const parcelles = JSON.parse(this.mapTarget.dataset.parcelles)
+      map.addPolygons(parcelles, { geometryType: geometryType })
+      map.addParcelles(parcelles)
+      map.addPopups(parcelles)
+    }
 
-    map.on('load', () => {
-      map.addPolygons(parcelles, {
-        geometryType: geometryType
-      })
-    })
-    map.addPopups(parcelles)
+    map.addPopupsManager()
     map.addSourceCity()
     map.addCity()
-    map.addSourceParcelle()
-    map.displayParcelle()
+    map.addSourceCurrentParcelle()
+    map.displayCurrentParcelle()
   }
 
   #center() {
     try {
-      return JSON.parse(this.mapTarget.dataset.centroid)
+      if (this.mapTarget.dataset.parcelles) {
+        return JSON.parse(this.mapTarget.dataset.centroid)
+      } else {
+        //Paris
+        return [2.333333, 48.866667]
+      }
     } catch (error) {
-      // error comes from centroid format must be [float, float]
-      // from average coordinates x and y of polygons
-      // Mont-Blanc coordinates
-      return [6.865575, 45.832119]
+     console.log(error.message)
     }
   }
 }

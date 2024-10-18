@@ -1,5 +1,16 @@
+<!--
 <container-c2>
   <%= image_tag "Gestion Parcelles Logo 2.png" %>
   <h1>Gestion Parcelles</h1>
   <h3>Audaces fortuna juvat</h3>
 </container-c2>
+-->
+<div data-controller='mapbox'>
+  <%= render partial: 'parcelles/map',
+    locals: {
+      geometry_type: nil,
+      parcelles: nil,
+      centroid: nil
+    }
+  %>
+</div>

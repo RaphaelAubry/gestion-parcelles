@@ -1,16 +1,24 @@
 import mapboxgl from 'mapbox-gl'
+import { PopupsManager } from './popups_manager'
+
+mapboxgl.Map.prototype.addPopupsManager = function () {
+  this.popupsManager = new PopupsManager
+}
 
 mapboxgl.Map.prototype.addPopups = function (parcelles) {
 
   const popup = new mapboxgl.Popup({
-    closeButton: false,
-    closeOnClick: false
+    closeButton: true,
+    closeOnClick: true
   })
 
-  parcelles.forEach((parcelle, index) => {
+  this.parcelles.forEach((parcelle, index) => {
     this.on('mouseenter', 'Background' + index, (e) => {
       this.getCanvas().style.cursor = 'pointer'
-      popup.setLngLat(parcelle.centroid).setHTML(description(parcelle)).addTo(this);
+      popup
+      .setLngLat(parcelle.getCentroid())
+      .setHTML(parcelle.getDescription())
+      .addTo(this)
     })
 
     this.on('mouseleave', 'Background' + index, () => {
@@ -18,10 +26,4 @@ mapboxgl.Map.prototype.addPopups = function (parcelles) {
       popup.remove()
     })
   })
-
-}
-
-const description = (parcelle) => {
-  return `Référence: ${parcelle.attributes.reference_cadastrale}<br />` +
-    `Surface: ${parcelle.attributes.surface} ha`
 }
