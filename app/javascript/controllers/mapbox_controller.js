@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 import mapboxgl from 'mapbox-gl'
-import '../modules/mapbox/index.js'
-import { InfoControl, SearchControl } from '../modules/mapbox/controls/index.js'
+import '../modules/mapbox/index'
+import { InfoControl, SearchControl } from '../modules/mapbox/controls/index'
 
 
 export default class extends Controller {
