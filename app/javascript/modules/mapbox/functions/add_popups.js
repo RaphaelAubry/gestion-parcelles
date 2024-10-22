@@ -1,5 +1,5 @@
-import mapboxgl from 'mapbox-gl'
-import { PopupsManager } from './popups_manager'
+import mapboxgl from "mapbox-gl"
+import { PopupsManager } from "modules/mapbox/functions/popups_manager"
 
 mapboxgl.Map.prototype.addPopupsManager = function() {
   this.popupsManager = new PopupsManager

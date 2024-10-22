@@ -1,4 +1,4 @@
-import { getCodeINSEE } from './get_codeINSEE'
-import { getAPICarto } from './get_APICarto'
+import { getAPICarto } from "modules/requests/get_APICarto"
+import { getCodeINSEE } from "modules/requests/get_codeINSEE"
 
-export { getCodeINSEE, getAPICarto }
+export { getAPICarto, getCodeINSEE }

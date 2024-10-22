@@ -1,6 +1,6 @@
-import mapboxgl from 'mapbox-gl'
-import * as Requests from '../requests/index.js'
-import { City } from './geojsons/city'
+import mapboxgl from "mapbox-gl"
+import { City } from "modules/mapbox/geojsons/city"
+import * as Requests from "modules/requests"
 
 mapboxgl.Map.prototype.currentCity = new City({
                                         type: "Feature",

@@ -1,6 +1,6 @@
-import * as Requests from '../../requests/index.js'
-import { GeoJSON } from './geojson'
-import { Parcelle } from './parcelle'
+import * as Requests from "modules/requests"
+import { GeoJSON } from "modules/mapbox/geojsons/geojson"
+import { Parcelle } from "modules/mapbox/geojsons/parcelle"
 
 class Feuille extends GeoJSON {
   constructor(feature) {
