@@ -1,6 +1,5 @@
 import { merge } from './merge'
 
-
 async function getAPICarto(params = {}, options = {}) {
     const url = 'https://apicarto.ign.fr/api/cadastre/'
     try {
