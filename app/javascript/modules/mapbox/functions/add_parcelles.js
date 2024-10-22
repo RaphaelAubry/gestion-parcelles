@@ -1,5 +1,4 @@
-import mapboxgl from 'mapbox-gl'
-import { Parcelle } from './geojsons/parcelle'
+import mapboxgl from "mapbox-gl"
 
 mapboxgl.Map.prototype.parcelles = []
 

@@ -1,7 +1,0 @@
-import './add_polygons'
-import './add_source_current_city'
-import './add_source_current_parcelle'
-import './add_popups'
-import './add_parcelles'
-import './display_current_parcelle'
-import './display_current_city'

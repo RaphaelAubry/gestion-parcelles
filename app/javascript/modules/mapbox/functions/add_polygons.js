@@ -1,4 +1,4 @@
-import mapboxgl from 'mapbox-gl'
+import mapboxgl from "mapbox-gl"
 
 mapboxgl.Map.prototype.addPolygons = function(parcelles, options = {}) {
   this.on('load', () => {

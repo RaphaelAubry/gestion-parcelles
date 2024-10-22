@@ -1,0 +1,7 @@
+import "modules/mapbox/functions/add_popups"
+import "modules/mapbox/functions/add_parcelles"
+import "modules/mapbox/functions/add_polygons"
+import "modules/mapbox/functions/add_source_current_city"
+import "modules/mapbox/functions/add_source_current_parcelle"
+import "modules/mapbox/functions/display_current_city"
+import "modules/mapbox/functions/display_current_parcelle"

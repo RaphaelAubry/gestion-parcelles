@@ -1,4 +1,4 @@
-import * as Requests from '../../requests/index'
+import * as Requests from 'modules/requests'
 
 class InfoControl {
   onAdd(map) {

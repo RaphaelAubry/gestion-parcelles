@@ -1,4 +1,4 @@
-import { GeoJSON } from "./geojson"
+import { GeoJSON } from "modules/mapbox/geojsons/geojson"
 
 class Parcelle extends GeoJSON {
   constructor(feature) {

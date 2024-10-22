@@ -1,7 +1,7 @@
-import { GeoJSON } from './geojson'
-import * as Requests from '../../requests/index.js'
-import { Feuille } from './feuille'
-import { sequence } from '../../sequence'
+import { GeoJSON } from "modules/mapbox/geojsons/geojson"
+import sequence from 'modules/sequence'
+import * as Requests from "modules/requests"
+import { Feuille } from "modules/mapbox/geojsons/feuille"
 
 class City extends GeoJSON {
   constructor(feature) {

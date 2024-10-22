@@ -1,4 +1,4 @@
-import mapboxgl from 'mapbox-gl'
+import mapboxgl from "mapbox-gl"
 
 mapboxgl.Map.prototype.addSourceCurrentCity = function() {
   this.on('load', (e) => {

@@ -1,4 +1,4 @@
-import { merge } from './merge'
+import merge from "modules/merge"
 
 async function getAPICarto(params = {}, options = {}) {
     const url = 'https://apicarto.ign.fr/api/cadastre/'
