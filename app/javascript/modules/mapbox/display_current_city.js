@@ -1,5 +1,5 @@
 import mapboxgl from 'mapbox-gl'
-import * as Requests from '../requests'
+import * as Requests from '../requests/index.js'
 import { City } from './geojsons/city'
 
 mapboxgl.Map.prototype.currentCity = new City({

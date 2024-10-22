@@ -1,5 +1,5 @@
-import { SearchControl } from './search_control'
-import { InfoControl } from './info_control'
 import './info_control_manager'
+import { InfoControl } from './info_control'
+import { SearchControl } from './search_control'
 
-export { SearchControl, InfoControl }
+export { InfoControl, SearchControl }

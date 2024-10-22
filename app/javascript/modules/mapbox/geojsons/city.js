@@ -1,5 +1,5 @@
 import { GeoJSON } from './geojson'
-import * as Requests from '../../requests'
+import * as Requests from '../../requests/index.js'
 import { Feuille } from './feuille'
 import { sequence } from '../../sequence'
 
