@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import mapboxgl from 'mapbox-gl'
 import '../modules/mapbox'
 import { InfoControl } from '../modules/mapbox/controls/info_control'
+import { SearchControl } from '../modules/mapbox/controls/search_control'
 
 export default class extends Controller {
   static targets = ['map']
@@ -27,7 +28,7 @@ export default class extends Controller {
     )
 
     map.addControl(new InfoControl(), 'top-left')
-    map.addControl(new SearchControl, 'top-left')
+    map.addControl(new SearchControl(), 'top-left')
 
     map.on('style.load', () => {
       map.addSource('mapbox-dem', {
