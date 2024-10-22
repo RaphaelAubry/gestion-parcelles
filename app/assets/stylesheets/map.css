@@ -26,3 +26,11 @@
   box-sizing: content-box;
   border-radius: var(--border-radius);
 }
+
+.mapboxgl-popup-content-custom .mapboxgl-popup-content {
+  padding-top: 15px;
+}
+
+.info-control {
+  padding: var(--padding-mapbox-control);
+}
