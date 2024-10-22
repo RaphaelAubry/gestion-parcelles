@@ -16,3 +16,5 @@ class SearchControl {
     this._map = undefined
   }
 }
+
+export { SearchControl }
