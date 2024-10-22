@@ -1,7 +1,7 @@
 import mapboxgl from 'mapbox-gl'
 import { PopupsManager } from './popups_manager'
 
-mapboxgl.Map.prototype.addPopupsManager = function () {
+mapboxgl.Map.prototype.addPopupsManager = function() {
   this.popupsManager = new PopupsManager
 }
 
@@ -9,7 +9,8 @@ mapboxgl.Map.prototype.addPopups = function (parcelles) {
 
   const popup = new mapboxgl.Popup({
     closeButton: true,
-    closeOnClick: true
+    closeOnClick: true,
+    offset: 50
   })
 
   this.parcelles.forEach((parcelle, index) => {

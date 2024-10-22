@@ -6,7 +6,8 @@ class PopupsManager {
       const popup = new mapboxgl.Popup({
         className: 'mapboxgl-popup-content-custom',
         closeButton: true,
-        closeOnClick: true
+        closeOnClick: true,
+        offset: 100
       })
       parcelle.map.getCanvas().style.cursor = 'pointer'
       parcelle.popup = popup

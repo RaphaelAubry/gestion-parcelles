@@ -30,3 +30,7 @@
 .mapboxgl-popup-content-custom .mapboxgl-popup-content {
   padding-top: 15px;
 }
+
+.info-control {
+  padding: var(--padding-mapbox-control);
+}

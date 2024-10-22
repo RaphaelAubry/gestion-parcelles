@@ -31,8 +31,8 @@ class Parcelle extends GeoJSON {
   }
 
   getDescription() {
-    return `Référence: <strong>${this.properties.section}${this.properties.numero}</strong><br />` +
-      `Surface: <strong>${this.properties.contenance / 10000}<strong> ha`
+    return `<strong>Référence:</strong> ${this.properties.section}${this.properties.numero}<br />` +
+      `<strong>Surface:<strong> ${this.properties.contenance / 10000} ha`
   }
 }
 

@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 import mapboxgl from 'mapbox-gl'
 import '../modules/mapbox'
+import { InfoControl } from '../modules/mapbox/controls/info_control'
 
 export default class extends Controller {
   static targets = ['map']
@@ -24,6 +25,10 @@ export default class extends Controller {
         showUserHeading: true
       })
     )
+
+    map.addControl(new InfoControl(), 'top-left')
+    map.addControl(new SearchControl, 'top-left')
+
     map.on('style.load', () => {
       map.addSource('mapbox-dem', {
         type: 'raster-dem',
@@ -43,9 +48,9 @@ export default class extends Controller {
     }
 
     map.addPopupsManager()
-    map.addSourceCity()
-    map.addCity()
+    map.addSourceCurrentCity()
     map.addSourceCurrentParcelle()
+    map.displayCurrentCity()
     map.displayCurrentParcelle()
   }
 

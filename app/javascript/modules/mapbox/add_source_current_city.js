@@ -1,6 +1,6 @@
 import mapboxgl from 'mapbox-gl'
 
-mapboxgl.Map.prototype.addSourceCity = function () {
+mapboxgl.Map.prototype.addSourceCurrentCity = function() {
   this.on('load', (e) => {
     this.addSource('current city', {
       type: 'geojson',
@@ -18,7 +18,7 @@ mapboxgl.Map.prototype.addSourceCity = function () {
       source: 'current city',
       layout: {},
       paint: {
-        'line-color': '#000',
+        'line-color': '#FFFFFF',
         'line-width': 3
       }
     })

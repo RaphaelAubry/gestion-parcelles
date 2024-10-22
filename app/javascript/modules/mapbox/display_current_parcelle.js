@@ -2,18 +2,18 @@ import mapboxgl from "mapbox-gl"
 
 mapboxgl.Map.prototype.currentParcelle = null
 
-mapboxgl.Map.prototype.hasCurrentParcelle = function () {
+mapboxgl.Map.prototype.hasCurrentParcelle = function() {
   return this.currentParcelle != null
 }
 
-mapboxgl.Map.prototype.currentParcelleChanged = function (parcelle) {
+mapboxgl.Map.prototype.currentParcelleChanged = function(parcelle) {
   return this.currentParcelle != parcelle
 }
 
-mapboxgl.Map.prototype.displayCurrentParcelle = function () {
+mapboxgl.Map.prototype.displayCurrentParcelle = function() {
   this.on('mousemove', (e) => {
-    if (this.city) {
-      this.city.feuilles.forEach(feuille =>{
+    if (this.currentCity && this.currentCity.feuilles) {
+      this.currentCity.feuilles.forEach(feuille =>{
         feuille.parcelles.forEach(parcelle => {
           if (parcelle.includes(e.lngLat)) {
             const source = this.getSource('current parcelle')

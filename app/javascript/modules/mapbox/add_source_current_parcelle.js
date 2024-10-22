@@ -1,6 +1,6 @@
 import mapboxgl from 'mapbox-gl'
 
-mapboxgl.Map.prototype.addSourceCurrentParcelle = function () {
+mapboxgl.Map.prototype.addSourceCurrentParcelle = function() {
   this.on('load', (e) => {
     this.addSource('current parcelle', {
       type: 'geojson',

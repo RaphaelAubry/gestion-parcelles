@@ -3,7 +3,7 @@ import { Parcelle } from './geojsons/parcelle'
 
 mapboxgl.Map.prototype.parcelles = []
 
-mapboxgl.Map.prototype.addParcelles = function (parcelles) {
+mapboxgl.Map.prototype.addParcelles = function(parcelles) {
   parcelles.forEach(parcelle => {
     this.parcelles.push(
       new Parcelle({
