@@ -52,7 +52,6 @@ class City extends GeoJSON {
   getParcelles() {
     this.feuilles.forEach(feuille => {
       feuille.parcelles.foEach(parcelle => {
-        console.log(parcelle)
         this.parcelles.push(parcelle)
       })
     })
