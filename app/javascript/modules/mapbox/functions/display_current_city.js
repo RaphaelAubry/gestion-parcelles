@@ -21,7 +21,6 @@ mapboxgl.Map.prototype.displayCurrentCity = function() {
 
             Requests.getCodeINSEE(point)
               .then(codeINSEE => {
-                console.log(codeINSEE)
                 return Requests.getAPICarto({ code_insee: codeINSEE }, { type: 'commune' })
               })
               .then(data => {

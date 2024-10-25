@@ -39,7 +39,7 @@ export default class extends Controller {
     const a = document.createElement('a')
     const div1 = document.createElement('div')
     const div2 = document.createElement('div')
-    console.log(document.map.parcelles)
+
     li.id = item.id
     li.setAttribute('data-action', 'click->input-mapbox#flyTo')
     div1.classname = "mapboxgl-ctrl-geocoder--suggestion"
