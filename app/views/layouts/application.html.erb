@@ -8,8 +8,8 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" %>
+    <%= stylesheet_link_tag "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css" %>
     <%= javascript_include_tag "https://kit.fontawesome.com/4c22da3313.js", crossorigin: :anonymous %>
-    <%= javascript_include_tag "https://cdn.jsdelivr.net/npm/@turf/turf@7.0.0/turf.min.js", crossorigin: :anonymous %>
     <%= javascript_importmap_tags %>
   </head>
   <body data-controller='window' data-window-target='width'>

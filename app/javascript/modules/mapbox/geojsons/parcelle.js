@@ -1,10 +1,12 @@
 import { GeoJSON } from "modules/mapbox/geojsons/geojson"
+import "turf"
 
 class Parcelle extends GeoJSON {
   constructor(feature) {
     super(feature)
     this.tag_color = null
     this.map = null
+    this.city = null
     this.polygon = turf.polygon(this.geometry.coordinates[0])
     this.centroid = turf.centroid(this.polygon)
     this.popup = null
@@ -33,6 +35,10 @@ class Parcelle extends GeoJSON {
   getDescription() {
     return `<strong>Référence:</strong> ${this.properties.section}${this.properties.numero}<br />` +
       `<strong>Surface:<strong> ${this.properties.contenance / 10000} ha`
+  }
+
+  getNumero() {
+    return this.properties.section + this.properties.numero
   }
 }
 

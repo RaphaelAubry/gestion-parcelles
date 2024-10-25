@@ -4,9 +4,19 @@ import * as Requests from "modules/requests"
 import { Feuille } from "modules/mapbox/geojsons/feuille"
 
 class City extends GeoJSON {
-  constructor(feature) {
+  static default = {
+    type: '',
+    id: '',
+    geometry: [],
+    properties: {},
+    geometry_name: 'geom',
+    bbox: []
+  }
+
+  constructor(feature = City.default) {
     super(feature)
     this.feuilles = []
+    this.parcelles = []
     this.map = null
   }
 
@@ -30,11 +40,21 @@ class City extends GeoJSON {
         feuilles.forEach(feuille => {
           feuille.getParcelles()
           feuille.map = this.map
+          feuille.city = this
           this.feuilles.push(feuille)
         })
       })
     .catch(error => {
       console.log(error.message)
+    })
+  }
+
+  getParcelles() {
+    this.feuilles.forEach(feuille => {
+      feuille.parcelles.foEach(parcelle => {
+        console.log(parcelle)
+        this.parcelles.push(parcelle)
+      })
     })
   }
 }

@@ -1,4 +1,5 @@
 import mapboxgl from "mapbox-gl"
+import { Parcelle } from "modules/mapbox/geojsons/parcelle"
 
 mapboxgl.Map.prototype.parcelles = []
 
