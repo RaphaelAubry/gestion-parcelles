@@ -1,7 +1,6 @@
 import mapboxgl from "mapbox-gl"
 
 mapboxgl.Map.prototype.addSourceCurrentCity = function() {
-  this.on('load', (e) => {
     this.addSource('current city', {
       type: 'geojson',
       data: {
@@ -22,5 +21,4 @@ mapboxgl.Map.prototype.addSourceCurrentCity = function() {
         'line-width': 3
       }
     })
-  })
 }

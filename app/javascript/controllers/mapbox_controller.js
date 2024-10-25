@@ -1,8 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 import mapboxgl from "mapbox-gl"
-import { InfoControl, SearchControl } from "modules/mapbox/controls"
-import "modules/mapbox/controls/info_control_manager"
 import "modules/mapbox/functions"
+import "modules/mapbox/controls"
 
 export default class extends Controller {
   static targets = ['map']
@@ -17,6 +16,7 @@ export default class extends Controller {
       center: this.#center(),
       zoom: 15
     })
+    document.map = map
     map.addControl(new mapboxgl.FullscreenControl())
     map.addControl(new mapboxgl.GeolocateControl({
         positionOptions: {
@@ -26,9 +26,7 @@ export default class extends Controller {
         showUserHeading: true
       })
     )
-
-    map.addControl(new InfoControl(), 'top-left')
-    map.addControl(new SearchControl(), 'top-left')
+    map.addInputs('top-left')
 
     map.on('style.load', () => {
       map.addSource('mapbox-dem', {
@@ -38,6 +36,8 @@ export default class extends Controller {
         maxzoom: 15
       })
       map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 })
+      map.addSourceCurrentCity()
+      map.addSourceCurrentParcelle()
     })
 
     if (this.mapTarget.dataset.parcelles) {
@@ -49,8 +49,7 @@ export default class extends Controller {
     }
 
     map.addPopupsManager()
-    map.addSourceCurrentCity()
-    map.addSourceCurrentParcelle()
+    map.initializeCurrentCity()
     map.displayCurrentCity()
     map.displayCurrentParcelle()
   }
