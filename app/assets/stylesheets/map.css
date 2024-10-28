@@ -31,6 +31,40 @@
   padding-top: 15px;
 }
 
-.info-control {
-  padding: var(--padding-mapbox-control);
+.search-control {
+  display: flex;
+  align-items: center;
+  position: relative
+}
+
+.mapboxlgl-control-icon {
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  color: var(--grey-light-2);
+}
+
+.search {
+  left: 10px;
+}
+
+.clear {
+  justify-content: center;
+  right: 7px;
+  font-size: 18px;
+  &:hover {
+    cursor: pointer;
+    background-color: var(--grey-light-1);
+  }
+}
+
+@media (max-width: 639px) {
+  .search {
+    left: 15px;
+  }
+
+  .clear {
+    right: 12px;
+    font-size: 20px;
+  }
 }

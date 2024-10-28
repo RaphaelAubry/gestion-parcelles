@@ -1,21 +1,30 @@
 import { Controller } from "@hotwired/stimulus"
 
+
 export default class extends Controller {
-  static targets = ['search', 'geocoder', 'numero']
+  static targets = ['search', 'geocoder', 'numero', 'clear']
 
   connect() {
     this.geocoderTarget.addEventListener('focus', e => {
-      this.searchTarget.style.display = "none"
+      this.searchTarget.parentElement.style.display = "none"
       document.map.searchControl._suggestions.style.display = "none"
     })
     this.geocoderTarget.addEventListener('focusout', e => {
-      this.searchTarget.style.display = ""
+      this.searchTarget.parentElement.style.display = ""
     })
     this.searchTarget.addEventListener('focus', e => {
       document.map.searchControl._suggestions.style.zIndex = "2000"
+      if (this.searchTarget.value != "") {
+        this.#find(e.target.value)
+      }
     })
     this.searchTarget.addEventListener('keyup', e => {
       this.#find(e.target.value)
+      if (e.target.value != "") {
+        this.clearTarget.style.display = "flex"
+      } else {
+        this.clearTarget.style.display = "none"
+      }
     })
     document.map.searchControl._suggestions.addEventListener('mouseleave', e => {
       document.map.searchControl._suggestions.style.display = "none"
@@ -25,8 +34,9 @@ export default class extends Controller {
   #find(value) {
     document.map.searchControl.reset()
     if (document.map.currentCity) {
+      document.map.currentCity.sortParcelles()
       document.map.currentCity.parcelles
-        .filter(parcelle => parcelle.getNumero().startsWith(value))
+        .filter(parcelle => parcelle.getNumero().match(value))
         .forEach(parcelle => this.#feed(parcelle))
       document.map.searchControl._suggestions.style.display = "block"
       document.map.searchControl._suggestions.style.overflowY = "scroll"
@@ -75,5 +85,9 @@ export default class extends Controller {
       }
     }
     document.map.fitBounds(parcelle.bbox)
+  }
+
+  clear() {
+    this.searchTarget.value = ""
   }
 }
