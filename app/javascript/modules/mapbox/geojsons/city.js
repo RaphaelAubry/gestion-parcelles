@@ -49,11 +49,13 @@ class City extends GeoJSON {
     })
   }
 
-  getParcelles() {
-    this.feuilles.forEach(feuille => {
-      feuille.parcelles.foEach(parcelle => {
-        this.parcelles.push(parcelle)
-      })
+  sortParcelles() {
+    this.parcelles.sort((p1, p2) => {
+      if (p1.properties.section < p2.properties.section) return -1
+      if (p1.properties.section > p2.properties.section) return 1
+      if (p1.properties.section == p2.properties.section) {
+        return p1.properties.numero - p2.properties.numero
+      }
     })
   }
 }

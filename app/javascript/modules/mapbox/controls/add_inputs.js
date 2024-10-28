@@ -17,4 +17,6 @@ mapboxgl.Map.prototype.addInputs = function(location = 'top-left') {
   document.querySelector(".mapboxgl-ctrl-" + location).setAttribute('data-controller', 'input-mapbox')
   geocoder._inputEl.setAttribute('data-input-mapbox-target', 'geocoder')
   searchControl._inputEl.setAttribute('data-input-mapbox-target', 'search')
+  searchControl._clearIcon.setAttribute('data-input-mapbox-target', 'clear')
+  searchControl._clearIcon.setAttribute('data-action', 'click->input-mapbox#clear')
 }
