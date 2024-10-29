@@ -89,5 +89,6 @@ export default class extends Controller {
 
   clear() {
     this.searchTarget.value = ""
+    document.map.searchControl._suggestions.style.display = "none"
   }
 }

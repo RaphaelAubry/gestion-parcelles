@@ -21,8 +21,7 @@ class Feuille extends GeoJSON {
       var param = { code_insee: this.properties.code_insee, section: this.properties.section }
     }
 
-    Requests.getAPICarto(param,
-                     { type: 'parcelle'})
+    Requests.getAPICarto(param, { type: 'parcelle'})
       .then(data => {
         data.features.forEach(feature => {
           const parcelle = new Parcelle(feature)

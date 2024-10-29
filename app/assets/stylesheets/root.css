@@ -13,6 +13,8 @@
   --font-medium: 16px;
   --font-tall: 25px;
 
+  --margin-medium: 10px;
+
   --padding-min: 5px;
   --padding-mapbox-control: 7px;
   --padding-icon-menu: 2px;
@@ -26,7 +28,7 @@
 }
 
 body {
-  background-color: rgb(253, 254, 253);
+  background-color: rgb(229, 229, 229);
   margin: 0;
   a {
     font-size: var(--font-small);

@@ -8,9 +8,9 @@ mapboxgl.Map.prototype.addPopupsManager = function() {
 mapboxgl.Map.prototype.addPopups = function (parcelles) {
 
   const popup = new mapboxgl.Popup({
-    closeButton: true,
+    closeButton: false,
     closeOnClick: true,
-    offset: 50
+    offset: 25
   })
 
   this.parcelles.forEach((parcelle, index) => {

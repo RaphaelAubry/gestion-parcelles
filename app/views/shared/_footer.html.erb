@@ -1,0 +1,44 @@
+<footer>
+  <section>
+    <h1>
+      A propos
+    </h1>
+    <ul>
+      <%= link_to '', 'https://github.com/RaphaelAubry', class: "fa-brands fa-github" %>
+    </ul>
+  </section>
+  <section>
+    <h1>
+      Support
+    </h1>
+    <ul>
+      <li>
+        <h2>
+          <%= mail_to ApplicationMailer.default[:from], "Contact" %>
+        </h2>
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h1>
+      Ressources
+    </h1>
+    <ul>
+      <li>
+        <h2>
+          <%= link_to 'Mapbox', 'https://www.mapbox.com/' %>
+        </h2>
+      </li>
+      <li>
+        <h2>
+          <%= link_to 'IGN - API Carto', 'https://apicarto.ign.fr/api/doc/' %>
+        </h2>
+      </li>
+      <li>
+        <h2>
+          <%= link_to 'API Gouv', 'https://api.gouv.fr/les-api/base-adresse-nationale' %>
+        </h2>
+      </li>
+    </ul>
+  </section>
+</footer>

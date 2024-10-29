@@ -5,7 +5,7 @@ class PopupsManager {
     if (!parcelle.fromDB()) {
       const popup = new mapboxgl.Popup({
         className: 'mapboxgl-popup-content-custom',
-        closeButton: true,
+        closeButton: false,
         closeOnClick: true,
         offset: 25
       })

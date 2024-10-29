@@ -25,6 +25,7 @@ container-flex {
   display: flex;
   justify-content: center;
   overflow: auto;
+  height: 95vh;
 }
 
 container-c1 {
