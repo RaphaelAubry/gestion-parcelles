@@ -34,6 +34,7 @@ mapboxgl.Map.prototype.displayCurrentCity = function() {
                     this.currentCity.getFeuilles()
                     this.currentCity.map = this
                     this.getSource('current city').setData(data)
+                    //get WMS
                   }
                 }
               })
