@@ -32,7 +32,8 @@ container-navbar {
   min-height: 70px;
   background-color: var(--grey-dark);
   position: relative;
-  ul {
+  color: var(--grey-light-1);
+  navbar-menu > ul {
     display: flex;
     gap: 15px;
     padding: 0;
@@ -40,7 +41,7 @@ container-navbar {
     list-style-type: none;
     width: 100%;
     transition: display 2s allow-discrete;
-    li a, navbar-dropdown a {
+    > li > a {
         color: var(--grey-light-1);
         font-size: var(--font-medium);
         text-align: center;
@@ -51,6 +52,7 @@ container-navbar {
         }
       }
     }
+
   navbar-icon {
     position: absolute;
     left: 10px;
@@ -65,11 +67,7 @@ container-navbar {
         cursor: pointer;
     }
   }
-  navbar-account {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
+
   p {
     color: var(--grey-light-1);
     font-size: var(--font-small);
@@ -81,20 +79,24 @@ container-navbar {
 }
 
 navbar-account {
+  position: absolute;
+  top: 10px;
+  right: 10px;
   display: flex;
   align-items: center;
   gap: 10px;
-  a {
-    text-decoration: none;
-    color: var(--grey-light-1);
-        &:hover {
-          text-decoration: underline;
-        }
-  }
 }
 
 navbar-logo {
   margin-left: 10px;
+}
+
+account-li {
+  position: relative;
+  display: block;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 account-connexion {

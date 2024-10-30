@@ -3,19 +3,19 @@
     <%= link_to "connexion", new_user_session_path %>
   <% end %>
 </account-status>
-<navbar-dropdown data-controller='dropdown' data-action='click->dropdown#displayMenu'>
+<li-dropdown>
   <%= image_tag 'user.png', width: '50px' %>
   <account-connexion data-controller='connexion'
                      data-connexion-status-value='<%= user_signed_in? %>'
                      data-connexion-target='circle'
   >
   </account-connexion>
-    <dropdown-menu data-dropdown-target='menu'>
-      <%= link_to 'mon compte', edit_user_registration_path(current_user) %>
+    <ul>
+      <%= link_to 'mon compte', edit_user_registration_path(current_user), data: { navbar_target: 'link'} %>
       <% if user_signed_in? %>
-        <%= link_to 'mes invitations envoyées', invitations_path(users: :guests) %>
-        <%= link_to 'mes invitations reçues', invitations_path(users: :owners) %>
+        <%= link_to 'mes invitations envoyées', invitations_path(users: :guests), data: { navbar_target: 'link'} %>
+        <%= link_to 'mes invitations reçues', invitations_path(users: :owners), data: { navbar_target: 'link'} %>
         <%= link_to "déconnexion", destroy_user_session_path, data: { turbo_method: :delete } %>
       <% end %>
-    </dropdown-menu>
-</navbar-dropdown>
+    </ul>
+</li-dropdown>

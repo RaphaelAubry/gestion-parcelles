@@ -6,7 +6,9 @@ export default class extends Controller {
 
   pathValueChanged() {
     this.linkTargets.forEach((target) => {
-      if (target.attributes.href.nodeValue == window.location.pathname) {
+      const path = window.location.pathname
+      const search = window.location.search
+      if (target.attributes.href.nodeValue == path + search ) {
         target.classList.add('shine')
       } else {
         target.classList.remove('shine')
@@ -15,11 +17,15 @@ export default class extends Controller {
   }
 
   displayMenu() {
-    if (this.menuTarget.style.display === "flex" ||
-        this.menuTarget.style.display === "" ) {
-      this.menuTarget.style.display = "none";
-    } else {
-      this.menuTarget.style.display = "flex";
+    switch (this.menuTarget.style.display) {
+      case '':
+        this.menuTarget.style.display = 'none'
+      break
+      case 'flex':
+        this.menuTarget.style.display = 'none'
+      break
+      default:
+        this.menuTarget.style.display = 'flex'
     }
   }
 }

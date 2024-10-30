@@ -1,23 +1,36 @@
-navbar-dropdown {
-  position: relative;
-  display: block;
+li-dropdown {
   &:hover {
     cursor: pointer;
   }
 }
 
-dropdown-menu {
+li-dropdown ul {
   display: none;
   position: absolute;
-  top: 60px;
-  right: 0;
+  box-sizing: border-box;
   min-width: 120px;
-  z-index: 1;
+  max-width: 150px;
+  z-index: 2000;
   background-color: var(--grey-medium);
   border-radius: var(--border-radius);
   padding: var(--padding-medium);
   a {
+    text-decoration: none;
+    color: var(--grey-light-1);
     display: block;
     margin: 10px 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
+}
+
+navbar-account li-dropdown ul {
+  margin: 0;
+  right: 0;
+}
+
+navbar-menu li-dropdown ul {
+  margin: var(--margin-medium) 0 0 0;
 }

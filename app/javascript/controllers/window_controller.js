@@ -8,7 +8,7 @@ export default class extends Controller {
     useWindowResize(this)
   }
 
-  windowResize({width, height, event }) {
+  windowResize({ width, height, event }) {
     if (width > 768) {
       if (this.menuTarget.style.display === "none") {
         this.menuTarget.style.display = "flex"
