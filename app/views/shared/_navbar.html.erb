@@ -5,27 +5,23 @@
   <navbar-icon data-action='click->navbar#displayMenu'>
     <%= image_tag 'Gestion Parcelles Logo 1.png', width: '40px', height: '40px' %>
   </navbar-icon>
-  <ul data-navbar-target='menu' data-window-target='menu'>
-    <li>
-      <%= link_to :home, root_path, data: { navbar_target: 'link'} %>
-    </li>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to :carte, carte_path, data: { navbar_target: 'link'} %>
-      </li>
-      <li>
-        <%= link_to :parcelles, parcelles_path, data: { navbar_target: 'link'} %>
-      </li>
-      <li>
-        <%= link_to :fournisseurs, suppliers_path, data: { navbar_target: 'link'} %>
-      </li>
-      <li>
-        <%= link_to :prestations, offers_path, data: { navbar_target: 'link'} %>
-      </li>
-    <% end %>
-  </ul>
+  <navbar-menu data-navbar-target='menu' data-window-target='menu'>
+    <ul>
+      <li><%= link_to :home, root_path, data: { navbar_target: 'link'} %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to :carte, carte_path, data: { navbar_target: 'link'} %></li>
+        <li><%= link_to :parcelles, parcelles_path, data: { navbar_target: 'link'} %></li>
+        <li-dropdown>opérations
+          <ul>
+            <%= link_to :fournisseurs, suppliers_path, data: { navbar_target: 'link'} %>
+            <%= link_to :prestations, offers_path, data: { navbar_target: 'link'} %>
+          </ul>
+        </li-dropdown>
+      <% end %>
+    </ul>
+  </navbar-menu>
 
-  <navbar-account>
+  <navbar-account data-navbar-target='menu'>
     <p><%= current_user.email if user_signed_in? %></p>
     <%= render 'shared/account' %>
   </navbar-account>
