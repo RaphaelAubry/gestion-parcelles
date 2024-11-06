@@ -4,3 +4,25 @@ message-group {
     font-size: var(--font-small);
   }
 }
+
+message-wrapper {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  max-width: 250px;
+  color: var(--green-strong);
+  message-content {
+    margin: 0;
+    flex-grow: 1;
+  }
+}
+
+.notice {
+  padding: var(--padding-medium);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--green-strong);
+  background-color: rgb(182, 232, 182)
+}

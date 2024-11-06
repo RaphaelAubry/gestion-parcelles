@@ -2,3 +2,4 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "modules/elements/li_dropdown"
+import "modules/elements/fa_xmark"
