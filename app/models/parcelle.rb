@@ -18,7 +18,6 @@ class Parcelle < ApplicationRecord
   has_many :user_parcelles
   has_many :users, through: :user_parcelles
   belongs_to :tag, optional: true
-  after_create :update_polygon_coordinates
   attribute :polygon, :st_polygon, srid: 4326, geographic: true
   before_update :default!
   before_create :default!
@@ -43,16 +42,34 @@ class Parcelle < ApplicationRecord
     prepend_zero(result, 4)
   end
 
-
   def to_hash
-    { attributes: {
+    { properties: {
         reference_cadastrale: reference_cadastrale,
-        surface: surface
+        surface: surface,
+        code_insee: code_officiel_geographique
         },
       coordinates: polygon.present? ? polygon.coordinates : nil,
       centroid: polygon.present? ? [polygon.centroid.x, polygon.centroid.y] : nil,
       tag_color: tag.present? ? tag.color : nil
     }
+  end
+
+  def update_polygon(geojson)
+    begin
+      if geojson.blank?
+        geojson = APICarto.request({ code_insee: code_officiel_geographique,
+          section: code_section,
+          numero: numero_parcelle
+        })
+      end
+      polygon = APICarto.coordinates(:polygon, geojson)
+      data = Factory.parse_wkt(polygon)
+      update(polygon: data)
+    rescue Exception => e
+        Rails.logger.debug e.class
+        Rails.logger.debug e.message
+        Rails.logger.debug e.backtrace.join("\n")
+    end
   end
 
   private
@@ -62,19 +79,6 @@ class Parcelle < ApplicationRecord
       string.prepend "0"
     end
     string
-  end
-
-  def update_polygon_coordinates
-    geojson = APICarto.request({ code_insee: code_officiel_geographique, section: code_section, numero: numero_parcelle })
-    polygon = APICarto.coordinates(:polygon, geojson)
-    begin
-      data = Factory.parse_wkt(polygon)
-      update(polygon: data)
-    rescue Exception => e
-      Rails.logger.debug e.class
-      Rails.logger.debug e.message
-      Rails.logger.debug e.backtrace.join("\n")
-    end
   end
 
   def default!

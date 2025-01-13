@@ -1,6 +1,8 @@
-<p class="notice">
-  <%= notice %>
-</p>
-<p class="alert">
-  <%= alert %>
-</p>
+<% flash.each do |key, message| %>
+  <message-wrapper class='<%= key %>'>
+    <message-content>
+      <%= message %>
+    </message-content>
+    <fa-xmark class="fa-solid fa-xmark"></fa-xmark>
+  </message-wrapper>
+<% end %>

@@ -34,13 +34,15 @@ class ParcellesController < ApplicationController
   end
 
   def new
-    authorize! @parcelle = Parcelle.new
+    @parcelle = params.include?(:parcelle) ? Parcelle.new(parcelle_params) : Parcelle.new
+    authorize! @parcelle
   end
 
   def create
     authorize! @parcelle = Parcelle.create(parcelle_params)
 
     if @parcelle.save
+      @parcelle.update_polygon(params[:parcelle][:polygon])
       current_user.parcelles << @parcelle
 
       respond_to do |format|
