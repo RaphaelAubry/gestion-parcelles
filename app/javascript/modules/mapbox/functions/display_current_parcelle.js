@@ -11,7 +11,7 @@ mapboxgl.Map.prototype.currentParcelleChanged = function(parcelle) {
 }
 
 mapboxgl.Map.prototype.displayCurrentParcelle = function() {
-  this.on('mousemove', (e) => {
+  this.on('click', (e) => {
     if (this.currentCity) {
       this.currentCity.parcelles.forEach(parcelle => {
         if (parcelle.includes(e.lngLat)) {

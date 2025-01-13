@@ -15,5 +15,9 @@ module RGeo
         end
       end
     end
+
+    def self.coordinates(type, coordinates)
+      "#{type.to_s.upcase} ((#{coordinates}))"
+    end
   end
 end

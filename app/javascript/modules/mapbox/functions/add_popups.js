@@ -1,11 +1,12 @@
 import mapboxgl from "mapbox-gl"
-import { PopupsManager } from "modules/mapbox/functions/popups_manager"
+import { PopupsManager, PopupContent } from "modules/mapbox/functions/popups_manager"
 
 mapboxgl.Map.prototype.addPopupsManager = function() {
   this.popupsManager = new PopupsManager
 }
 
-mapboxgl.Map.prototype.addPopups = function (parcelles) {
+// manage popups for parcelle registered
+mapboxgl.Map.prototype.addPopups = function () {
 
   const popup = new mapboxgl.Popup({
     closeButton: false,
@@ -18,7 +19,7 @@ mapboxgl.Map.prototype.addPopups = function (parcelles) {
       this.getCanvas().style.cursor = 'pointer'
       popup
       .setLngLat(parcelle.getCentroid())
-      .setHTML(parcelle.getDescription())
+      .setHTML(new PopupContent(parcelle).create())
       .addTo(this)
     })
 

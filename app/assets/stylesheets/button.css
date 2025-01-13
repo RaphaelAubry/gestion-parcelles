@@ -35,3 +35,10 @@ a.button {
   height: 25px;
   padding: var(--padding-medium);
 }
+
+.mapboxgl-popup-content a.map-link {
+  font: 12px/20px Helvetica Neue,Arial,Helvetica,sans-serif;
+  &:hover {
+    cursor: pointer;
+  }
+}

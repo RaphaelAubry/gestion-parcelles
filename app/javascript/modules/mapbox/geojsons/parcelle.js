@@ -10,6 +10,7 @@ class Parcelle extends GeoJSON {
     this.polygon = turf.polygon(this.geometry.coordinates[0])
     this.centroid = turf.centroid(this.polygon)
     this.popup = null
+    this.isRegistered = false
   }
 
   includes(point) {
@@ -25,20 +26,17 @@ class Parcelle extends GeoJSON {
            }
   }
 
-  fromDB() {
-    return this.map.parcelles.some(parcelle =>
-      parcelle.centroid.geometry.coordinates[0] == this.centroid.geometry.coordinates[0] &&
-      parcelle.centroid.geometry.coordinates[1] == this.centroid.geometry.coordinates[1]
-    )
-  }
-
-  getDescription() {
-    return `<strong>Référence:</strong> ${this.properties.section}${this.properties.numero}<br />` +
-      `<strong>Surface:<strong> ${this.properties.contenance / 10000} ha`
-  }
-
   getNumero() {
     return this.properties.section + this.properties.numero
+  }
+
+  toJson() {
+    var parcelle = { reference_cadastrale: this.getNumero(),
+      code_officiel_geographique: this.properties.code_insee,
+      polygon: this.polygon,
+      surface: this.properties.contenance / 10000
+    }
+    return JSON.stringify(parcelle)
   }
 }
 
