@@ -26,6 +26,13 @@ class Parcelle extends GeoJSON {
            }
   }
 
+  isAlreadyDisplayed() {
+    return this.map.parcelles.some(parcelle =>
+      parcelle.centroid.geometry.coordinates[0] == this.centroid.geometry.coordinates[0] &&
+      parcelle.centroid.geometry.coordinates[1] == this.centroid.geometry.coordinates[1]
+    )
+  }
+
   getNumero() {
     return this.properties.section + this.properties.numero
   }

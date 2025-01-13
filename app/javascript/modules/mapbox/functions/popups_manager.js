@@ -32,11 +32,11 @@ class PopupContent {
   constructor(parcelle) {
     this.container = document.createElement('map-popup')
     this.content1 = document.createElement('div')
-    this.content1.innerHTML = `<strong>Référence:</strong> ${parcelle.getNumero()}<br />`
+    this.content1.innerHTML = `<strong>Référence:</strong> ${parcelle.getNumero()}`
     this.container.append(this.content1)
     this.container.dataset.controller = 'popup'
     this.content2 = document.createElement('div')
-    this.content2.innerHTML = `<strong>Surface:</strong> ${parcelle.properties.contenance / 10000} ha<br />`
+    this.content2.innerHTML = `<strong>Surface:</strong> ${parcelle.properties.contenance / 10000} ha`
     this.container.append(this.content2)
     if (!parcelle.isRegistered) {
       this.content3 = document.createElement('div')
