@@ -1,7 +1,12 @@
-message-group {
-  padding: var(--padding-min);
+ul#error_explanation {
+  padding: var(--padding-medium);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--red-blood);
+  color: var(--red-blood);
+  background-color: var(--red-pink);
   li {
     font-size: var(--font-small);
+    margin: 15px 0 0 15px;
   }
 }
 

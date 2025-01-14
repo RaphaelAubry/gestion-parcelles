@@ -1,7 +1,6 @@
 form.new_parcelle, form.edit_parcelle {
   display: block;
   width: 300px;
-  padding: var(--padding-min);
 }
 
 input-group {
