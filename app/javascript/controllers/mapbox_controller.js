@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import mapboxgl from "mapbox-gl"
 import "modules/mapbox/functions"
 import "modules/mapbox/controls"
+import { CadastreControl } from "modules/mapbox/controls"
 
 export default class extends Controller {
   static targets = ['map']
@@ -26,6 +27,7 @@ export default class extends Controller {
         showUserHeading: true
       })
     )
+    map.addControl(new CadastreControl(), 'top-right')
     map.addInputs('top-left')
 
     map.on('style.load', () => {
@@ -53,6 +55,8 @@ export default class extends Controller {
     map.displayCurrentCity()
     map.displayCurrentParcelle()
   }
+
+
 
   #center() {
     try {

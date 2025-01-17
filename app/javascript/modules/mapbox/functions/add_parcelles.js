@@ -5,7 +5,6 @@ mapboxgl.Map.prototype.parcelles = []
 
 mapboxgl.Map.prototype.addParcelles = function(parcelles) {
   parcelles.forEach(parcelle => {
-    console.log(parcelle)
     var parcelle = new Parcelle({
       type: 'Feature',
       id: parcelle.id,
