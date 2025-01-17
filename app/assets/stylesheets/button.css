@@ -42,3 +42,11 @@ a.button {
     cursor: pointer;
   }
 }
+
+.active-control {
+  color: var(--blue-mapbox);
+}
+
+.fa-map {
+  font-size: 18px!important;
+}
