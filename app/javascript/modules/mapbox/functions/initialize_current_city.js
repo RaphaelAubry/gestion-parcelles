@@ -16,7 +16,7 @@ mapboxgl.Map.prototype.initializeCurrentCity = function() {
         this.geocoderControl._inputEl.value = city.properties.nom_com
         this.currentCity.getFeuilles()
         this.currentCity.map = this
-        this.getSource('current city').setData(data)
+        this.getSource('current-city').setData(data)
         //get WMS
       }
     })

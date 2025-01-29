@@ -1,7 +1,7 @@
 import mapboxgl from "mapbox-gl"
 
 mapboxgl.Map.prototype.addSourceCurrentParcelle = function() {
-  this.addSource('current parcelle', {
+  this.addSource('current-parcelle', {
     type: 'geojson',
     data: {
       type: 'Feature',
@@ -13,9 +13,9 @@ mapboxgl.Map.prototype.addSourceCurrentParcelle = function() {
   })
 
   this.addLayer({
-    id: 'Background_current_parcelle_1',
+    id: 'background-current-parcelle-1',
     type: 'fill',
-    source: 'current parcelle',
+    source: 'current-parcelle',
     layout: {},
     paint: {
       'fill-color': '#FFFFFF',
@@ -24,9 +24,9 @@ mapboxgl.Map.prototype.addSourceCurrentParcelle = function() {
   })
 
   this.addLayer({
-    id: 'Border_current_parcelle_1',
+    id: 'border-curren-parcelle-1',
     type: 'line',
-    source: 'current parcelle',
+    source: 'current-parcelle',
     layout: {},
     paint: {
       'line-color': '#FFFFFF',

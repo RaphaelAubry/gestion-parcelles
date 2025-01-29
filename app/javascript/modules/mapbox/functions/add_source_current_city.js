@@ -1,7 +1,7 @@
 import mapboxgl from "mapbox-gl"
 
 mapboxgl.Map.prototype.addSourceCurrentCity = function() {
-    this.addSource('current city', {
+    this.addSource('current-city', {
       type: 'geojson',
       data: {
         type: 'Feature',
@@ -11,10 +11,11 @@ mapboxgl.Map.prototype.addSourceCurrentCity = function() {
         }
       }
     })
+
     this.addLayer({
-      id: 'Border_current_city_1',
+      id: 'border-current-city-1',
       type: 'line',
-      source: 'current city',
+      source: 'current-city',
       layout: {},
       paint: {
         'line-color': '#FFFFFF',

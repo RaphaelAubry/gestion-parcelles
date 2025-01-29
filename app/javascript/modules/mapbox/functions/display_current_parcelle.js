@@ -18,7 +18,7 @@ mapboxgl.Map.prototype.displayCurrentParcelle = function() {
           if (parcelle.includes(e.lngLat)) {
             if (parcelle.isAlreadyDisplayed() == false) {
 
-              const source = this.getSource('current parcelle')
+              const source = this.getSource('current-parcelle')
               if (source) {
                 source.setData({
                   type: 'Feature',
@@ -39,7 +39,7 @@ mapboxgl.Map.prototype.displayCurrentParcelle = function() {
         })
       }
     } else {
-      const source = this.getSource('current parcelle')
+      const source = this.getSource('current-parcelle')
       if (source) {
         source.setData({
           type: 'Feature',

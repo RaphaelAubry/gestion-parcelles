@@ -17,7 +17,7 @@ mapboxgl.Map.prototype.addPolygons = function(parcelles, options = {}) {
       })
 
       this.addLayer({
-        id: 'Background' + `${index}`,
+        id: 'background' + `${index}`,
         type: 'fill',
         source: `${index}`,
         layout: {},
@@ -28,7 +28,7 @@ mapboxgl.Map.prototype.addPolygons = function(parcelles, options = {}) {
       })
 
       this.addLayer({
-        id: 'Border' + `${index}`,
+        id: 'border' + `${index}`,
         type: 'line',
         source: `${index}`,
         layout: {},
