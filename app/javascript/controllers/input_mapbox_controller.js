@@ -94,7 +94,7 @@ export default class extends Controller {
       essential: true
     })
 
-    const source = map.getSource('current parcelle')
+    const source = map.getSource('current-parcelle')
     if (source) {
       source.setData({
         type: 'Feature',

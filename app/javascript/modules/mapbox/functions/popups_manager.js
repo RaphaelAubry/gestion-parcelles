@@ -1,4 +1,5 @@
 import mapboxgl from "mapbox-gl"
+import "turf"
 
 // manage popups for parcelle not registered
 class PopupsManager {
@@ -9,7 +10,7 @@ class PopupsManager {
         closeButton: true,
         closeOnClick: true,
         focusAfterOpen: false,
-        offset: 15
+        offset: 10
       })
       parcelle.map.getCanvas().style.cursor = 'pointer'
       parcelle.popup = popup
@@ -31,14 +32,20 @@ class PopupsManager {
 class PopupContent {
   constructor(parcelle) {
     this.container = document.createElement('map-popup')
-    this.content1 = document.createElement('div')
-    this.content1.innerHTML = `<strong>Référence:</strong> ${parcelle.getNumero()}`
-    this.container.append(this.content1)
+
+    if (parcelle.getNumero() != 'Z0000') {
+      this.content1 = document.createElement('div')
+      this.content1.innerHTML = `<strong>Référence:</strong> ${parcelle.getNumero()}`
+      this.container.append(this.content1)
+    }
+
     this.container.dataset.controller = 'popup'
     this.content2 = document.createElement('div')
     this.content2.innerHTML = `<strong>Surface:</strong> ${parcelle.properties.contenance / 10000} ha`
     this.container.append(this.content2)
-    if (!parcelle.isRegistered) {
+
+    if (!parcelle.isRegistered &&
+      turf.unkinkPolygon(parcelle.polygon).features.length == 1) {
       this.content3 = document.createElement('div')
       this.content3.innerHTML = `<a class="map-link">enregistrer</a>`
       this.content3.dataset.action = 'click->popup#add'
@@ -53,6 +60,11 @@ class PopupContent {
   create() {
     return this.container.outerHTML
   }
+}
+
+function isValid(polygon) {
+  lines = []
+  polygon
 }
 
 export { PopupsManager, PopupContent }

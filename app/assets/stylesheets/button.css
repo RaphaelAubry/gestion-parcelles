@@ -43,10 +43,19 @@ a.button {
   }
 }
 
+/* mapbox controls */
 .active-control {
   color: var(--blue-mapbox);
 }
 
 .fa-map {
   font-size: 18px!important;
+}
+
+.active {
+  color: var(--blue-mapbox)!important;
+}
+
+.fa-draw-polygon {
+  font-size: var(--font-medium);
 }

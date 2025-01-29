@@ -4,6 +4,8 @@ import { Parcelle } from "modules/mapbox/geojsons/parcelle"
 mapboxgl.Map.prototype.parcelles = []
 
 mapboxgl.Map.prototype.addParcelles = function(parcelles) {
+  // ensure no doubles
+  this.parcelles = []
   parcelles.forEach(parcelle => {
     var parcelle = new Parcelle({
       type: 'Feature',
