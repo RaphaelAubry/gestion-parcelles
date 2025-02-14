@@ -3,7 +3,7 @@
     <%= render partial: 'map',
       locals: {
         geometry_type: @geometry_type,
-        parcelles: @parcelle,
+        parcelles: @parcelle_mapbox_info,
         centroid: @centroid
       }
     %>
@@ -11,3 +11,11 @@
     <%= link_to t(:back), :back %>
   <% end %>
 </div>
+
+<%= render partial: 'shared/comment', locals: { option: :new, comment: @comment } %>
+
+<%= turbo_frame_tag 'comments' do %>
+  <% @parcelle.comments.each do |comment| %>
+    <%= render partial: 'shared/comment', locals: { option: :show, comment: comment } %>
+  <% end %>
+<% end %>

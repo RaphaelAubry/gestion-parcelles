@@ -1,0 +1,12 @@
+<%= form_for [@parcelle, @comment],
+  html: { data: {
+    turbo_frame: 'comments',
+    controller: :comment,
+    action: 'turbo:submit-end->comment#clear' } } do |form|
+%>
+    <%= form.rich_text_area :content, placeholder: 'Rédiger un commentaire ...' %>
+  <submit-group>
+    <%= form.submit 'valider', class: 'button' %>
+    <%= link_to 'annuler', parcelle_path(@parcelle) %>
+  </submit-group>
+<% end %>
