@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   resources :users
   resources :invitations, except: [:edit, :update]
   resources :parcelles
+  resources :parcelle do
+    resources :comments, only: [:new, :create]
+  end
+  resources :comments, except: [:new, :create]
+
   get '/carte', to: 'parcelles#carte', as: :carte
 
   resources :tags

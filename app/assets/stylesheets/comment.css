@@ -1,0 +1,27 @@
+comment-wrapper {
+  display: grid;
+  grid-template-columns: 50px auto;
+  margin-top: 20px;
+  grid-gap: 10px;
+  align-items: center;
+}
+
+comment-2 {
+  width: calc(100% - 10px);
+}
+
+comment-info {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-gap: 10px;
+  margin-bottom: 5px;
+}
+
+comment-email {
+  font-size: var(--font-small);
+  font-weight: bold;
+}
+
+comment-date {
+  font-size: var(--font-small);
+}

@@ -43,6 +43,14 @@ a.button {
   }
 }
 
+cancel-1 {
+  font-size: var(--font-small);
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
 /* mapbox controls */
 .active-control {
   color: var(--blue-mapbox);

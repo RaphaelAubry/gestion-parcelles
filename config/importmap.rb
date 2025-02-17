@@ -20,3 +20,5 @@ pin "mapbox_geocoder", to: "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-g
 pin "turf", to: "https://cdn.jsdelivr.net/npm/@turf/turf@7.0.0/turf.min.js"
 pin "mapbox_draw", to: "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.5.0/mapbox-gl-draw.js"
 pin_all_from "app/javascript/modules/elements", under: "modules/elements"
+pin "trix"
+pin "@rails/actiontext", to: "actiontext.js"

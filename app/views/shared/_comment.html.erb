@@ -1,0 +1,28 @@
+<comment-wrapper data-controller='comment'>
+  <comment-1>
+    <%= image_tag 'user.png', width: '50px' %>
+  </comment-1>
+  <comment-2>
+    <% if option == :new %>
+      <%= turbo_frame_tag 'new_comment' do %>
+        <%= link_to 'Rédiger un commentaire ... ', new_parcelle_comment_path(@parcelle) %>
+      <% end %>
+    <% end %>
+
+    <% if option == :show %>
+      <comment-info>
+        <comment-email>
+          <%= current_user.email %>
+        </comment-email>
+        <comment-date>
+          <%= comment.created_at.strftime("le %d-%m-%Y à %H:%M") %>
+        </comment-date>
+      </comment-info>
+      <%= turbo_frame_tag comment do %>
+        <%= comment.content %>
+        <%= link_to 'modifier', edit_comment_path(comment) %>
+        <%= link_to 'supprimer', comment_path(comment), data: { turbo_method: :delete, turbo_frame: 'comments' } %>
+      <% end %>
+    <% end %>
+  </comment-2>
+</comment-wrapper>

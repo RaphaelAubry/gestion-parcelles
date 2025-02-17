@@ -55,17 +55,16 @@ class ParcellesController < ApplicationController
 
   def show
     @centroid = @parcelle.polygon.centroid.coordinates if @parcelle.polygon
-    @parcelle = @parcelle.to_mapbox
+    @parcelle_mapbox_info = @parcelle.to_mapbox
     @geometry_type = 'Polygon'
+    @comment = Comment.new
   end
 
   def edit
   end
 
   def update
-    @parcelle.update(parcelle_params)
-
-    if @parcelle.save
+    if @parcelle.update(parcelle_params)
       respond_to do |format|
         format.html { redirect_to parcelles_path, notice: "La parcelle est modifiée avec succès" }
       end

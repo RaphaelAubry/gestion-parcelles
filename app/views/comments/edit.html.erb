@@ -1,0 +1,13 @@
+<%= turbo_frame_tag @comment do %>
+  <%= form_for @comment,
+    html: { data: {
+      turbo_frame: "comment_#{@comment.id}",
+      controller: :comment,
+      action: 'turbo:submit-end->comment#clear' } } do |form|
+  %>
+    <%= form.rich_text_area :content %>
+  <submit-group>
+    <%= form.submit 'valider', class: 'button' %>
+  </submit-group>
+<% end %>
+<% end %>

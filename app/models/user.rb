@@ -23,6 +23,7 @@ class User < ApplicationRecord
   has_many :tags, dependent: :destroy
   has_many :suppliers, dependent: :destroy
   has_many :offers, through: :suppliers
+  has_many :comments, dependent: :destroy
 
   store :table_preferences, accessors: Parcelle::INSTANCE_VARIABLES, prefix: :parcelles
 
