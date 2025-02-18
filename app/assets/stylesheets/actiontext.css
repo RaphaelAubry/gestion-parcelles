@@ -34,6 +34,10 @@
   width: 2.5em!important;
 }
 
+.trix-content {
+  font-size: var(--font-small);
+}
+
 trix-editor {
   border-radius: var(--border-radius);
   padding: 10px;

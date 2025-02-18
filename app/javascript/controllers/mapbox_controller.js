@@ -14,7 +14,7 @@ export default class extends Controller {
       container: 'map',
       style: 'mapbox://styles/mapbox/satellite-streets-v12',
       center: this.#center(),
-      zoom: 15
+      zoom: 12
     })
     document.map = map
     map.addControl(new mapboxgl.FullscreenControl())
@@ -49,8 +49,6 @@ export default class extends Controller {
     map.displayCurrentCity()
     map.displayCurrentParcelle()
   }
-
-
 
   #center() {
     try {
