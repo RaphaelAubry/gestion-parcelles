@@ -5,3 +5,5 @@ import "modules/elements/li_dropdown"
 import "modules/elements/fa_xmark"
 import "trix"
 import "@rails/actiontext"
+import * as ActiveStorage from "@rails/activestorage"
+ActiveStorage.start()

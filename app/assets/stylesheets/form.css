@@ -127,3 +127,12 @@ select:-webkit-autofill:focus {
   border-radius: var(--border-radius);
   -webkit-text-fill-color: none;
 }
+
+input::file-selector-button {
+  height: 30px;
+  margin-top: var(--margin-medium);
+}
+
+input[type="file"]:hover {
+  cursor: pointer;
+}

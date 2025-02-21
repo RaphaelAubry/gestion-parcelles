@@ -22,6 +22,7 @@
         <%= comment.content %>
         <%= link_to 'modifier', edit_comment_path(comment) %>
         <%= link_to 'supprimer', comment_path(comment), data: { turbo_method: :delete, turbo_frame: 'comments' } %>
+        <%= render partial: 'shared/gallery', locals: { comment: comment } %>
       <% end %>
     <% end %>
   </comment-2>

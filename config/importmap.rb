@@ -22,3 +22,5 @@ pin "mapbox_draw", to: "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-dr
 pin_all_from "app/javascript/modules/elements", under: "modules/elements"
 pin "trix"
 pin "@rails/actiontext", to: "actiontext.js"
+pin "@rails/activestorage", to: "activestorage.esm.js"
+pin "modules/wait"

@@ -1,0 +1,7 @@
+<gallery-wrapper>
+  <% if comment.present? %>
+    <% comment.images.each do |image| %>
+      <%= cl_image_tag image.key, crop: "scale", class: 'comment-image' %>
+    <% end %>
+  <% end %>
+<gallery-wrapper>

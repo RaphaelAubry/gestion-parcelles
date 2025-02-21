@@ -9,7 +9,7 @@
 /* medium */
 @media (min-width: 769px) and (max-width: 991px) {
   container-c1 {
-    width: 75vw;
+    width: 85vw;
   }
 }
 
@@ -17,8 +17,8 @@
 @media (max-width: 768px) {
   container-c1 {
     display: block;
-    width: 95vw;
-    }
+    width: 97vw;
+  }
 }
 
 container-flex {

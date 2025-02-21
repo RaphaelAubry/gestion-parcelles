@@ -20,6 +20,8 @@ mapboxgl.Map.prototype.addControlDraw = function () {
   document.querySelector('.mapbox-gl-draw_ctrl-draw-btn').classList.add('fa-draw-polygon')
   document.querySelector('.mapbox-gl-draw_ctrl-draw-btn').classList.remove('mapbox-gl-draw_polygon')
   document.querySelector('.fa-draw-polygon').classList.remove('mapbox-gl-draw_ctrl-draw-btn')
+  document.querySelector('.fa-draw-polygon').title = 'Tracer un polygone'
+  document.querySelector('.mapbox-gl-draw_trash').title = 'Supprimer'
 
   this.on('draw.create', updateDraw);
   this.on('draw.delete', updateDraw);

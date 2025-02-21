@@ -24,5 +24,6 @@ module GestionParcelles
     # config.eager_load_paths << Rails.root.join("extras")
     config.autoload_paths << config.root.join('lib/modules')
     config.eager_load_paths << config.root.join('lib/modules')
+    config.active_storage.variant_processor = :vips
   end
 end
