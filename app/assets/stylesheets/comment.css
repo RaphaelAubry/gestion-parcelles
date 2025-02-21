@@ -12,7 +12,7 @@ comment-info {
   width: 100%;
   display: flex;
   gap: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 comment-email {
@@ -22,6 +22,10 @@ comment-email {
 
 comment-date {
   font-size: var(--font-small);
+}
+
+comment-content {
+  margin-bottom: 10px;
 }
 
 /* widescreen */

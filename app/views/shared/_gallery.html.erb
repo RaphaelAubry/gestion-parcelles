@@ -1,7 +1,12 @@
 <gallery-wrapper>
   <% if comment.present? %>
     <% comment.images.each do |image| %>
-      <%= cl_image_tag image.key, crop: "scale", class: 'comment-image' %>
+      <gallery-image>
+        <%= cl_image_tag image.key, crop: "scale", class: 'gallery-image' %>
+        <%= link_to 'supprimer', comment_path(comment, params: { attachment_id: image.id, cloudinary_key: image.key }),
+          data: { turbo_method: :delete, turbo_frame: 'comments' }
+        %>
+      </gallery-image>
     <% end %>
   <% end %>
 <gallery-wrapper>

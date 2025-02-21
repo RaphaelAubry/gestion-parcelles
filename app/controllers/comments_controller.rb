@@ -41,8 +41,12 @@ class CommentsController < ApplicationController
 
   def destroy
     @parcelle = @comment.parcelle
-    Cloudinary::Api.delete_resources(@comment.images.map(&:key)) if @comment.images.present?
-    @comment.destroy
+
+    keys = [params[:cloudinary_key]] if params[:cloudinary_key]
+    keys = @comment.images.map(&:key) if @comment.images.present? && !params[:attachment_id]
+    Cloudinary::Api.delete_resources(keys) if keys.present?
+
+    params[:attachment_id] ? @comment.images.find(params[:attachment_id]).purge : @comment.destroy
 
     respond_to do |format|
       format.html { redirect_to parcelle_path(@parcelle) }

@@ -26,17 +26,18 @@
 }
 
 .trix-content action-text-attachment .attachment {
-  padding: 0 !important;
-  max-width: 100% !important;
+  padding: 0;
+  max-width: 100%;
 }
 
 .trix-button--icon {
-  width: 2.5em!important;
+  width: 2.5em;
 }
 
 .trix-content {
   font-size: var(--font-small);
   word-wrap: break-word;
+  margin-bottom: 10px;
 }
 
 trix-editor {
