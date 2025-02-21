@@ -17,10 +17,12 @@ export default class extends Controller {
       zoom: 12
     })
     document.map = map
-    map.addControl(new mapboxgl.FullscreenControl())
+
+    map.addControlFullscreen()
     map.addControlGeolocate()
     map.addControlCadastre()
     map.addControlDraw()
+
 
     map.addInputs('top-left')
 

@@ -23,12 +23,13 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @parcelle = @comment.parcelle
   end
 
   def update
-    @parcelle = @comment.parcelle
-
     if @comment.update(comment_params)
+      @parcelle = @comment.parcelle
+
       respond_to do |format|
         format.html { redirect_to parcelle_path(@parcelle) }
       end
@@ -40,6 +41,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @parcelle = @comment.parcelle
+    Cloudinary::Api.delete_resources(@comment.images.map(&:key)) if @comment.images.present?
     @comment.destroy
 
     respond_to do |format|
@@ -50,7 +52,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content, images: [])
   end
 
   def parcelle

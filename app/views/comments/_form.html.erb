@@ -5,6 +5,7 @@
     action: 'turbo:submit-end->comment#clear' } } do |form|
 %>
     <%= form.rich_text_area :content, placeholder: 'Rédiger un commentaire ...' %>
+    <%= form.file_field :images, direct_upload: true, multiple: true %>
   <submit-group>
     <%= form.submit 'valider', class: 'button' %>
     <%= link_to 'annuler', parcelle_path(@parcelle) %>

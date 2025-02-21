@@ -1,19 +1,17 @@
 comment-wrapper {
-  display: grid;
-  grid-template-columns: 50px auto;
+  display: flex;
   margin-top: 20px;
-  grid-gap: 10px;
-  align-items: center;
+  gap: 10px;
 }
 
 comment-2 {
-  width: calc(100% - 10px);
+  width: 100%;
 }
 
 comment-info {
-  display: grid;
-  grid-template-columns: max-content max-content;
-  grid-gap: 10px;
+  width: 100%;
+  display: flex;
+  gap: 10px;
   margin-bottom: 5px;
 }
 
@@ -24,4 +22,27 @@ comment-email {
 
 comment-date {
   font-size: var(--font-small);
+}
+
+/* widescreen */
+@media (min-width: 992px) {
+
+}
+
+/* medium */
+@media (min-width: 769px) and (max-width: 991px) {
+
+}
+
+/* smartphone */
+@media (max-width: 768px) {
+  comment-info {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 360px) {
+  comment-2 {
+    max-width: 83vw;
+  }
 }

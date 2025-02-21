@@ -36,6 +36,7 @@
 
 .trix-content {
   font-size: var(--font-small);
+  word-wrap: break-word;
 }
 
 trix-editor {
@@ -47,3 +48,15 @@ trix-editor {
 trix-toolbar {
   border-radius: var(--border-radius);
 }
+
+trix-toolbar .trix-button-group {
+  border-bottom-color: #ccc;
+}
+
+trix-toolbar .trix-button.trix-active {
+  background: var(--green-strong);
+}
+
+trix-toolbar .trix-dialog {
+  border: none;
+ }

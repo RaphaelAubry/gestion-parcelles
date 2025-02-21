@@ -6,8 +6,14 @@
       action: 'turbo:submit-end->comment#clear' } } do |form|
   %>
     <%= form.rich_text_area :content %>
-  <submit-group>
-    <%= form.submit 'valider', class: 'button' %>
-  </submit-group>
-<% end %>
+    <% @comment.images.each do |image| %>
+      <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
+    <% end %>
+    <%= form.file_field :images, direct_upload: true, multiple: true %>
+    <submit-group>
+      <%= form.submit 'valider', class: 'button' %>
+      <%= link_to 'annuler', parcelle_path(@parcelle) %>
+    </submit-group>
+    <%= render partial: 'shared/gallery', locals: { comment: @comment } %>
+  <% end %>
 <% end %>
