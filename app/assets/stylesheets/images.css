@@ -38,6 +38,9 @@ gallery-wrapper {
 gallery-image {
   img {
     border-radius: var(--border-radius);
+    &:hover {
+      cursor: pointer;
+    }
   }
   display: block;
   max-width: 200px;
