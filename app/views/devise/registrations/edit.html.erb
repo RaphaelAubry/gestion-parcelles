@@ -72,6 +72,12 @@
     <p>Votre mot de passe actuel est requis</p>
   </input-group>
 
+  <input-group-avatar>
+    <%= render partial: 'shared/avatar', locals: { user: resource, width: '40px' } %>
+    <%= f.label :avatar %>
+   </input-group-avatar>
+  <%= f.file_field :avatar, direct_upload: true %>
+
   <submit-group>
     <%= f.submit "Valider", class: 'button' %>
     <%= link_to 'annuler', :back %>

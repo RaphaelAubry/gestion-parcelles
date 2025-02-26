@@ -1,0 +1,5 @@
+<% if user.avatar.attached? %>
+  <%= cl_image_tag user.avatar.key, transformation: [{ height: 45, width: 45, gravity: 'face', crop: 'thumb'}, { radius: 'max'}] %>
+<% else %>
+  <%= image_tag 'user.png', width: width %>
+<% end %>

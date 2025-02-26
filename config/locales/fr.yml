@@ -16,7 +16,7 @@ fr:
       user:
         email: "Email"
         password: "Mot de passe"
-        avatar: "Photo"
+        avatar: "Mon avatar"
         password_confirmation: "Confirmation du mot de passe"
         current_password: "Mot de passe actuel"
         guests: 'invités'

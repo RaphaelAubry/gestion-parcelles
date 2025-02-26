@@ -4,7 +4,7 @@
   <% end %>
 </account-status>
 <li-dropdown>
-  <%= image_tag 'user.png', width: '50px' %>
+  <%= render partial: 'shared/avatar', locals: { user: current_user, width: '50px' } %>
   <account-connexion data-controller='connexion'
                      data-connexion-status-value='<%= user_signed_in? %>'
                      data-connexion-target='circle'

@@ -2,7 +2,11 @@
   <% if comment.present? %>
     <% comment.images.each do |image| %>
       <gallery-image data-controller="image">
-        <%= cl_image_tag image.key, crop: "scale", class: 'gallery-image', data: { action: 'click->image#fullscreen' } %>
+        <%= cl_image_tag image.key,
+          crop: "fill",
+          class: 'gallery-image',
+          data: { action: 'click->image#fullscreen' }
+        %>
         <%= link_to 'supprimer', comment_path(comment, params: { attachment_id: image.id, cloudinary_key: image.key }),
           data: { turbo_method: :delete, turbo_frame: 'comments' }
         %>

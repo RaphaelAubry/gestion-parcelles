@@ -55,6 +55,17 @@ input-group p {
   font-size: var(--font-xsmall);
 }
 
+input-group-avatar {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+}
+
+input-group-avatar label {
+    color: var(--green-strong);
+    font-size: var(--font-xsmall);
+}
+
 link-group {
   display: block;
   a {
