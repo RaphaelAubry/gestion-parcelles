@@ -45,3 +45,7 @@ gallery-image {
   display: block;
   max-width: 200px;
 }
+
+.avatar {
+  border-radius: 50%;
+}
