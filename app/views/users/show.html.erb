@@ -1,14 +1,17 @@
-<p><%= @user.name %></p>
-<p><%= @user.surname %></p>
-<p><%= @user.phone %></p>
-<p><%= @user.email %></p>
-
+<card-user-1>
+  <card-user-2>
+    <%= render partial: 'shared/avatar', locals: { user: @user } %>
+    <p><%= @user.surname %> <%= @user.name %></p>
+  </card-user-2>
+  <p><%= @user.phone %></p>
+  <p><%= @user.email %></p>
+</card-user-1>
 <%= render partial: 'shared/table', locals: { instances: @user.parcelles,
                                               controller: :users,
                                               options: {
                                                 columns: Parcelle::INSTANCE_VARIABLES - [:polygon, :tag_id],
                                                 formulas: [ { column_name: :surface, formula: 'sum_of_surfaces'} ],
-                                                link_show: false,
+                                                link_show: true,
                                                 tag_show: false,
                                                 tool_show: false
 

@@ -25,7 +25,7 @@ class ParcellePolicy < ApplicationPolicy
   end
 
   def show?
-    authorized_scope(Parcelle, type: :relation, as: :access, scope_options: { user: user }).include?(record)
+    record.users.include?(user) || record.users.any? { |u| user.owners.include?(u) }
   end
 
   def destroy?
