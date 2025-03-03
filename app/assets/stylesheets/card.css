@@ -1,0 +1,8 @@
+card-user-1 {
+  display: block;
+}
+
+card-user-2 {
+  display: flex;
+  gap: var(--margin-medium);
+}

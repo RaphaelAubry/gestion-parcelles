@@ -1,6 +1,6 @@
 <comment-wrapper data-controller='comment'>
   <comment-1>
-    <%= render partial: 'shared/avatar', locals: { user: current_user, width: '40px' } %>
+    <%= render partial: 'shared/avatar', locals: { user: comment.user, width: '40px' } %>
   </comment-1>
   <comment-2>
     <% if option == :new %>
@@ -12,7 +12,7 @@
     <% if option == :show %>
       <comment-info>
         <comment-email>
-          <%= current_user.email %>
+          <%= comment.user.email %>
         </comment-email>
         <comment-date>
           <%= comment.created_at.strftime("le %d-%m-%Y à %H:%M") %>
