@@ -12,8 +12,6 @@ class User < ApplicationRecord
 
   has_many :user_parcelles
   has_many :parcelles, through: :user_parcelles
-  has_many :invitations, foreign_key: :owner_id, dependent: :destroy
-  has_many :invitations, foreign_key: :guest_id, dependent: :destroy
 
   has_many :invitations_to_guest, foreign_key: :owner_id, class_name: 'Invitation', dependent: :destroy
   has_many :guests, through: :invitations_to_guest, source: :guest

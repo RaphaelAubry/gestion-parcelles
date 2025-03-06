@@ -4,8 +4,21 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+  lieu_dit: 'Le Mont Mire'
+  surface: 0.2295
+  reference_cadastrale: 'AE17'
+  annee_plantation: 1989
+  code_officiel_geographique: 51177
+two:
+  lieu_dit: 'Les Marmanjons'
+  surface: 0.097
+  reference_cadastrale: 'AD230'
+  annee_plantation: 1986
+  code_officiel_geographique: 51177
+three:
+  lieu_dit: 'Les Vignes Dieu'
+  surface: 0.1396
+  reference_cadastrale: 'AE94'
+  annee_plantation: 1989
+  code_officiel_geographique: 51177
