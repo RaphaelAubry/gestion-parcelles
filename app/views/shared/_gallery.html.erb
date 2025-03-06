@@ -7,9 +7,11 @@
           class: 'gallery-image',
           data: { action: 'click->image#fullscreen' }
         %>
-        <%= link_to 'supprimer', comment_path(comment, params: { attachment_id: image.id, cloudinary_key: image.key }),
-          data: { turbo_method: :delete, turbo_frame: 'comments' }
-        %>
+        <% if allowed_to?(:edit?, comment) %>
+          <%= link_to 'supprimer', comment_path(comment, params: { attachment_id: image.id, cloudinary_key: image.key }),
+            data: { turbo_method: :delete, turbo_frame: 'comments' }
+          %>
+        <% end %>
       </gallery-image>
     <% end %>
   <% end %>

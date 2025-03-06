@@ -20,8 +20,12 @@
       </comment-info>
       <%= turbo_frame_tag comment do %>
         <%= comment.content %>
-        <%= link_to 'modifier', edit_comment_path(comment) %>
-        <%= link_to 'supprimer', comment_path(comment), data: { turbo_method: :delete, turbo_frame: 'comments' } %>
+        <% if allowed_to?(:edit?, comment) %>
+          <%= link_to 'modifier', edit_comment_path(comment) %>
+        <% end %>
+        <% if allowed_to?(:destroy?, comment) %>
+          <%= link_to 'supprimer', comment_path(comment), data: { turbo_method: :delete, turbo_frame: 'comments' } %>
+        <% end %>
         <%= render partial: 'shared/gallery', locals: { comment: comment } %>
       <% end %>
     <% end %>
