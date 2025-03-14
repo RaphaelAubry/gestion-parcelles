@@ -13,7 +13,7 @@ export default class extends Controller {
     this.#move()
   }
 
-  focusoutLabel(event) {
+  focusoutLabel() {
     (this.inputTarget.value != '') ? this.#move() : this.#remove()
   }
 

@@ -148,3 +148,30 @@ input::file-selector-button {
 input[type="file"]:hover {
   cursor: pointer;
 }
+
+list-1 {
+  display: block;
+  box-sizing: border-box;
+  margin-top: var(--margin-medium);
+  background-color: var(--select-background);
+  border: 1px solid var(--grey-light-2);
+  border-radius: var(--border-radius);
+  width: 215px;
+  max-height: 150px;
+}
+
+list-item {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--padding-mapbox-control);
+  border-radius: var(--border-radius);
+  &:hover {
+    cursor: pointer;
+    background-color: var(--select-hover);
+  }
+}
+
+list-item[data-value="default"] {
+  background-color: var(--select-hover);
+}

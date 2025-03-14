@@ -1,3 +1,6 @@
+<h3>Parcelle : <%= @parcelle.reference_cadastrale %></h3>
+<h3>Commune : <%= @parcelle.code_officiel_geographique %></h3>
+<h3>Surface : <%= @parcelle.surface %> hectares</h3>
 <div data-controller='mapbox'>
   <% if @centroid.present? %>
     <%= render partial: 'map',

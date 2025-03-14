@@ -9,7 +9,8 @@
               action: 'focus->input-group#focusLabel
                        focusout->input-group#focusoutLabel
                        change->input-group#focusLabel'
-            }
+            },
+      autocomplete: 'off'
     %>
   </input-group>
 
@@ -22,8 +23,22 @@
               action: 'focus->input-group#focusLabel
                        focusout->input-group#focusoutLabel
                        change->input-group#focusLabel'
-            }
+            },
+      autocomplete: 'off'
     %>
+  </input-group>
+
+  <input-group data-controller='input-group input-code-commune'>
+    <label data-input-group-target='label'>Commune
+    </label>
+    <input id="parcelle_commune"
+           autocomplete="off"
+           data-input-group-target='input'
+           data-action='focus->input-group#focusLabel
+                        focusout->input-group#focusoutLabel
+                        change->input-group#focusLabel
+                        keyup->input-code-commune#town'
+    >
   </input-group>
 
   <input-group data-controller='input-group'>
@@ -35,7 +50,8 @@
               action: 'focus->input-group#focusLabel
                       focusout->input-group#focusoutLabel
                       change->input-group#focusLabel'
-            }
+            },
+      autocomplete: 'off'
     %>
   </input-group>
 
@@ -48,7 +64,8 @@
               action: 'focus->input-group#focusLabel
                     focusout->input-group#focusoutLabel
                     change->input-group#focusLabel'
-            }
+            },
+      autocomplete: 'off'
     %>
   </input-group>
 
@@ -66,7 +83,8 @@
         action: 'focus->input-group#focusLabel
                 focusout->input-group#focusoutLabel
                 change->input-group#focusLabel'
-          }
+          },
+    autocomplete: 'off'
   %>
   </input-group>
 
@@ -78,7 +96,8 @@
               action: 'focus->input-group#focusLabel
                     focusout->input-group#focusoutLabel
                     change->input-group#focusLabel'
-            }
+            },
+      autocomplete: 'off'
     %>
   </input-group>
 
