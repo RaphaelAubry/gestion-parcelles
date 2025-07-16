@@ -63,3 +63,34 @@ fr:
             tag:
               required: "requis"
         tag: "marqueur"
+  reference_cadastrale: "Référence cadastrale"
+  lieu_dit: "Lieu-dit"
+  code_officiel_geographique: "Code officiel géographique"
+  surface: "Surface"
+  annee_plantation: "Annee plantation"
+  distance_rang: "Distance rang"
+  distance_pieds: "Distance pieds"
+  tag_id: "Marqueur"
+  name: "Nom"
+  description: "Description"
+  color: "Couleur"
+  phone: "Téléphone"
+  email: "Email"
+  price: "Prix"
+  unit: "Unité"
+  supplier: "Fournisseur"
+  created_at: "Créé le"
+  date:
+    month_names: [~, "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
+    day_names: ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"]
+  time:
+    am: "AM"
+    pm: "PM"
+  formats:
+      default: "%d/%m/%Y"
+      long: "%A %d %B %Y"
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M"
+      long: "%A %d %B %Y à %H:%M"
+      short: "%Y-%m-%d"

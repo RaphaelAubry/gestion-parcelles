@@ -1,8 +1,6 @@
 class User < ApplicationRecord
   include FilterModelConcern
 
-  Guest_INSTANCE_VARIABLES = [:email]
-
   before_destroy :remove_associations
 
   # Include default devise modules. Others available are:

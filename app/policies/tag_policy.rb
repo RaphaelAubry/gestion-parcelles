@@ -3,6 +3,10 @@ class TagPolicy < ApplicationPolicy
     true
   end
 
+  def table?
+    index?
+  end
+
   def new?
     true
   end
@@ -21,5 +25,9 @@ class TagPolicy < ApplicationPolicy
 
   def destroy?
     edit?
+  end
+
+  scope_for :relation, :access do |relation, scope_options|
+    relation.where(user: [scope_options[:user]])
   end
 end

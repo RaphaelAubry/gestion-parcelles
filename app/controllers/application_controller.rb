@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   add_flash_types :info, :error, :warning
 
+  #rescue_from ActionPolicy::Unauthorized do
+    #redirect_to root_path, alert: 'Accès refusé.'
+  #end
+
   protected
 
   def configure_permitted_parameters

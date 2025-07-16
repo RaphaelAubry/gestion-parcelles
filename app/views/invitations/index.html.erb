@@ -1,12 +1,6 @@
-<%= render partial: 'shared/table', locals: { instances: @people,
-                                              controller: :invitations,
-                                              options: {
-                                                columns: User::Guest_INSTANCE_VARIABLES,
-                                                formulas: [],
-                                                link_show: @link,
-                                                tool_show: true
-                                                }
-                                            }
+<%= render partial: 'table', locals: { instances: @invitations,
+                                       columns: %i(name surname phone email created_at),
+                                     }
 %>
 <link-group>
   <%= link_to 'inviter', new_invitation_path %>

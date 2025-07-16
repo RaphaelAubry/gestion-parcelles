@@ -7,11 +7,13 @@ class OfferPolicy < ApplicationPolicy
     new?
   end
 
-
   def index?
     true
   end
 
+  def table?
+    index?
+  end
 
   def show?
     true
@@ -29,4 +31,7 @@ class OfferPolicy < ApplicationPolicy
     true
   end
 
+  scope_for :relation, :access do |relation, scope_options|
+    relation.where(supplier: { user: [scope_options[:user]]})
+  end
 end

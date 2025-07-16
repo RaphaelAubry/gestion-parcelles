@@ -1,16 +1,6 @@
 <h3>Parcelles</h3>
-<%= render partial: 'shared/table', locals: { instances: @parcelles,
-                                              controller: :parcelles,
-                                              options: {
-                                                columns: Parcelle::INSTANCE_VARIABLES - [:polygon, :tag_id],
-                                                formulas: [ { column_name: :surface, formula: 'sum_of_surfaces'} ],
-                                                link_show: true,
-                                                tag_show: true,
-                                                tool_show: true
+<%= render partial: 'table', locals: { columns: Parcelle::INSTANCE_VARIABLES - [:polygon] } %>
 
-                                              }
-                                    }
-%>
 <link-group>
   <%= link_to 'nouvelle parcelle', new_parcelle_path, data: { navbar_target: 'link' } %>
   <%= link_to 'marqueurs', tags_path, data: { navbar_target: 'link' } %>
@@ -20,18 +10,23 @@
 <% if @parcelles.present? %>
   <column-options data-controller='boxes'>
     <% (Parcelle::INSTANCE_VARIABLES - [:polygon]).each do |column_name| %>
-      <%= form_for @user, html: { data: { controller: 'column', column_target: 'form' } } do |form| %>
+      <%= form_for @user, html: { data: { controller: 'column', boxes_target: 'form' } } do |form| %>
         <checkbox-group>
           <% checked = current_user.send([controller_name, column_name].join('_').to_sym) %>
           <% checked = checked.nil? ? true : checked %>
           <%= form.check_box [controller_name, column_name].join('_').to_sym,
-              { data: { column_target: 'checkbox', boxes_target: 'checkbox', action: 'click->column#display change->boxes#display' },
-                checked: checked
+            { data: {
+                table_target: 'checkbox',
+                boxes_target: 'checkbox',
+                action: 'change->boxes#display change->boxes#submit',
+                column_name: "#{column_name}"
               },
-              'true', 'false'
+              checked: checked
+            },
+            'true', 'false'
           %>
           <%= form.label column_name, name: column_name,
-            data: { column_target: 'col' } %>
+            data: { table_target: 'column' } %>
         </checkbox-group>
       <% end %>
     <% end %>

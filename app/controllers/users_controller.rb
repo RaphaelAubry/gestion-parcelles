@@ -8,6 +8,9 @@ class UsersController < ApplicationController
   def update
     authorize! @user = User.find(params[:id])
     @user.update(user_params)
+    respond_to do |format|
+      format.html
+    end
   end
 
   def destroy

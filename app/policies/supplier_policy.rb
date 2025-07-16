@@ -1,5 +1,10 @@
 class SupplierPolicy < ApplicationPolicy
   def index?
+    true
+  end
+
+  def table?
+    index?
   end
 
   def new?
@@ -22,5 +27,9 @@ class SupplierPolicy < ApplicationPolicy
 
   def destroy?
     true
+  end
+
+  scope_for :relation, :access do |relation, scope_options|
+    relation.where(user: [scope_options[:user]])
   end
 end
