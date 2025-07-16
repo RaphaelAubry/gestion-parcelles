@@ -3,24 +3,67 @@ class ParcellesController < ApplicationController
 
   before_action :parcelle, only: [:show, :edit, :update, :destroy]
 
-
   def index
-    authorize! @parcelles = if params[:sort].present?
-                              authorized_scope(Parcelle, type: :relation, as: :access, scope_options: { user: current_user })
-                              .where(id: params[:sort][:ids])
-                              .sort_with_params(params)
-                            elsif params[:filter].present?
-                              authorized_scope(Parcelle, type: :relation, as: :access,  scope_options: { user: current_user })
-                              .filter_with_params(params)
-                            else
-                              authorized_scope(Parcelle, type: :relation, as: :access,  scope_options: { user: current_user })
-                            end
+    authorize! @parcelles = authorized_scope(Parcelle, type: :relation, as: :access, scope_options: { user: current_user })
     authorize! @user = current_user, to: :edit?, with: UserPolicy
 
     respond_to do |format|
       format.html
       format.json { render json: @parcelles }
       format.xlsx { response.headers['Content-Disposition'] = "attachment; filename=parcelles_#{Filenaming.now}" }
+    end
+  end
+
+  def table
+    if params[:order]
+      order = params[:order]["0"][:name].present? ? params[:order]["0"][:name] + " " + params[:order]["0"][:dir].upcase : ""
+    end
+
+    authorize! @parcelles = authorized_scope(Parcelle.left_outer_joins(:tag), type: :relation, as: :access, scope_options: { user: current_user })
+
+    @parcelles = @parcelles.tap { |x| @total_count = x.count }
+                           .where("parcelles.reference_cadastrale LIKE ?", "%#{params[:search][:value]}%")
+                           .or(@parcelles.where("parcelles.lieu_dit LIKE ?", "%#{params[:search][:value]}%"))
+                           .or(@parcelles.where("parcelles.code_officiel_geographique LIKE ?", "%#{params[:search][:value]}%"))
+                           .or(@parcelles.where("parcelles.surface::TEXT LIKE ?", "%#{params[:search][:value]}%"))
+                           .or(@parcelles.where("parcelles.annee_plantation::TEXT LIKE ?", "%#{params[:search][:value]}%"))
+                           .or(@parcelles.where("parcelles.distance_rang::TEXT LIKE ?", "%#{params[:search][:value]}%"))
+                           .or(@parcelles.where("parcelles.distance_pieds::TEXT LIKE ?", "%#{params[:search][:value]}%"))
+                           .or(@parcelles.where("tags.name LIKE ?", "%#{params[:search][:value]}%"))
+                           .order(order)
+                           .tap { |x| @filtered_count = x.count }
+                           .limit(params[:length])
+                           .offset(params[:start])
+
+    respond_to do |format|
+      format.json do
+        render json: {
+          draw: params[:draw],
+          recordsTotal: @total_count,
+          recordsFiltered: @filtered_count,
+          data: @parcelles.map do |p|
+                  [ "<a href='#{parcelle_path(p)}'>#{p.reference_cadastrale}</a>",
+                    p.lieu_dit,
+                    p.code_officiel_geographique,
+                    p.surface,
+                    p.annee_plantation,
+                    p.distance_rang,
+                    p.distance_pieds,
+                    "<td-tag>
+                      <td-tag-name>
+                        #{p&.tag&.name}
+                      </td-tag-name>
+                        <tag-box data-controller='tag' data-tag-target='box' data-color='#{p&.tag&.color}'>
+                        </tag-box>
+                    </td-tag>
+                    ",
+                    "<a href='/parcelles/#{p.id}/edit'>modifier</a>
+                     <a href='/parcelles/#{p.id}' data-turbo-method='delete'>supprimer</a>
+                    "
+                  ]
+                end
+          }
+      end
     end
   end
 

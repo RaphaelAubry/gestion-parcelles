@@ -1,10 +1,52 @@
 class SuppliersController < ApplicationController
   before_action :authenticate_user!
   before_action :user, only: [:create]
-  before_action :supplier, except: [:index, :new, :create]
+  before_action :supplier, except: [:index, :new, :create, :table]
 
   def index
-    @suppliers = current_user.suppliers
+    @suppliers = authorized_scope(Supplier, type: :relation, as: :access, scope_options: { user: current_user })
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @suppliers }
+    end
+  end
+
+  def table
+    if params[:order]
+      order = params[:order]["0"][:name].present? ? params[:order]["0"][:name] + " " + params[:order]["0"][:dir].upcase : ""
+    end
+
+    authorize! @suppliers = authorized_scope(Supplier, type: :relation, as: :access, scope_options: { user: current_user })
+
+    @suppliers = @suppliers.tap { |x| @total_count = x.count }
+                           .where("name LIKE ?", "%#{params[:search][:value]}%")
+                           .or(@suppliers.where("phone::TEXT LIKE ?", "%#{params[:search][:value]}%"))
+                           .or(@suppliers.where("email LIKE ?", "%#{params[:search][:value]}%"))
+                           .order(order)
+                           .tap { |x| @filtered_count = x.count }
+                           .limit(params[:length])
+                           .offset(params[:start])
+
+    respond_to do |format|
+      format.json do
+        render json: {
+          draw: params[:draw],
+          recordsTotal: @total_count,
+          recordsFiltered: @filtered_count,
+          data: @suppliers.map do |s|
+                  [ s.name,
+                    s.phone,
+                    s.email,
+                    "<a href='/suppliers/#{s.id}/edit'>modifier</a>
+                     <a href='/suppliers/#{s.id}' data-turbo-method='delete'>supprimer</a>
+                     <a href='/supplier/#{s.id}/offers/new'>nouvelle prestation</a>
+                    "
+                  ]
+                end
+          }
+      end
+    end
   end
 
   def new

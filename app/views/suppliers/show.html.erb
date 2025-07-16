@@ -1,13 +1,3 @@
-<%= render partial: 'shared/table', locals: { instances: @offers,
-                                              controller: :offers,
-                                              options: {
-                                                columns: Offer::INSTANCE_VARIABLES - [:supplier_id],
-                                                formulas: [],
-                                                link_show: false,
-                                                tag_show: false
-                                              }
-                                    }
-%>
 <link-group>
   <%= link_to 'nouvelle prestation', new_supplier_offer_path(@supplier), data: { navbar_target: 'link' } %>
 </link-group>

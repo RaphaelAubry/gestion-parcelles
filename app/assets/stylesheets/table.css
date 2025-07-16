@@ -66,3 +66,7 @@ td-tag {
 td-tag-name {
   flex-grow: 1;
 }
+
+.dt-layout-row {
+  font-size: 14px;
+}

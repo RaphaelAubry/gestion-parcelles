@@ -11,6 +11,10 @@ class ParcellePolicy < ApplicationPolicy
     true
   end
 
+  def table?
+    index?
+  end
+
   def carte?
     index?
   end
@@ -33,8 +37,7 @@ class ParcellePolicy < ApplicationPolicy
   end
 
   scope_for :relation, :access do |relation, scope_options|
-    relation
-      .joins(:user_parcelles)
-      .where(user_parcelles: { user: [scope_options[:user]] })
+    relation.joins(:user_parcelles)
+            .where(user_parcelles: { user: [scope_options[:user]] })
   end
 end

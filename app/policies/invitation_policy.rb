@@ -1,7 +1,12 @@
 class InvitationPolicy < ApplicationPolicy
   def index?
-    record.all? { |guest| user.guests.include?(guest) } ||
-    record.all? { |owner| user.owners.include?(owner) }
+    #record.all? { |guest| user.guests.include?(guest) } ||
+    #record.all? { |owner| user.owners.include?(owner) }
+    true
+  end
+
+  def table?
+    index?
   end
 
   def new?
@@ -13,6 +18,8 @@ class InvitationPolicy < ApplicationPolicy
   end
 
   def destroy?
+    puts record
+    puts user
     if record.is_a? User
       return user.guests.include?(record) || user.owners.include?(record)
     end
