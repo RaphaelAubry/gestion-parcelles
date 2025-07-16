@@ -3,7 +3,7 @@
       { name: 'reference_cadastrale', data: '0' },
       { name: 'lieu_dit', data: '1' },
       { name: 'code_officiel_geographique', data: '2' },
-      { name: 'surface', data: '3' },
+      { name: 'surface', data: '3', footer: '<p data-total="surface"></p>' },
       { name: 'annee_plantation', data: '4' },
       { name: 'distance_rang', data: '5' },
       { name: 'distance_pieds', data: '6' },

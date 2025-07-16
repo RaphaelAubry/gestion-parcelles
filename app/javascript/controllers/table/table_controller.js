@@ -15,6 +15,7 @@ export default class extends Controller {
       if (window.table) {
         window.table.destroy()
         this.create()
+        this.update()
       }
     })
   }
@@ -40,8 +41,19 @@ export default class extends Controller {
         }
       }
     })
+
     window.table = table
     this.#setColumnsVisibility()
+  }
+
+  update() {
+    window.table.on('draw', event => {
+      let element = document.querySelector('[data-total="surface"]')
+
+      if (element) {
+        element.textContent = event.dt.ajax.json().total_surface
+      }
+    })
   }
 
   #setColumnsVisibility() {
