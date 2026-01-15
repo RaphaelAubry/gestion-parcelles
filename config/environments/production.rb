@@ -67,16 +67,15 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { host: 'https://www.gestion-parcelles.fr/' }
-  config.action_mailer.default_options = { from: '"Gestion Parcelles" <g.parcelles@gmail.com>' }
+  config.action_mailer.default_options = { from: '"Gestion Parcelles" <contact@gestion-parcelles.fr>' }
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:         'smtp.gmail.com',
+    address:         'smtp-relay.brevo.com',
     port:            587,
-    domain:          'gmail.com',
-    user_name:       ENV['MAIL_USER_NAME'],
-    password:        ENV['MAIL_PASSWORD'],
-    authentication:  'plain',
+    user_name:       ENV['BREVO_USER_NAME'],
+    password:        ENV['BREVO_PASSWORD'],
+    authentication:  :login,
     enable_starttls_auto: true,
     open_timeout:    5,
     read_timeout:    5 }
