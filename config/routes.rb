@@ -26,4 +26,6 @@ Rails.application.routes.draw do
 
   resources :offers, except: [:new, :create]
   post '/offers/table', to: 'offers#table'
+
+  get '/mapbox_token', to: 'maps#token', as: :mapbox_token
 end

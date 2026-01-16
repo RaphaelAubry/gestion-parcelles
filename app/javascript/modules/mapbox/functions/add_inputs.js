@@ -1,10 +1,11 @@
 import mapboxgl from "mapbox-gl"
 import "mapbox_geocoder"
 import { SearchControl } from "modules/mapbox/controls"
+import { getMapboxToken } from "modules/requests"
 
-mapboxgl.Map.prototype.addInputs = function(location = 'top-left') {
+mapboxgl.Map.prototype.addInputs = async function(location = 'top-left') {
   const geocoder = new MapboxGeocoder({
-    accessToken: 'pk.eyJ1IjoicmFwaGFlbGF1YnJ5IiwiYSI6ImNsdWh4aWdhYTE0enQybHJvM2tzNXA2cTMifQ.dhp8bVAsFt9MO-eeFGGY0Q',
+    accessToken: await getMapboxToken(),
     mapboxgl: mapboxgl
   })
   this.geocoderControl = geocoder
