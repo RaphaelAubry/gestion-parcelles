@@ -1,2 +1,4 @@
-<h3>Prestations</h3>
-<%= render partial: 'table', locals: { columns: Offer::INSTANCE_VARIABLES - [:supplier_id] + [:created_at] + [:supplier] } %>
+<container-tableau>
+  <h3>Prestations</h3>
+  <%= render partial: 'table', locals: { columns: Offer::INSTANCE_VARIABLES - [:supplier_id] + [:created_at] + [:supplier] } %>
+</container-tableau>

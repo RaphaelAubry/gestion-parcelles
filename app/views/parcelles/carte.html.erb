@@ -1,9 +1,11 @@
-<div data-controller='mapbox'>
-  <%= render partial: 'map',
-    locals: {
-      geometry_type: @geometry_type,
-      parcelles: @parcelles,
-      centroid: @centroid
-    }
-  %>
-</div>
+<container-map>
+  <div data-controller='mapbox'>
+    <%= render partial: 'map',
+      locals: {
+        geometry_type: @geometry_type,
+        parcelles: @parcelles,
+        centroid: @centroid
+      }
+    %>
+  </div>
+</container-map>

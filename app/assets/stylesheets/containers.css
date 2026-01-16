@@ -1,6 +1,11 @@
 /* widescreen */
 @media (min-width: 992px) {
-  container-c1 {
+  container-map {
+    display: block;
+    width: 100vw;
+  }
+
+  container-tableau {
     display: block;
     width: 66vw;
   }
@@ -8,16 +13,16 @@
 
 /* medium */
 @media (min-width: 769px) and (max-width: 991px) {
-  container-c1 {
-    width: 85vw;
+  container-map {
+    width: 100vw;
   }
 }
 
 /* smartphone */
 @media (max-width: 768px) {
-  container-c1 {
+  container-map {
     display: block;
-    width: 97vw;
+    width: 100vw;
   }
 }
 
@@ -25,15 +30,15 @@ container-flex {
   display: flex;
   justify-content: center;
   overflow: auto;
-  min-height: 95vh;
+  min-height: 100vh;
 }
 
-container-c1 {
-  padding: var(--padding-min);
-  margin-top: 20px;
+container-map {
+  padding: 0px;
+  margin-top: 0px;
 }
 
-container-c1 a {
+container-map a, container-tableau a {
   text-decoration: none;
   color: var(--grey-dark);
   &:hover {

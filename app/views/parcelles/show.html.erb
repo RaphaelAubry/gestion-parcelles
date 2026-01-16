@@ -1,24 +1,26 @@
-<h3>Parcelle : <%= @parcelle.reference_cadastrale %></h3>
-<h3>Commune : <%= @parcelle.code_officiel_geographique %></h3>
-<h3>Surface : <%= @parcelle.surface %> hectares</h3>
-<div data-controller='mapbox'>
-  <% if @centroid.present? %>
-    <%= render partial: 'map',
-      locals: {
-        geometry_type: @geometry_type,
-        parcelles: @parcelle_mapbox_info,
-        centroid: @centroid
-      }
-    %>
-  <% else %>
-    <%= link_to t(:back), :back %>
-  <% end %>
-</div>
+<container-tableau>
+  <h3>Parcelle : <%= @parcelle.reference_cadastrale %></h3>
+  <h3>Commune : <%= @parcelle.code_officiel_geographique %></h3>
+  <h3>Surface : <%= @parcelle.surface %> hectares</h3>
+  <div data-controller='mapbox'>
+    <% if @centroid.present? %>
+      <%= render partial: 'map',
+        locals: {
+          geometry_type: @geometry_type,
+          parcelles: @parcelle_mapbox_info,
+          centroid: @centroid
+        }
+      %>
+    <% else %>
+      <%= link_to t(:back), :back %>
+    <% end %>
+  </div>
 
-<%= render partial: 'shared/comment', locals: { option: :new, comment: @comment } %>
+  <%= render partial: 'shared/comment', locals: { option: :new, comment: @comment } %>
 
-<%= turbo_frame_tag 'comments' do %>
-  <% @parcelle.comments.each do |comment| %>
-    <%= render partial: 'shared/comment', locals: { option: :show, comment: comment } %>
+  <%= turbo_frame_tag 'comments' do %>
+    <% @parcelle.comments.each do |comment| %>
+      <%= render partial: 'shared/comment', locals: { option: :show, comment: comment } %>
+    <% end %>
   <% end %>
-<% end %>
+</container-tableau>
