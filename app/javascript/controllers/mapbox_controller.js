@@ -23,7 +23,6 @@ export default class extends Controller {
     map.addControlCadastre()
     map.addControlDraw()
 
-
     map.addInputs('top-left')
 
     map.on('style.load', () => {
