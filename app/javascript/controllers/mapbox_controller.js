@@ -2,13 +2,14 @@ import { Controller } from "@hotwired/stimulus"
 import mapboxgl from "mapbox-gl"
 import "modules/mapbox/functions"
 import "modules/mapbox/controls"
+import { getMapboxToken } from "modules/requests"
 
 export default class extends Controller {
   static targets = ['map']
 
-  connect() {
+  async connect() {
 
-    mapboxgl.accessToken = 'pk.eyJ1IjoicmFwaGFlbGF1YnJ5IiwiYSI6ImNsdWh4aWdhYTE0enQybHJvM2tzNXA2cTMifQ.dhp8bVAsFt9MO-eeFGGY0Q'
+    mapboxgl.accessToken = await getMapboxToken()
 
     const map = new mapboxgl.Map({
       container: 'map',
@@ -22,7 +23,6 @@ export default class extends Controller {
     map.addControlGeolocate()
     map.addControlCadastre()
     map.addControlDraw()
-
 
     map.addInputs('top-left')
 

@@ -2,7 +2,7 @@ import { Controller } from '@hotwired/stimulus'
 
 
 export default class extends Controller {
-  static targets = ['search', 'geocoder', 'numero', 'clear']
+  static targets = ['search', 'geocoder', 'numero', 'clear1', 'clear2']
 
   connect() {
     const suggestions = document.map.searchControl._suggestions
@@ -29,7 +29,7 @@ export default class extends Controller {
 
     this.searchTarget.addEventListener('keyup', e => {
       this.#find(e.target.value)
-      this.clearTarget.style.display = (e.target.value != '') ? 'flex' : 'none'
+      this.clear2Target.style.display = (e.target.value != '') ? 'flex' : 'none'
     })
 
     suggestions.addEventListener('mouseleave', e => {
@@ -109,12 +109,23 @@ export default class extends Controller {
         map.popupsManager.show(parcelle)
       }
     }
-    map.fitBounds(parcelle.bbox)
+
+    if (parcelle.bbox && parcelle.bbox.length === 2) {
+      map.fitBounds(parcelle.bbox, { padding: 20 })
+    }
+
+    this.#updateSearch(event)
   }
 
-  clear() {
+  #updateSearch(event) {
+    console.log(event)
+    this.searchTarget.value = event.originalTarget.innerText
+    this.clear2Target.style.display = 'flex'
+  }
+
+  clear2() {
     this.searchTarget.value = ''
-    this.clearTarget.style.display = 'none'
+    this.clear2Target.style.display = 'none'
     document.map.searchControl._suggestions.style.display = 'none'
   }
 }

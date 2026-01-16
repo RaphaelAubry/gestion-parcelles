@@ -57,6 +57,10 @@
   }
 }
 
+.mapboxgl-ctrl-geocoder--input {
+  height: 30px;
+}
+
 .search {
   left: 10px;
 }
