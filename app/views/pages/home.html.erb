@@ -5,12 +5,14 @@
   <h3>Audaces fortuna juvat</h3>
 </container-c2>
 -->
-<div data-controller='mapbox'>
-  <%= render partial: 'parcelles/map',
-    locals: {
-      geometry_type: nil,
-      parcelles: nil,
-      centroid: nil
-    }
-  %>
-</div>
+<container-map>
+  <div data-controller='mapbox'>
+    <%= render partial: 'parcelles/map',
+      locals: {
+        geometry_type: nil,
+        parcelles: nil,
+        centroid: nil
+      }
+    %>
+  </div>
+</container-map>

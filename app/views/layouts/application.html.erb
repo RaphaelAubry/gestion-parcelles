@@ -17,10 +17,8 @@
   <body data-controller='window' data-window-target='width'>
     <%= render 'shared/navbar' %>
     <container-flex>
-      <container-c1>
-        <%= render 'shared/messages' %>
-        <%= yield %>
-      <container-c1>
+      <%= render 'shared/messages' %>
+      <%= yield %>
     </container-flex>
     <%= render 'shared/footer' %>
   </body>
