@@ -18,7 +18,7 @@ li-dropdown ul {
     text-decoration: none;
     color: var(--grey-light-1);
     display: block;
-    margin: 10px 0;
+    margin: 20px 0;
 
     &:hover {
       text-decoration: underline;

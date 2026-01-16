@@ -10,9 +10,9 @@
       <li><%= link_to :home, root_path, data: { navbar_target: 'link'} %></li>
       <% if user_signed_in? %>
         <li><%= link_to :carte, carte_path, data: { navbar_target: 'link'} %></li>
-        <li><%= link_to :parcelles, parcelles_path, data: { navbar_target: 'link'} %></li>
-        <li-dropdown>opérations
+        <li-dropdown>tableaux
           <ul>
+            <%= link_to 'mes parcelles', parcelles_path, data: { navbar_target: 'link'} %>
             <%= link_to :fournisseurs, suppliers_path, data: { navbar_target: 'link'} %>
             <%= link_to :prestations, offers_path, data: { navbar_target: 'link'} %>
           </ul>

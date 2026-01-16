@@ -4,6 +4,10 @@
     margin: 0 0 0 15px;
   }
 
+  navbar-menu>ul {
+      gap: 50px;
+  }
+
   navbar-icon {
     visibility: hidden;
   }
@@ -11,19 +15,23 @@
 
 /* smartphone */
 @media (max-width: 768px) {
-    container-navbar ul {
-      flex-direction: column;
-      margin: 90px 0 30px 15px;
-    }
-
-    navbar-icon {
-      visibility: visible;
-    }
-
-    navbar-logo {
-      display: none;
-    }
+  container-navbar ul {
+    flex-direction: column;
+    margin: 90px 0 30px 15px;
   }
+
+  navbar-menu > ul {
+    gap: 15px;
+  }
+
+  navbar-icon {
+    visibility: visible;
+  }
+
+  navbar-logo {
+    display: none;
+  }
+}
 
 container-navbar {
   display: flex;
@@ -35,7 +43,6 @@ container-navbar {
   color: var(--grey-light-1);
   navbar-menu > ul {
     display: flex;
-    gap: 15px;
     padding: 0;
     overflow: hidden;
     list-style-type: none;
