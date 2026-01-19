@@ -1,22 +1,24 @@
-<h2>Renvoyer la confirmation</h2>
+<container-form>
+  <h2>Renvoyer la confirmation</h2>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <input-group data-controller='input-group'>
-    <%= f.label :email, data: { input_group_target: 'label' } %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
-      data: { input_group_target: 'input',
-              action: 'focus->input-group#focusLabel
-                       focusout->input-group#focusoutLabel
-                       change->input-group#focusLabel'
-            } %>
-  </input-group>
+    <input-group data-controller='input-group'>
+      <%= f.label :email, data: { input_group_target: 'label' } %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+        data: { input_group_target: 'input',
+                action: 'focus->input-group#focusLabel
+                        focusout->input-group#focusoutLabel
+                        change->input-group#focusLabel'
+              } %>
+    </input-group>
 
-  <submit-group>
-    <%= f.submit "Valider", class: 'button' %>
-    <%= link_to 'annuler', :back %>
-  </submit-group>
-<% end %>
+    <submit-group>
+      <%= f.submit "Valider", class: 'button' %>
+      <%= link_to 'annuler', :back %>
+    </submit-group>
+  <% end %>
 
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
+</container-form>
