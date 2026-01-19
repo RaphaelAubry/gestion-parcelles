@@ -1,7 +1,9 @@
-<%= render partial: 'table', locals: { instances: @invitations,
-                                       columns: %i(name surname phone email created_at),
-                                     }
-%>
-<link-group>
-  <%= link_to 'inviter', new_invitation_path %>
-</link-group>
+<container-tableau>
+  <%= render partial: 'table', locals: { instances: @invitations,
+                                        columns: %i(name surname phone email created_at),
+                                      }
+  %>
+  <link-group>
+    <%= link_to 'inviter', new_invitation_path %>
+  </link-group>
+</container-tableau>

@@ -1,5 +1,7 @@
-<h3>Marqueurs</h3>
-<%= render partial: 'table', locals: { columns: [:name, :description, :color] } %>
-<link-group>
-  <%= link_to 'nouveau marqueur', new_tag_path, data: { navbar_target: 'link' } %>
-</link-group>
+<container-tableau>
+  <h3>Marqueurs</h3>
+  <%= render partial: 'table', locals: { columns: [:name, :description, :color] } %>
+  <link-group>
+    <%= link_to 'nouveau marqueur', new_tag_path, data: { navbar_target: 'link' } %>
+  </link-group>
+</container-tableau>

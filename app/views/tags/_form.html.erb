@@ -1,44 +1,46 @@
-<%= form_for @tag do |form| %>
-  <%= render "shared/error_messages", resource: @tag %>
-  <input-group data-controller='input-group'>
-    <%= form.label 'nom',
-      data: { input_group_target: 'label' }
-    %>
-    <%= form.text_field :name,
-      data: { input_group_target: 'input',
-              action: 'focus->input-group#focusLabel
-                       focusout->input-group#focusoutLabel
-                       change->input-group#focusLabel'
-            }
-    %>
-  </input-group>
-  <input-group data-controller='input-group'>
-    <%= form.label 'description',
-      data: { input_group_target: 'label' }
-    %>
-    <%= form.text_area :description,
-      data: { input_group_target: 'input',
-              action: 'focus->input-group#focusLabel
-                       focusout->input-group#focusoutLabel
-                       change->input-group#focusLabel'
-            }
-    %>
-  </input-group>
-  <input-group data-controller='input-group'>
-    <%= form.label 'couleur',
-      data: { input_group_target: 'label' }
-    %>
-    <%= form.color_field :color,
-      data: { input_group_target: 'input',
-              action: 'focus->input-group#focusLabel
-                      focusout->input-group#focusoutLabel
-                      change->input-group#focusLabel'
-            }
-    %>
-  </input-group>
+<container-form>
+  <%= form_for @tag do |form| %>
+    <%= render "shared/error_messages", resource: @tag %>
+    <input-group data-controller='input-group'>
+      <%= form.label 'nom',
+        data: { input_group_target: 'label' }
+      %>
+      <%= form.text_field :name,
+        data: { input_group_target: 'input',
+                action: 'focus->input-group#focusLabel
+                        focusout->input-group#focusoutLabel
+                        change->input-group#focusLabel'
+              }
+      %>
+    </input-group>
+    <input-group data-controller='input-group'>
+      <%= form.label 'description',
+        data: { input_group_target: 'label' }
+      %>
+      <%= form.text_area :description,
+        data: { input_group_target: 'input',
+                action: 'focus->input-group#focusLabel
+                        focusout->input-group#focusoutLabel
+                        change->input-group#focusLabel'
+              }
+      %>
+    </input-group>
+    <input-group data-controller='input-group'>
+      <%= form.label 'couleur',
+        data: { input_group_target: 'label' }
+      %>
+      <%= form.color_field :color,
+        data: { input_group_target: 'input',
+                action: 'focus->input-group#focusLabel
+                        focusout->input-group#focusoutLabel
+                        change->input-group#focusLabel'
+              }
+      %>
+    </input-group>
 
-  <submit-group>
-    <%= form.submit 'valider', class: 'button' %>
-    <%= link_to :annuler, :back %>
-  </submit-group>
-<% end %>
+    <submit-group>
+      <%= form.submit 'valider', class: 'button' %>
+      <%= link_to :annuler, :back %>
+    </submit-group>
+  <% end %>
+</container-form>

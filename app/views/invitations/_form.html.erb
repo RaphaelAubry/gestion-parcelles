@@ -1,21 +1,23 @@
-<%= form_for @invitation do |form| %>
-  <%= render 'shared/error_messages', resource: @invitation %>
+<container-form>
+  <%= form_for @invitation do |form| %>
+    <%= render 'shared/error_messages', resource: @invitation %>
 
-  <input-group data-controller='input-group'>
-    <%= form.label 'invité', data: { input_group_target: 'label' }
+    <input-group data-controller='input-group'>
+      <%= form.label 'invité', data: { input_group_target: 'label' }
 
-    %>
-    <%= form.email_field :guest_email,
-        value: '',
-        data: { input_group_target: 'input',
-                action: 'focus->input-group#focusLabel
-                       focusout->input-group#focusoutLabel
-                       change->input-group#focusLabel'
-              }
-    %>
-  </input-group>
-  <submit-group>
-    <%= form.submit 'valider', class: 'button' %>
-    <%= link_to :annuler, :back %>
-  </submit-group>
-<% end %>
+      %>
+      <%= form.email_field :guest_email,
+          value: '',
+          data: { input_group_target: 'input',
+                  action: 'focus->input-group#focusLabel
+                        focusout->input-group#focusoutLabel
+                        change->input-group#focusLabel'
+                }
+      %>
+    </input-group>
+    <submit-group>
+      <%= form.submit 'valider', class: 'button' %>
+      <%= link_to :annuler, :back %>
+    </submit-group>
+  <% end %>
+</container-form>
