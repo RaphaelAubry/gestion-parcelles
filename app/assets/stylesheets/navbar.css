@@ -5,7 +5,7 @@
   }
 
   navbar-menu>ul {
-      gap: 50px;
+    gap: 50px;
   }
 
   navbar-icon {
@@ -39,7 +39,9 @@ container-navbar {
   width: 100%;
   min-height: 70px;
   background-color: var(--grey-dark);
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   color: var(--grey-light-1);
   navbar-menu > ul {
     display: flex;

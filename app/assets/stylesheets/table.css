@@ -1,9 +1,31 @@
+/* widescreen */
+@media (min-width: 992px) {
+  thead {
+    position: sticky;
+    top: 70px;
+  }
+}
+
+/* medium */
+@media (min-width: 769px) and (max-width: 991px) {
+  thead {
+    position: sticky;
+    top: 70px;
+  }
+}
+
+/* smartphone */
+@media (max-width: 768px) {
+}
+
+
 table {
-  width: 100%;
+  width: auto;
   border-collapse: collapse;
   border: 2px solid var(--grey-light-2);
   font-size: var(--font-small);
   }
+
 
 th, td {
   border: 1px solid var(--grey-light-1);
@@ -69,4 +91,8 @@ td-tag-name {
 
 .dt-layout-row {
   font-size: 14px;
+}
+
+thead {
+  background-color: var(--grey-light-1);
 }
