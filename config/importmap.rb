@@ -34,9 +34,9 @@ pin "@rails/actiontext", to: "actiontext.js"
 pin "@rails/activestorage", to: "activestorage.esm.js"
 
 # datatables
+pin "jquery" # @3.7.1
 pin "datatables.net-dt"  # @2.3.2
 pin "datatables.net" # @2.3.2
-pin "jquery" # @3.7.1
 pin "datatables.net-responsive" # @3.0.5
 pin "datatable_french", to: "modules/datatable_french.js"
 pin "datatable_config", to: "modules/datatable_config.js"
