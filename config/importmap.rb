@@ -19,7 +19,6 @@ pin_all_from "app/javascript/modules/strings", under: "modules/strings"
 pin_all_from "app/javascript/modules/arrays", under: "modules/arrays"
 pin_all_from "app/javascript/modules/elements", under: "modules/elements"
 pin "modules/wait"
-pin "modules/datatable", to: "modules/datatable/index.js"
 pin_all_from "app/javascript/modules/datatable", under: "modules/datatable"
 
 # mapbox
