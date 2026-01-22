@@ -1,77 +1,52 @@
 import { Controller } from "@hotwired/stimulus"
 import $ from 'jquery'
 import DataTable from "datatables.net"
-import { config } from "modules/datatable"
-import { headers } from "../../modules/datatable/datatable_headers"
+import { config } from "modules/datatable/datatable_config"
+import { headers } from "modules/datatable/datatable_headers"
+import "modules/datatable/functions"
 
 export default class extends Controller {
-  initialize() {
-    $.fn.dataTable.Api.register('setColumnNames', function() {
-      
-      if (window.innerWidth < 768) {
+  static values = { name: String }
 
-        window.table.rows().every(function(row) {
-          this.node().childNodes.forEach((td) => {
-              if(!td.querySelector('th')) {
-                const name = document.createElement('th')
-                name.innerText = headers[td.dataset.name]
-                td.prepend(name)
-              }
-          })
-        })
-      }
+  connect() {
 
-      if (window.innerWidth >= 768) {
-        
-        window.table.rows().every(function(row) {
-          this.node().childNodes.forEach((td) => {
-              if(td.querySelector('th')) {
-                td.querySelector('th').remove()
-              }
-          })
-        })
-
-      }
-    })
-
-    if (!window.table) {
-      this.create()
+    if ($.fn.DataTable.isDataTable(this.element)) return
+    
+    if (!this.table) {
+      this.#createTable()
+      this.table.setColumnNames()
     }
-
-    // manage table when clicking on back or forward browser button
-    window.addEventListener('turbo:load', event => {
-      if (window.table) {
-        window.table.destroy()
-        this.element.setAttribute('id', window.location.pathname.split("/")[1])
-        this.create()
-        this.update_footer()
-      }
-    })
+    this.#setColumnsVisibility()
   }
 
-  create() {
-    let id = `#${this.scope.element.id}`
+  disconnect() {
+    if (!this.table) return
+  }
 
-    if ($.fn.DataTable.isDataTable(id)) {
-      $(id).Datatable().destroy();
+  #createTable() {
+    const name = this.nameValue
+
+    if (!name || !config[name]) {
+      console.warn(`[datatable] config manquante pour ${name}`)
+      return
     }
 
-    let url = `/${this.scope.element.id}/table`
-    let columns = config[this.scope.element.id]
+    const columns = config[name]
+    const url = `/${name}/table`
 
-    window.table = new DataTable(id, {
+    this.table = new DataTable(this.element, {
       serverSide: true,
       processing: true,
       paging: true,
       ordering: true,
       info: true,
+      columns: columns,
        fixedColumns: {
         leftColumns: 1
       },
       fixedHeader: true,
       scrollX: true,
-      scrollY: '80vh',
-      columns: columns,
+      scrollY: '60vh',
       ajax: {
         url: url,
         type: 'POST',
@@ -84,13 +59,27 @@ export default class extends Controller {
       }
     })
 
-    this.#setColumnsVisibility()
-    this.#addDatasetColumnName(columns)
-    this.update_footer()
+    this.addColumnHeaders(columns)
+    this.updateFooter()
   }
 
-  update_footer() {
-    window.table.on('draw', event => {
+  addColumnHeaders(columns) {
+    this.table.rows().every(function() {
+      this.node().childNodes.forEach((td) => {
+        const colName = columns[td._DT_CellIndex.column].name
+        td.dataset.name = colName
+
+        if (!td.querySelector('th')) {
+          const th = document.createElement('th')
+          th.innerText = headers[colName] || colName
+          td.prepend(th)
+        }
+      })
+    })
+  }
+
+  updateFooter() {
+    this.table.on('draw', event => {
       let elements = document.querySelectorAll('[data-total="surface"]')
   
       elements.forEach(e => {
@@ -99,32 +88,32 @@ export default class extends Controller {
     })
   }
 
-  #setColumnsVisibility() {
-    var checkboxes = document.querySelectorAll('[data-table-target="checkbox"]')
-
-    for (let element of checkboxes) {
-      var column_name = element.dataset.columnName
-      var value = element.checked
-
-      window.table.column(`${column_name}:name`).visible(value)
-
-      element.addEventListener('change', event => {
-        column_name = event.target.dataset.columnName
-        value = event.target.checked
-
-        window.table.column(`${column_name}:name`).visible(value)
-      })
-    }
-  }
-
-  #addDatasetColumnName(columns) {
-    window.table.on('draw', event => {
+  addDatasetColumnName(columns) {
+    this.table.on('draw', event => {
       table.rows().every(function() {  
         this.node().childNodes.forEach((td) => {
           td.setAttribute('data-name', columns[td._DT_CellIndex.column].name)
         })
       })
-      window.table.setColumnNames()
+      this.table.setColumnNames()
     })
+  }
+
+  #setColumnsVisibility() {
+    var checkboxes = document.querySelectorAll('[data-datatable-target="checkbox"]')
+
+    for (let element of checkboxes) {
+      var column_name = element.dataset.columnName
+      var value = element.checked
+
+      this.table.column(`${column_name}:name`).visible(value)
+
+      element.addEventListener('change', event => {
+        column_name = event.target.dataset.columnName
+        value = event.target.checked
+
+        this.table.column(`${column_name}:name`).visible(value)
+      })
+    }
   }
 }

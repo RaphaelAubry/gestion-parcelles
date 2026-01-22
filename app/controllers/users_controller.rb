@@ -7,9 +7,15 @@ class UsersController < ApplicationController
 
   def update
     authorize! @user = User.find(params[:id])
-    @user.update(user_params)
-    respond_to do |format|
-      format.html
+    if @user.update(user_params)
+      respond_to do |format|
+        format.html
+        format.json { render json: @user.table_preferences, status: :ok }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity }
+      end
     end
   end
 
