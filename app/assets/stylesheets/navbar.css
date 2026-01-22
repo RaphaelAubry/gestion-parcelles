@@ -46,7 +46,6 @@ container-navbar {
   navbar-menu > ul {
     display: flex;
     padding: 0;
-    overflow: hidden;
     list-style-type: none;
     width: 100%;
     transition: display 2s allow-discrete;

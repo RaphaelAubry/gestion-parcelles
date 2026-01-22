@@ -14,5 +14,9 @@ export default class extends Controller {
         this.menuTarget.style.display = "flex"
       }
     }
+    
+    if (window.table) {
+      window.table.setColumnNames()
+    }
   }
 }

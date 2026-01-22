@@ -34,7 +34,7 @@ class ParcellesController < ApplicationController
                            .tap { |x| @filtered_count = x.count }
                            .limit(params[:length])
                            .offset(params[:start])
-                           .tap { |x| @total_surface = x.pluck('parcelles.surface').sum }
+                           .tap { |x| @total_surface = '%.4f' % x.pluck('parcelles.surface').sum }
 
     respond_to do |format|
       format.json do
@@ -45,12 +45,12 @@ class ParcellesController < ApplicationController
           total_surface: @total_surface,
           data: @parcelles.map do |p|
                   [ "<a href='#{parcelle_path(p)}'>#{p.reference_cadastrale}</a>",
-                    p.lieu_dit,
-                    p.code_officiel_geographique,
-                    p.surface,
-                    p.annee_plantation,
-                    p.distance_rang,
-                    p.distance_pieds,
+                    "<p>#{p.lieu_dit}</p>",
+                    "<p>#{p.code_officiel_geographique}</p>",
+                    "<p>#{p.surface}</p>",
+                    "<p>#{p.annee_plantation}</p>",
+                    "<p>#{p.distance_rang}</p>",
+                    "<p>#{p.distance_pieds}</p>",
                     "<td-tag>
                       <td-tag-name>
                         #{p&.tag&.name}

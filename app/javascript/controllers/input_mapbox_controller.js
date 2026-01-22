@@ -118,7 +118,6 @@ export default class extends Controller {
   }
 
   #updateSearch(event) {
-    console.log(event)
     this.searchTarget.value = event.originalTarget.innerText
     this.clear2Target.style.display = 'flex'
   }

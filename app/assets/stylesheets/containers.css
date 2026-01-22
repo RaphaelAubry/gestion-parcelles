@@ -29,11 +29,13 @@
     width: 100vw;
   }
 
-  
   container-tableau {
     width: 100vw;
-    overflow: scroll;
   }
+}
+
+body {
+  width: 100%;
 }
 
 container-flex {

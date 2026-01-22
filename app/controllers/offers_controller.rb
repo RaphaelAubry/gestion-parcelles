@@ -35,6 +35,7 @@ class OffersController < ApplicationController
           draw: params[:draw],
           recordsTotal: @total_count,
           recordsFiltered: @filtered_count,
+          total: @total, 
           data: @offers.map do |o|
                   [ o.name,
                     o.unit,

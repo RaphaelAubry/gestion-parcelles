@@ -30,8 +30,7 @@ mapboxgl.Map.prototype.addInputs = async function(location = 'top-left') {
   clearIcon.style.display = "none"
   geocoderElement.append(clearIcon)
   geocoder._clearEl = clearIcon
-  console.log(geocoder)
-
+  
   const searchControl = new SearchControl()
   this.searchControl = searchControl
   this.addControl(searchControl, location)

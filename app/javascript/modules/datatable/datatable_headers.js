@@ -1,0 +1,22 @@
+export const headers = {
+  reference_cadastrale: "Référence cadastrale",
+  lieu_dit: "Lieu-dit",
+  code_officiel_geographique: "Code officiel géographique",
+  surface: "Surface",
+  annee_plantation: "Année plantation",
+  distance_rang: "Distance rang",
+  distance_pieds: "Distance pieds",
+  tag_id: "Marqueur",
+  actions: "Actions",
+  name: "Nom",
+  description: "Description",
+  supplier_id: "Fournisseur",
+  color: "Couleur",
+  phone: "Téléphone",
+  email: "Email",
+  unit: "Unité",
+  price: "Prix",
+  updated_at: "Mise à jour le",
+  surname: "Prénom",
+  created_at: "Créé le"
+}

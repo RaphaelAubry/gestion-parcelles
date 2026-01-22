@@ -34,6 +34,7 @@ class SuppliersController < ApplicationController
           draw: params[:draw],
           recordsTotal: @total_count,
           recordsFiltered: @filtered_count,
+          total: @total,
           data: @suppliers.map do |s|
                   [ s.name,
                     s.phone,
