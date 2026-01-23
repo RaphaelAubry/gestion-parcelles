@@ -1,5 +1,14 @@
-form.new_parcelle, form.edit_parcelle {
-  display: block;
+form.new_parcelle, 
+form.edit_parcelle,
+form.new_supplier,
+form.edit_supplier,
+form.new_offer,
+form.edit_offer,
+form.new_invitation,
+form.new_tag,
+form.edit_tag,
+form.edit_user,
+form.new_user {
   width: 300px;
 }
 
@@ -11,26 +20,28 @@ input-group {
 }
 
 input-group input {
-  width: 200px;
   height: 25px;
   font-size: var(--font-small);
   transition: all 0.7s ease;
   border: 1px solid var(--grey-light-2);
   border-radius: var(--border-radius);
   padding-left: 10px;
+  padding-right: 10px;
 }
 
 input-group textarea {
   max-width: 800px;
   border: 1px solid var(--grey-light-2);
   border-radius: var(--border-radius);
+  padding-top: 10px;
   padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
   font-family: "Work Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
-
 
 input-group label {
   padding: var(--padding-min);

@@ -18,9 +18,10 @@
     <%= render 'shared/navbar' %>
     <container-flex>
       <%= render 'shared/messages' %>
-      <%= yield %>
+      <container-block>
+        <%= yield %>
+      </container-block>
     </container-flex>
     <%= render 'shared/footer' %>
   </body>
-
 </html>

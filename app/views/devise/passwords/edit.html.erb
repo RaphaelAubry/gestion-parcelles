@@ -1,5 +1,5 @@
-<container-form>
-  <h2>Modifier mon mot de passe</h2>
+<wrapper-form-connexion>
+  <h3>Modifier mon mot de passe</h3>
 
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "shared/error_messages", resource: resource %>
@@ -27,4 +27,4 @@
   <link-group>
     <%= render "devise/shared/links" %>
   </link-group>
-</container-form>
+</wrapper-form-connexion>

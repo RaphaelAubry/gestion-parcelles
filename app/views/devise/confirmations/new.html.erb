@@ -1,5 +1,5 @@
-<container-form>
-  <h2>Renvoyer la confirmation</h2>
+<wrapper-form-connexion>
+  <h3>Renvoyer la confirmation</h3>
 
   <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
@@ -21,4 +21,4 @@
   <% end %>
 
   <%= render "devise/shared/links" %>
-</container-form>
+</wrapper-form-connexion>

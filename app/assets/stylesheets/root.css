@@ -1,7 +1,7 @@
 :root {
   --blue-serious:#293947;
   --green-strong:#149523;
-  --green-light: #89d04a;
+  --green-light:#f6faf5;
   --green-fluo: #7fff7f;
   --grey-light-1: #eff0f1;
   --grey-light-2: #ababab;
@@ -26,6 +26,7 @@
   --padding-mapbox-control: 7px;
   --padding-icon-menu: 2px;
   --padding-medium: 15px;
+  --padding-high: 30px;
 
   --break-point-1: 576px;
   --break-point-2: 768px;

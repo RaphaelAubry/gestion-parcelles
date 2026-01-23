@@ -1,5 +1,5 @@
-<container-form>
-  <h2>Inscription</h2>
+<wrapper-form>
+  <h3>Inscription</h3>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "shared/error_messages", resource: resource %>
@@ -66,4 +66,4 @@
   <link-group>
     <%= render "devise/shared/links" %>
   </link-group>
-</container-form>
+</wrapper-form>
