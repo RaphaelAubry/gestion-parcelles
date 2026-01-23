@@ -20,7 +20,6 @@ pin_all_from "app/javascript/modules/arrays", under: "modules/arrays"
 pin_all_from "app/javascript/modules/elements", under: "modules/elements"
 pin "modules/wait"
 pin_all_from "app/javascript/modules/datatable", under: "modules/datatable"
-pin_all_from "app/javascript/modules/datatable/functions", under: "modules/datatable/functions"
 
 # mapbox
 pin "mapbox-gl" # @3.1.2

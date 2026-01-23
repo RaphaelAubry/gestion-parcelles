@@ -1,5 +1,5 @@
-import { config } from "./datatable_config"
-import { headers } from "./datatable_headers"
-import "./datatable_french"
+import { config } from "modules/datatable/datatable_config"
+import { headers } from "modules/datatable/datatable_headers"
+import "modules/datatable/datatable_french"
 
 export { config, headers }
