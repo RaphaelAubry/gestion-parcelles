@@ -20,6 +20,7 @@ pin_all_from "app/javascript/modules/arrays", under: "modules/arrays"
 pin_all_from "app/javascript/modules/elements", under: "modules/elements"
 pin "modules/wait"
 pin_all_from "app/javascript/modules/datatable", under: "modules/datatable"
+pin_all_from "app/javascript/modules/datatable/functions", under: "modules/datatable/functions"
 
 # mapbox
 pin "mapbox-gl" # @3.1.2
@@ -39,5 +40,3 @@ pin "jquery" # @3.7.1
 pin "datatables.net-dt"  # @2.3.2
 pin "datatables.net" # @2.3.2
 pin "datatables.net-responsive" # @3.0.5
-pin "datatable_french", to: "modules/datatable_french.js"
-pin "datatable_config", to: "modules/datatable_config.js"

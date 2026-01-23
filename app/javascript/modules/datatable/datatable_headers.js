@@ -1,4 +1,4 @@
-export const headers = {
+const headers = {
   reference_cadastrale: "Référence cadastrale",
   lieu_dit: "Lieu-dit",
   code_officiel_geographique: "Code officiel géographique",
@@ -20,3 +20,5 @@ export const headers = {
   surname: "Prénom",
   created_at: "Créé le"
 }
+
+export { headers }
