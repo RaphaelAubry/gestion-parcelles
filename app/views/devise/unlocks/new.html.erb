@@ -1,4 +1,4 @@
-<container-form>
+<wrapper-form>
   <h2>Déverrouiller mon compte</h2>
 
   <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
@@ -22,4 +22,4 @@
   <link-group>
     <%= render "devise/shared/links" %>
   </link-group>
-</container-form>
+</wrapper-form>

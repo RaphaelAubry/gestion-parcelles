@@ -1,5 +1,5 @@
-<container-form>
-  <h2>Connexion</h2>
+<wrapper-form-connexion>
+  <h3>Connexion</h3>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <%= render "shared/error_messages", resource: resource %>
@@ -40,4 +40,4 @@
   <link-group>
     <%= render "devise/shared/links" %>
   </link-group>
-</container-form>
+</wrapper-form-connexion>
