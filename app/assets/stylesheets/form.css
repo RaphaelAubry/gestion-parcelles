@@ -1,16 +1,28 @@
-form.new_parcelle, 
-form.edit_parcelle,
-form.new_supplier,
-form.edit_supplier,
-form.new_offer,
-form.edit_offer,
-form.new_invitation,
-form.new_tag,
-form.edit_tag,
-form.edit_user,
-form.new_user {
-  width: 300px;
+/* widescreen */
+@media (min-width: 992px) {
+  form {
+    width:  300px;
+  }
 }
+
+/* medium */
+@media (min-width: 769px) and (max-width: 991px) {
+  form {
+    width:  300px;
+  }
+}
+
+/* smartphone */
+@media (max-width: 768px) {
+  form {
+    width: 100%;
+  }
+}
+
+
+
+
+
 
 input-group {
     display: grid;

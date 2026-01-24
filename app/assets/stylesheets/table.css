@@ -30,7 +30,6 @@
 
   tbody, tr, td {
     display: block;
-    width: 95vw;
   }
 
   colgroup {
@@ -147,4 +146,9 @@ thead {
 .dt-layout-table {
   table-layout: fixed; 
   width: 100%;
+}
+
+.dt-info {
+    white-space: normal;
+    word-wrap: break-word;
 }

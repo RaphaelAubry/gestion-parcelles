@@ -3,6 +3,10 @@
   wrapper-form {
     width: 50vw;
   }
+
+  wrapper-form-connexion {
+    width: 300px;
+}
 }
 
 /* medium */
@@ -10,13 +14,15 @@
   wrapper-form {
     width: 66vw;
   }
+
+  wrapper-form-connexion {
+    width: 300px;
+}
 }
 
 /* smartphone */
 @media (max-width: 768px) {
-  wrapper-form {
-    width: 100%;
-  }
+
 }
 
 wrapper-form,
@@ -30,6 +36,4 @@ wrapper-form-connexion {
   overflow: scroll;
 }
 
-wrapper-form-connexion {
-    width: 300px;
-}
+

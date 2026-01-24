@@ -8,6 +8,7 @@
   container-tableau {
     display: block;
     width: 66vw;
+    padding: var(--padding-medium);
   }
 }
 
@@ -18,7 +19,9 @@
   }
 
   container-tableau {
-    width: 100vw;
+    display: block;
+    width: 95vw;
+    padding: var(--padding-medium);
   }
 }
 
@@ -30,7 +33,12 @@
   }
 
   container-tableau {
-    width: 100vw;
+    display: block;
+    padding: var(--padding-medium);
+  }
+
+  container-block {
+    width: 100%;
   }
 }
 
@@ -62,7 +70,5 @@ container-map a, container-tableau a {
   }
 }
 
-container-tableau {
-  padding: var(--padding-medium) 0 var(--padding-high) 0;
-}
+
 
