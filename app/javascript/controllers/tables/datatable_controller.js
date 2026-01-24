@@ -8,12 +8,15 @@ export default class extends Controller {
   static values = { name: String }
 
   connect() {
+    // gestion du connect
+    if (this.element.dataset.dtInitialized) return
+    this.element.dataset.dtInitialized = "true"
+
     if ($.fn.DataTable.isDataTable(this.element)) return
-    
-    if (!this.table) {
-      this.#createTable()
-    }
+  
+    this.#createTable()
     this.#setColumnsVisibility()
+
     // gestion des headers pour la table responsive
     this.table.setColumnNames(headers)
 
