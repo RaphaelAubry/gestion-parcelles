@@ -15,6 +15,9 @@
             <%= link_to 'mes parcelles', parcelles_path, data: { navbar_target: 'link'} %>
             <%= link_to :fournisseurs, suppliers_path, data: { navbar_target: 'link'} %>
             <%= link_to :prestations, offers_path, data: { navbar_target: 'link'} %>
+            <% current_user.owners.each do |owner| %>
+              <%= link_to owner.email, parcelles_path, data: { navbar_target: 'link' } %>
+            <% end %>
           </ul>
         </li-dropdown>
       <% end %>

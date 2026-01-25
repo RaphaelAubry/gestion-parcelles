@@ -18,7 +18,7 @@ export default class extends Controller {
       zoom: 12
     })
     document.map = map
-
+    
     map.addControlFullscreen()
     map.addControlGeolocate()
     map.addControlCadastre()
@@ -50,6 +50,12 @@ export default class extends Controller {
     map.initializeCurrentCity()
     map.displayCurrentCity()
     map.displayCurrentParcelle()
+
+    console.log(this.#center())
+    if (map._container.dataset.viewType == 'show') {
+      map.fitBounds(this.#center(), this.#center())
+    }
+    
   }
 
   #center() {

@@ -45,15 +45,19 @@ class Parcelle < ApplicationRecord
     prepend_zero(result, 4)
   end
 
-  def to_hash
-    { properties: {
+  def to_geojson
+    { type: 'Feature',
+      geometry: polygon.present? ? {
+          type: 'Polygon',
+          coordinates: polygon.coordinates
+        } : nil,
+      properties: {
         reference_cadastrale: reference_cadastrale,
         surface: surface,
-        code_insee: code_officiel_geographique
-        },
-      coordinates: polygon.present? ? polygon.coordinates : nil,
-      centroid: polygon.present? ? [polygon.centroid.x, polygon.centroid.y] : nil,
-      tag_color: tag.present? ? tag.color : nil
+        code_insee: code_officiel_geographique,
+        centroid: polygon.present? ? [polygon.centroid.x, polygon.centroid.y] : nil,
+        tag_color: tag.present? ? tag.color : nil
+      }
     }
   end
 

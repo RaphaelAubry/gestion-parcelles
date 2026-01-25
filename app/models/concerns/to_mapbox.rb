@@ -5,14 +5,14 @@ module ToMapbox
     const_get('ActiveRecord_Relation').include(RelationMethods)
 
     def to_mapbox
-      [to_hash]
+      [to_geojson]
     end
   end
 
   module RelationMethods
     def to_mapbox
       map do |parcelle|
-        parcelle.to_hash
+        parcelle.to_geojson
       end
     end
   end

@@ -7,12 +7,13 @@ mapboxgl.Map.prototype.addParcelles = function(parcelles) {
   // ensure no doubles
   this.parcelles = []
   parcelles.forEach(parcelle => {
+    console.log(parcelle)
     var parcelle = new Parcelle({
       type: 'Feature',
       id: parcelle.id,
       geometry: {
         type: 'MultiPolygon',
-        coordinates: [parcelle.coordinates]
+        coordinates: [parcelle.geometry.coordinates]
       },
       properties: {
         reference_cadastrale: parcelle.properties.reference_cadastrale,
