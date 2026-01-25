@@ -6,11 +6,12 @@ mapboxgl.Map.prototype.parcelles = []
 mapboxgl.Map.prototype.addParcelles = function(parcelles) {
   // ensure no doubles
   this.parcelles = []
+
   parcelles.forEach(parcelle => {
-    console.log(parcelle)
+
     var parcelle = new Parcelle({
       type: 'Feature',
-      id: parcelle.id,
+      id: parcelle.properties.id,
       geometry: {
         type: 'MultiPolygon',
         coordinates: [parcelle.geometry.coordinates]
@@ -24,7 +25,7 @@ mapboxgl.Map.prototype.addParcelles = function(parcelles) {
         tag_color: parcelle.properties.tag_color
       },
       geometry_name: 'geom',
-      bbox: null
+      bbox: turf.bbox(parcelle)
     })
     parcelle.map = this
     parcelle.isRegistered = true

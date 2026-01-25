@@ -56,7 +56,8 @@ class Parcelle < ApplicationRecord
         surface: surface,
         code_insee: code_officiel_geographique,
         centroid: polygon.present? ? [polygon.centroid.x, polygon.centroid.y] : nil,
-        tag_color: tag.present? ? tag.color : nil
+        tag_color: tag.present? ? tag.color : nil,
+        id: id
       }
     }
   end
