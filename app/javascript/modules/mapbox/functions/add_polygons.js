@@ -3,7 +3,7 @@ import mapboxgl from "mapbox-gl"
 mapboxgl.Map.prototype.addPolygons = function(parcelles, options = {}) {
   this.on('load', () => {
     parcelles.forEach((parcelle, index) => {
-      let color = parcelle.tag_color == null ? '#0080ff' : parcelle.tag_color
+      let color = parcelle.properties.tag_color == null ? '#0080ff' : parcelle.properties.tag_color
 
       this.addSource(`${index}`, {
         type: 'geojson',
@@ -11,7 +11,7 @@ mapboxgl.Map.prototype.addPolygons = function(parcelles, options = {}) {
           type: 'Feature',
           geometry: {
             type: options.geometryType,
-            coordinates: parcelle.coordinates
+            coordinates: parcelle.geometry.coordinates
           }
         }
       })
