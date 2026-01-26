@@ -58,7 +58,7 @@ export default class extends Controller {
       if (this.mapTarget.dataset.parcelles) {
         return JSON.parse(this.mapTarget.dataset.centroid)
       } else {
-        //Paris
+        // On démarre à Paris
         return [2.333333, 48.866667]
       }
     } catch (error) {

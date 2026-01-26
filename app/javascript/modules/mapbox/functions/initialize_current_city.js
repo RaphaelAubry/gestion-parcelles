@@ -3,8 +3,9 @@ import { City } from "modules/mapbox/geojsons/city"
 import * as Requests from "modules/requests"
 
 mapboxgl.Map.prototype.initializeCurrentCity = function() {
-  const point = this.getCenter()
-
+  // on démarre à Paris comme à la campagne API Carto ne peut pas retourner de code commune
+  const point = { lng: 2.3393655029583442, lat: 48.86139073702981 }
+ 
   Requests.getCodeINSEE(point)
     .then(codeINSEE => {
       return Requests.getAPICarto({ code_insee: codeINSEE }, { type: 'commune' })
