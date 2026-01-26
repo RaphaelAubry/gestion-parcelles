@@ -10,12 +10,13 @@ mapboxgl.Map.prototype.currentCityChanged = function(city) {
 }
 
 mapboxgl.Map.prototype.displayCurrentCity = function() {
+  
   this.on('moveend', (e) => {
     const point = this.getCenter()
-
+  
     Requests.getReverseGeocode(point)
       .then(data => {
-
+   
         switch (data.context.findAttribute('country').text) {
           case 'France':
 
@@ -26,7 +27,7 @@ mapboxgl.Map.prototype.displayCurrentCity = function() {
               .then(data => {
                 if (data) {
                   const city = new City(data.features[0])
-
+                  console.log(this)
                   if (this.currentCityChanged(city)) {
                     this.searchControl.reset()
                     this.currentCity = city
