@@ -5,7 +5,6 @@ class GeoJSON {
     this.geometry = feature.geometry
     this.properties = feature.properties
     this.geometry_name = feature.geometry_name
-    this.bbox = feature.bbox
   }
 }
 
