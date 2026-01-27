@@ -6,7 +6,7 @@ export default class extends Controller {
 
   connect() {
     const suggestions = document.map.searchControl._suggestions
-
+   
     this.geocoderTarget.addEventListener('focus', e => {
       this.searchTarget.parentElement.style.display = 'none'
       suggestions.style.display = 'none'
@@ -37,33 +37,46 @@ export default class extends Controller {
     })
   }
 
-  #fill() {
-    const city = document.map.currentCity
-    const control = document.map.searchControl
+  #parcelles() {
+    let parcelles = []
 
-    control.reset()
-    if (city) {
-      city.sortParcelles()
-      city.parcelles.forEach(parcelle => this.#feed(parcelle))
-      control._suggestions.style.overflowY = 'scroll'
-      control._suggestions.style.maxHeight = (document.map._containerHeight * 0.75).toString() + 'px'
+    // List parcelles from currentCity or from database
+    if (document?.map._container.dataset.viewType != 'carte') {
+      const city = document?.map?.currentCity
+      
+      if (city) {
+        city.removeDuplicates()
+        city.sortParcelles()
+        parcelles = city?.parcelles
+      }
     }
+
+    if (document?.map._container.dataset.viewType == 'carte') {
+        parcelles = document?.map?.parcelles
+    }
+    
+    return parcelles
+  }
+  
+  #fill() {
+    const control = document.map.searchControl
+   
+    control.reset()
+    this.#parcelles().forEach(parcelle => this.#feed(parcelle))
+    control._suggestions.style.overflowY = 'scroll'
+    control._suggestions.style.maxHeight = (document.map._containerHeight * 0.75).toString() + 'px'
   }
 
   #find(value) {
-    const city = document.map.currentCity
     const control = document.map.searchControl
-
+ 
     control.reset()
-    if (city) {
-      city.sortParcelles()
-      city.parcelles
-        .filter(parcelle => parcelle.getNumero().match(value))
-        .forEach(parcelle => this.#feed(parcelle))
-      control._suggestions.style.display = 'block'
-      control._suggestions.style.overflowY = 'scroll'
-      control._suggestions.style.maxHeight = (document.map._containerHeight * 0.75).toString() + 'px'
-    }
+    this.#parcelles()
+      .filter(parcelle => parcelle.getNumero().match(value))
+      .forEach(parcelle => this.#feed(parcelle))
+    control._suggestions.style.display = 'block'
+    control._suggestions.style.overflowY = 'scroll'
+    control._suggestions.style.maxHeight = (document.map._containerHeight * 0.75).toString() + 'px'
   }
 
   #feed(item) {
@@ -86,11 +99,15 @@ export default class extends Controller {
 
   flyTo(event) {
     const map = document.map
-    const parcelle = document.map.currentCity.parcelles.find(parcelle => parcelle.id == event.currentTarget.id)
 
+    let parcelles = null
+    if (map._container.dataset.viewType != 'carte') { parcelles = map.currentCity.parcelles }
+    if (map._container.dataset.viewType == 'carte') { parcelles = map.parcelles }
+
+    const parcelle = parcelles.find(parcelle => parcelle.id == event.currentTarget.id)
+   
     map.flyTo({
       center: parcelle.centroid.geometry.coordinates,
-      zoom: 15,
       essential: true
     })
 
@@ -110,8 +127,8 @@ export default class extends Controller {
       }
     }
 
-    if (parcelle.bbox && parcelle.bbox.length === 2) {
-      map.fitBounds(parcelle.bbox, { padding: 20 })
+    if (parcelle.bbox) {
+      map.fitBounds(parcelle.bbox, { padding: 10 })
     }
 
     this.#updateSearch(event)

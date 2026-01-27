@@ -58,6 +58,10 @@ class City extends GeoJSON {
       }
     })
   }
+
+  removeDuplicates() {
+    this.parcelles = Array.from(new Map(this.parcelles.map(parcelle => [parcelle.id, parcelle])).values())
+  }
 }
 
 export { City }

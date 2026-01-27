@@ -11,6 +11,7 @@ class Parcelle extends GeoJSON {
     this.centroid = turf.centroid(this.polygon)
     this.popup = null
     this.isRegistered = false
+    this.bbox = turf.bbox(this.geometry)
   }
 
   includes(point) {

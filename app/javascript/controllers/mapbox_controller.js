@@ -8,7 +8,8 @@ export default class extends Controller {
   static targets = ['map']
 
   async connect() {
-
+    
+    
     mapboxgl.accessToken = await getMapboxToken()
 
     const map = new mapboxgl.Map({
@@ -18,12 +19,11 @@ export default class extends Controller {
       zoom: 12
     })
     document.map = map
-    
+   
     map.addControlFullscreen()
     map.addControlGeolocate()
-    map.addControlCadastre()
+    if (map._container.dataset.viewType != 'carte') { map.addControlCadastre() }
     map.addControlDraw()
-
     map.addInputs('top-left')
 
     map.on('style.load', () => {
@@ -31,7 +31,7 @@ export default class extends Controller {
         type: 'raster-dem',
         url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
         tileSize: 512,
-        maxzoom: 15
+        zoom: 12
       })
       map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 })
       map.addSourceCurrentCity()
@@ -49,7 +49,7 @@ export default class extends Controller {
     map.addPopupsManager()
     map.initializeCurrentCity()
     map.displayCurrentCity()
-    map.displayCurrentParcelle()
+    if (map._container.dataset.viewType != 'carte') { map.displayCurrentParcelle() }
     map.fit()
   }
 

@@ -23,12 +23,16 @@ class Feuille extends GeoJSON {
 
     Requests.getAPICarto(param, { type: 'parcelle'})
       .then(data => {
+        const features = []
         data.features.forEach(feature => {
-          const parcelle = new Parcelle(feature)
-          parcelle.map = this.map
-          parcelle.city = this.city
-          this.city.parcelles.push(parcelle)
-          this.parcelles.push(parcelle)
+          if (!features.includes(feature)) {
+            const parcelle = new Parcelle(feature)
+            parcelle.map = this.map
+            parcelle.city = this.city
+            this.city.parcelles.push(parcelle)
+            this.parcelles.push(parcelle)
+            features.push(feature) // gestion des doublons
+          }
         })
       })
       .catch (error => {

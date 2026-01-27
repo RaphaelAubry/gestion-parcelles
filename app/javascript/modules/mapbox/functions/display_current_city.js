@@ -27,7 +27,6 @@ mapboxgl.Map.prototype.displayCurrentCity = function() {
               .then(data => {
                 if (data) {
                   const city = new City(data.features[0])
-                  console.log(this)
                   if (this.currentCityChanged(city)) {
                     this.searchControl.reset()
                     this.currentCity = city
