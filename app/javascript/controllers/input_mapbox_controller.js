@@ -1,94 +1,146 @@
 import { Controller } from '@hotwired/stimulus'
 
-
 export default class extends Controller {
-  static targets = ['search', 'geocoder', 'numero', 'clear1', 'clear2']
-
+  
   connect() {
-    const suggestions = document.map.searchControl._suggestions
-   
-    this.geocoderTarget.addEventListener('focus', e => {
-      this.searchTarget.parentElement.style.display = 'none'
-      suggestions.style.display = 'none'
-    })
-    this.geocoderTarget.addEventListener('focusout', e => {
-      this.searchTarget.parentElement.style.display = ''
-    })
+    console.log('connect input')
+    
+    this.onMapReady = e => {
+      console.log('map ready received')
+    
+      this.map = e.detail.map
+      this.suggestions = e.detail.searchControl._suggestions
+      this.geocoder = e.detail.geocoder._inputEl
+      this.search = e.detail.searchControl._inputEl
+      this.searchClearIcon = e.detail.searchControl._clearIcon
+      this._bindEvents()
+    }
+     
+    this.onMapReady(window._mapReadyEvent)
+    
+    document.addEventListener('map:ready', this.onMapReady)
+  }
 
-    this.searchTarget.addEventListener('focus', e => {
+  disconnect() {
+    console.log('disconnect input')
+
+    document.removeEventListener('map:ready', this.onMapReady)
+
+    this.geocoder?.removeEventListener('focus', this.onGeocoderFocus)
+    this.geocoder?.removeEventListener('focusout', this.onGeocoderBlur)
+
+    this.search?.removeEventListener('focus', this.onSearchFocus)
+    this.search?.removeEventListener('click', this.onSearchClick)
+    this.search?.removeEventListener('keyup', this.onSearchKeyUp)
+
+    this.suggestions?.removeEventListener('mouseleave', this.onSuggestionsLeave)
+    this.suggestions?.removeEventListener('click', this.onSuggestionClick)
+
+    this.searchClearIcon?.removeEventListener('click', this.onSearchClearIconClick)
+  }
+
+  _bindEvents() {
+    console.log('input mapbox events bound')
+
+    this.onGeocoderFocus = () => {
+      this.search.parentElement.style.display = 'none'
+      this.suggestions.style.display = 'none'
+    }
+
+    this.onGeocoderBlur = () => {
+      this.search.parentElement.style.display = ''
+    }
+
+    this.onSearchFocus = (e) => {
       this.#fill()
-      suggestions.style.zIndex = '2000'
-      if (this.searchTarget.value != '') this.#find(e.target.value);
-      if (suggestions.childElementCount > 0) suggestions.style.display = '';
-    })
+      this.suggestions.style.zIndex = '2000'
+      if (this.search.value != '') this.#find(e.target.value);
+      if (this.suggestions.childElementCount > 0) this.suggestions.style.display = ''
+    }
 
-    this.searchTarget.addEventListener('click', e => {
-      suggestions.style.zIndex = '2000'
-      if (suggestions.childElementCount > 0) suggestions.style.display = '';
-    })
+    this.onSearchClick = () => {
+      this.suggestions.style.zIndex = '2000'
+      if (this.suggestions.childElementCount > 0) this.suggestions.style.display = ''
+    }
 
-    this.searchTarget.addEventListener('keyup', e => {
+    this.onSearchKeyUp = (e) => {
       this.#find(e.target.value)
-      this.clear2Target.style.display = (e.target.value != '') ? 'flex' : 'none'
-    })
+      this.searchClearIcon.style.display = (e.target.value != '') ? 'flex' : 'none'
+    }
 
-    suggestions.addEventListener('mouseleave', e => {
-      suggestions.style.display = 'none'
-    })
+    this.onSuggestionsLeave = () => {
+      this.suggestions.style.display = 'none'
+    }
+
+    this.onSuggestionClick = (e) => {
+      const li = e.target.closest('li')
+      if (!li) return
+      this.flyTo({ currentTarget: li, originalTarget: li })
+    }
+
+    this.onSearchClearIconClick = (e) => {
+      this.search.value = ''
+      this.searchClearIcon.style.display = 'none'
+      this.suggestions.style.display = 'none'
+    }
+
+    this.geocoder.addEventListener('focus', this.onGeocoderFocus)
+    this.geocoder.addEventListener('focusout', this.onGeocoderBlur)
+
+    this.search.addEventListener('focus', this.onSearchFocus)
+    this.search.addEventListener('click', this.onSearchClick)
+    this.search.addEventListener('keyup', this.onSearchKeyUp)
+
+    this.suggestions.addEventListener('mouseleave', this.onSuggestionsLeave)
+    this.suggestions.addEventListener('click', this.onSuggestionClick)
+
+    this.searchClearIcon.addEventListener('click', this.onSearchClearIconClick)
   }
 
   #parcelles() {
-    let parcelles = []
-
-    // List parcelles from currentCity or from database
-    if (document?.map._container.dataset.viewType != 'carte') {
-      const city = document?.map?.currentCity
-      
-      if (city) {
-        city.removeDuplicates()
-        city.sortParcelles()
-        parcelles = city?.parcelles
-      }
+    if (this.map._container.dataset.viewType == 'carte') {
+      return this.map.parcelles || []
     }
 
-    if (document?.map._container.dataset.viewType == 'carte') {
-        parcelles = document?.map?.parcelles
-    }
-    
-    return parcelles
+    const city = this.map?.currentCity
+    if (!city) return []
+
+    city.removeDuplicates()
+    city.sortParcelles()
+    return city.parcelles || []
   }
-  
+
   #fill() {
-    const control = document.map.searchControl
-   
+    const control = this.map.searchControl
+
     control.reset()
     this.#parcelles().forEach(parcelle => this.#feed(parcelle))
     control._suggestions.style.overflowY = 'scroll'
-    control._suggestions.style.maxHeight = (document.map._containerHeight * 0.75).toString() + 'px'
+    control._suggestions.style.maxHeight = (this.map._containerHeight * 0.75).toString() + 'px'
   }
 
   #find(value) {
-    const control = document.map.searchControl
- 
+    const control = this.map.searchControl
+
     control.reset()
     this.#parcelles()
       .filter(parcelle => parcelle.getNumero().match(value))
       .forEach(parcelle => this.#feed(parcelle))
+
     control._suggestions.style.display = 'block'
     control._suggestions.style.overflowY = 'scroll'
-    control._suggestions.style.maxHeight = (document.map._containerHeight * 0.75).toString() + 'px'
+    control._suggestions.style.maxHeight = (this.map._containerHeight * 0.75).toString() + 'px'
   }
 
   #feed(item) {
-    const suggestions = document.map.searchControl._suggestions
+    const suggestions = this.map.searchControl._suggestions
     const li = document.createElement('li')
     const a = document.createElement('a')
     const div1 = document.createElement('div')
     const div2 = document.createElement('div')
 
     li.id = item.id
-    li.setAttribute('data-action', 'click->input-mapbox#flyTo')
-    div1.classname = 'mapboxgl-ctrl-geocoder--suggestion'
+    div1.className = 'mapboxgl-ctrl-geocoder--suggestion'
     div2.className = 'mapboxgl-ctrl-geocoder--suggestion--title'
     div2.innerText = item.properties.section + item.properties.numero
     div1.append(div2)
@@ -98,14 +150,14 @@ export default class extends Controller {
   }
 
   flyTo(event) {
-    const map = document.map
+    const map = this.map
 
-    let parcelles = null
-    if (map._container.dataset.viewType != 'carte') { parcelles = map.currentCity.parcelles }
-    if (map._container.dataset.viewType == 'carte') { parcelles = map.parcelles }
+    const parcelles = (map._container.dataset.viewType != 'carte')
+      ? map.currentCity.parcelles
+      : map.parcelles
 
-    const parcelle = parcelles.find(parcelle => parcelle.id == event.currentTarget.id)
-   
+    const parcelle = parcelles.find(p => p.id == event.currentTarget.id)
+
     map.flyTo({
       center: parcelle.centroid.geometry.coordinates,
       essential: true
@@ -120,6 +172,7 @@ export default class extends Controller {
           coordinates: parcelle.geometry.coordinates[0]
         }
       })
+
       if (map.currentParcelleChanged(parcelle)) {
         map.popupsManager.remove(map.currentParcelle)
         map.currentParcelle = parcelle
@@ -135,13 +188,7 @@ export default class extends Controller {
   }
 
   #updateSearch(event) {
-    this.searchTarget.value = event.originalTarget.innerText
-    this.clear2Target.style.display = 'flex'
-  }
-
-  clear2() {
-    this.searchTarget.value = ''
-    this.clear2Target.style.display = 'none'
-    document.map.searchControl._suggestions.style.display = 'none'
+    this.search.value = event.originalTarget.innerText
+    this.searchClearIcon.style.display = 'flex'
   }
 }

@@ -8,49 +8,68 @@ export default class extends Controller {
   static targets = ['map']
 
   async connect() {
-    
+    console.log('connect map')
     
     mapboxgl.accessToken = await getMapboxToken()
 
-    const map = new mapboxgl.Map({
+    
+
+    this.map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/satellite-streets-v12',
       center: this.#center(),
       zoom: 12
     })
-    document.map = map
-   
-    map.addControlFullscreen()
-    map.addControlGeolocate()
-    if (map._container.dataset.viewType != 'carte') { map.addControlCadastre() }
-    map.addControlDraw()
-    map.addInputs('top-left')
-
-    map.on('style.load', () => {
-      map.addSource('mapbox-dem', {
+    
+    this.map.on('style.load', () => {
+      this.map.addSource('mapbox-dem', {
         type: 'raster-dem',
         url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
         tileSize: 512,
         zoom: 12
       })
-      map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 })
-      map.addSourceCurrentCity()
-      map.addSourceCurrentParcelle()
+      this.map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 })
+      this.map.addSourceCurrentCity()
+      this.map.addSourceCurrentParcelle()
     })
 
     if (this.mapTarget.dataset.parcelles) {
       const geometryType = this.mapTarget.dataset.geometryType
       const parcelles = JSON.parse(this.mapTarget.dataset.parcelles)
-      map.addPolygons(parcelles, { geometryType: geometryType })
-      map.addParcelles(parcelles)
-      map.addPopups(parcelles)
+      this.map.addPolygons(parcelles, { geometryType: geometryType })
+      this.map.addParcelles(parcelles)
+      this.map.addPopups(parcelles)
     }
+    
+    this.map.addInputs('top-left', mapboxgl.accessToken)
+    this.map.addControlFullscreen()
+    this.map.addControlGeolocate()
+    this.map.addControlDraw()
+    if (this.map._container.dataset.viewType != 'carte') { this.map.addControlCadastre() }
+    
+    this.map.addPopupsManager()
+    this.map.initializeCurrentCity()
+    this.map.displayCurrentCity()
+    if (this.map._container.dataset.viewType != 'carte') { this.map.displayCurrentParcelle() }
+    this.map.fit()
 
-    map.addPopupsManager()
-    map.initializeCurrentCity()
-    map.displayCurrentCity()
-    if (map._container.dataset.viewType != 'carte') { map.displayCurrentParcelle() }
-    map.fit()
+    const event = new CustomEvent('map:ready', {
+      detail: {
+        map: this.map,
+        searchControl: this.map.searchControl,
+        geocoder: this.map.geocoderControl
+      }
+    })
+
+    window._mapReadyEvent = event
+    document.dispatchEvent(event)
+  }
+
+  disconnect() {
+    console.log('disconnect map')
+
+    this.connected = false
+    this.map?.remove()
   }
 
   #center() {
