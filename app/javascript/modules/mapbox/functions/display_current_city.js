@@ -34,7 +34,8 @@ mapboxgl.Map.prototype.displayCurrentCity = function() {
                     this.currentCity.getFeuilles()
                     this.currentCity.map = this
                     this.getSource('current-city').setData(data)
-                    //get WMS
+                    const centroid = turf.centroid(city.geometry).geometry.coordinates;
+                    localStorage.setItem("currentCityCentroid", JSON.stringify(centroid));
                   }
                 }
               })
@@ -49,6 +50,8 @@ mapboxgl.Map.prototype.displayCurrentCity = function() {
             this.currentCity = city
             this.geocoderControl._inputEl.value = city.properties.nom_com
             this.currentCity.map = this
+            const centroid = turf.centroid(city.geometry).geometry.coordinates;
+            localStorage.setItem("currentCityCentroid", JSON.stringify(centroid));
         }
     })
     .catch(error => {
