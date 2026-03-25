@@ -12,14 +12,17 @@ export default class extends Controller {
     
     mapboxgl.accessToken = await getMapboxToken()
 
-    
-
     this.map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/satellite-streets-v12',
       center: this.#center(),
       zoom: 12
     })
+
+     // Désactive le double-tap zoom sur mobile
+    if ('ontouchstart' in window) {
+      this.map.doubleClickZoom.disable()
+    }
     
     this.map.on('style.load', () => {
       this.map.addSource('mapbox-dem', {

@@ -12,25 +12,36 @@ mapboxgl.Map.prototype.addPopups = function () {
     offset: 10
   })
 
-  // Désactive le double-tap zoom sur mobile
-  if ('ontouchstart' in window) {
-    this.doubleClickZoom.disable()
-  }
-
   this.parcelles.forEach((parcelle, index) => {
     // Hover uniquement desktop
     if (!('ontouchstart' in window)) {
       this.on('mouseenter', 'background' + index, () => {
         this.getCanvas().style.cursor = 'pointer'
       })
+
       this.on('mouseleave', 'background' + index, () => {
         this.getCanvas().style.cursor = ''
         popup.remove()
       })
+
     }
 
-    // Click / tap
+    // Click 
     this.on('click', 'background' + index, (e) => {
+      console.log(e)
+      e.preventDefault()
+      e.originalEvent.stopPropagation()
+
+      // Affiche la popup
+      popup
+        .setLngLat(parcelle.getCentroid())
+        .setHTML(new PopupContent(parcelle).create())
+        .addTo(this)
+    })
+
+    // Tap
+    this.on('touchend', 'background' + index, (e) => {
+      console.log(e)
       e.preventDefault()
       e.originalEvent.stopPropagation()
 
