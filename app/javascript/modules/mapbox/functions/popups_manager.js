@@ -55,6 +55,12 @@ class PopupContent {
       this.content4.dataset.popupTarget = 'parcelle'
       this.container.append(this.content4)
     }
+    if (parcelle.isRegistered) {
+      const url = new URL(`/parcelles/${parcelle.id}`, window.location.origin);
+      this.go = document.createElement('div')
+      this.go.innerHTML = `<a href=${url} class="map-link">afficher</a>`
+      this.container.append(this.go)
+    }
   }
 
   create() {
