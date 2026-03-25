@@ -26,30 +26,17 @@ mapboxgl.Map.prototype.addPopups = function () {
 
     }
 
-    // Click 
-    this.on('click', 'background' + index, (e) => {
-      console.log(e)
-      e.preventDefault()
-      e.originalEvent.stopPropagation()
+    for (let event of ['click', 'touchend']) {
+      this.on(event, 'background' + index, (e) => {
+        e.preventDefault()
+        e.originalEvent.stopPropagation()
 
-      // Affiche la popup
-      popup
-        .setLngLat(parcelle.getCentroid())
-        .setHTML(new PopupContent(parcelle).create())
-        .addTo(this)
-    })
-
-    // Tap
-    this.on('touchend', 'background' + index, (e) => {
-      console.log(e)
-      e.preventDefault()
-      e.originalEvent.stopPropagation()
-
-      // Affiche la popup
-      popup
-        .setLngLat(parcelle.getCentroid())
-        .setHTML(new PopupContent(parcelle).create())
-        .addTo(this)
-    })
+        // Affiche la popup
+        popup
+          .setLngLat(parcelle.getCentroid())
+          .setHTML(new PopupContent(parcelle).create())
+          .addTo(this)
+      })
+    }
   })
 }
