@@ -9,7 +9,6 @@ li-dropdown ul {
   position: absolute;
   box-sizing: border-box;
   min-width: 120px;
-  max-width: 150px;
   z-index: 2000;
   background-color: var(--grey-medium);
   border-radius: var(--border-radius);
