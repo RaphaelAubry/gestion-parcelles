@@ -3,6 +3,10 @@
   form {
     width:  300px;
   }
+
+  form#new_comment {
+    width: 100%;
+  }
 }
 
 /* medium */
