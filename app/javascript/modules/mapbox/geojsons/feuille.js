@@ -1,5 +1,5 @@
 import * as Requests from "modules/requests"
-import { GeoJSON } from "modules/mapbox/geojsons/geojson"
+import { GeoJSON } from "modules/mapbox/geojsons/geojson_file"
 import { Parcelle } from "modules/mapbox/geojsons/parcelle"
 
 class Feuille extends GeoJSON {
