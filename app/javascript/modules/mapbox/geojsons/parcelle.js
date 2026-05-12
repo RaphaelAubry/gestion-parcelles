@@ -1,4 +1,4 @@
-import { GeoJSON } from "modules/mapbox/geojsons/geojson"
+import { GeoJSON } from "modules/mapbox/geojsons/geojson_file"
 import "turf"
 
 class Parcelle extends GeoJSON {

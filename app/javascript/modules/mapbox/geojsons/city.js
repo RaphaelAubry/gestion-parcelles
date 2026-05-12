@@ -1,4 +1,4 @@
-import { GeoJSON } from "modules/mapbox/geojsons/geojson"
+import { GeoJSON } from "modules/mapbox/geojsons/geojson_file"
 import sequence from 'modules/sequence'
 import * as Requests from "modules/requests"
 import { Feuille } from "modules/mapbox/geojsons/feuille"
