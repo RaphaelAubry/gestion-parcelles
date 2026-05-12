@@ -20,7 +20,7 @@ export default class extends Controller {
   }
 
   code(event) {
-    document.querySelector("input#parcelle_commune").value = event.target.dataset.nom
+    document.querySelector("input#parcelle_town").value = event.target.dataset.nom
     this.#displayList(event)
     document.querySelector('input#parcelle_code_officiel_geographique').value = event.target.dataset.value
     this.#labelMove()
@@ -33,7 +33,7 @@ export default class extends Controller {
   }
 
   #displayList(event) {
-    if (event.target.id == 'parcelle_commune') {
+    if (event.target.id == 'parcelle_town') {
       if (document.querySelector('list-1') == null) {
         var list = document.createElement('list-1')
         event.target.parentNode.append(list)

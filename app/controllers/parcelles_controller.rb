@@ -25,6 +25,7 @@ class ParcellesController < ApplicationController
                            .where("parcelles.reference_cadastrale LIKE ?", "%#{params[:search][:value]}%")
                            .or(@parcelles.where("parcelles.lieu_dit LIKE ?", "%#{params[:search][:value]}%"))
                            .or(@parcelles.where("parcelles.code_officiel_geographique LIKE ?", "%#{params[:search][:value]}%"))
+                           .or(@parcelles.where("parcelles.town LIKE ?", "%#{params[:search][:value]}%"))
                            .or(@parcelles.where("parcelles.surface::TEXT LIKE ?", "%#{params[:search][:value]}%"))
                            .or(@parcelles.where("parcelles.annee_plantation::TEXT LIKE ?", "%#{params[:search][:value]}%"))
                            .or(@parcelles.where("parcelles.distance_rang::TEXT LIKE ?", "%#{params[:search][:value]}%"))
@@ -47,6 +48,7 @@ class ParcellesController < ApplicationController
                   [ "<a href='#{parcelle_path(p)}'>#{p.reference_cadastrale}</a>",
                     "<p>#{p.lieu_dit}</p>",
                     "<p>#{p.code_officiel_geographique}</p>",
+                    "<p>#{p.town}</p>",
                     "<p>#{p.surface}</p>",
                     "<p>#{p.annee_plantation}</p>",
                     "<p>#{p.distance_rang}</p>",

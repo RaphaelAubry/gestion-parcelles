@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_02_12_085231) do
+ActiveRecord::Schema[7.0].define(version: 2026_05_11_145510) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -91,6 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_12_085231) do
     t.datetime "updated_at", null: false
     t.geography "polygon", limit: {:srid=>4326, :type=>"st_polygon", :geographic=>true}
     t.bigint "tag_id"
+    t.string "town"
     t.index ["tag_id"], name: "index_parcelles_on_tag_id"
   end
 

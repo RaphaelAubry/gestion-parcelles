@@ -2,6 +2,7 @@ const headers = {
   reference_cadastrale: "Référence cadastrale",
   lieu_dit: "Lieu-dit",
   code_officiel_geographique: "Code officiel géographique",
+  town: "Commune",
   surface: "Surface",
   annee_plantation: "Année plantation",
   distance_rang: "Distance rang",
