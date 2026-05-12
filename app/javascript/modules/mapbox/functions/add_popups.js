@@ -23,7 +23,6 @@ mapboxgl.Map.prototype.addPopups = function () {
 
     for (let event of ['click', 'touchend']) {
       this.on(event, 'background' + index, (e) => {
-        console.log(parcelle)
         if (!parcelle.popup) {
           const popup = new mapboxgl.Popup({
             closeButton: false,

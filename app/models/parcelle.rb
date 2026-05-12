@@ -5,6 +5,7 @@ class Parcelle < ApplicationRecord
   INSTANCE_VARIABLES = %i[reference_cadastrale
                           lieu_dit
                           code_officiel_geographique
+                          town
                           surface
                           annee_plantation
                           distance_rang

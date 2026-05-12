@@ -41,6 +41,7 @@ class Parcelle extends GeoJSON {
   toJson() {
     var parcelle = { reference_cadastrale: this.getNumero(),
       code_officiel_geographique: this.properties.code_insee,
+      commune: this.properties.nom_com,
       polygon: this.polygon,
       surface: this.properties.contenance / 10000
     }

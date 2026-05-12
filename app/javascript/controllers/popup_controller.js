@@ -20,6 +20,8 @@ export default class extends Controller {
       `?` +
       `parcelle[reference_cadastrale]=${infos.reference_cadastrale}` +
       `&` +
+      `parcelle[town]=${infos.commune}` +
+      `&` +
       `parcelle[code_officiel_geographique]=${infos.code_officiel_geographique}` +
       `&` +
       `parcelle[surface]=${infos.surface}` +

@@ -1,5 +1,6 @@
 import mapboxgl from "mapbox-gl"
 import "turf"
+import { Parcelle } from "../geojsons/parcelle"
 
 // manage popups for parcelle not registered
 class PopupsManager {
