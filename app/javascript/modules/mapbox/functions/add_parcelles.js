@@ -6,9 +6,10 @@ mapboxgl.Map.prototype.parcelles = []
 mapboxgl.Map.prototype.addParcelles = function(parcelles) {
   // ensure no doubles
   this.parcelles = []
-
+  parcelles ||= [] 
+  
   parcelles.forEach(parcelle => {
-
+    
     var parcelle = new Parcelle({
       type: 'Feature',
       id: parcelle.properties.id,
@@ -22,7 +23,9 @@ mapboxgl.Map.prototype.addParcelles = function(parcelles) {
         numero: parcelle.properties.reference_cadastrale.slice(2, 6),
         contenance: parcelle.properties.surface * 10000,
         code_insee: parcelle.properties.code_insee,
-        tag_color: parcelle.properties.tag_color
+        tag_color: parcelle.properties.tag_color,
+        city: parcelle.properties.city,
+        lieu_dit: parcelle.properties.lieu_dit
       },
       geometry_name: 'geom',
       bbox: turf.bbox(parcelle)

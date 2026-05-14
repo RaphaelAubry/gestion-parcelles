@@ -1,6 +1,8 @@
 import mapboxgl from "mapbox-gl"
 
 mapboxgl.Map.prototype.addPolygons = function(parcelles, options = {}) {
+  parcelles ||= []
+  
   this.on('load', () => {
     parcelles.forEach((parcelle, index) => {
       let color = parcelle.properties.tag_color == null ? '#0080ff' : parcelle.properties.tag_color
