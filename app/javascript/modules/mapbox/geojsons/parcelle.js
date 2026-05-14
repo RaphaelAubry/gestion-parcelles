@@ -6,7 +6,8 @@ class Parcelle extends GeoJSON {
     super(feature)
     this.tag_color = null
     this.map = null
-    this.city = null
+    this.city = feature.city
+    this.lieu_dit = feature.lieu_dit
     this.polygon = turf.polygon(this.geometry.coordinates[0])
     this.centroid = turf.centroid(this.polygon)
     this.popup = null
@@ -36,6 +37,15 @@ class Parcelle extends GeoJSON {
 
   getNumero() {
     return this.properties.section + this.properties.numero
+  }
+
+  getLieuDit() {
+    
+    return this.properties.lieu_dit ||= ""
+  }
+
+  getCity() {
+    return this.properties.city ||= ""
   }
 
   toJson() {

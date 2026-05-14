@@ -120,11 +120,15 @@ export default class extends Controller {
   }
 
   #find(value) {
+    console.log('find')
     const control = this.map.searchControl
 
     control.reset()
+    console.log(this.#parcelles())
     this.#parcelles()
-      .filter(parcelle => parcelle.getNumero().match(value))
+      .filter(parcelle => [parcelle.getNumero(), parcelle.getLieuDit(), parcelle.getCity()]
+                          .some(v => String(v ?? "").includes(value))
+      )
       .forEach(parcelle => this.#feed(parcelle))
 
     control._suggestions.style.display = 'block'
@@ -142,7 +146,7 @@ export default class extends Controller {
     li.id = item.id
     div1.className = 'mapboxgl-ctrl-geocoder--suggestion'
     div2.className = 'mapboxgl-ctrl-geocoder--suggestion--title'
-    div2.innerText = item.properties.section + item.properties.numero
+    div2.innerText = [item.properties.section + item.properties.numero, item.properties.city, item.properties.lieu_dit].filter(v => !["", undefined, null].includes(v)).join(' - ')
     div1.append(div2)
     a.append(div1)
     li.append(a)

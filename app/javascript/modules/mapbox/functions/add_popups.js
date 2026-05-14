@@ -5,8 +5,7 @@ mapboxgl.Map.prototype.addPopupsManager = function() {
   this.popupsManager = new PopupsManager
 }
 
-mapboxgl.Map.prototype.addPopups = function () {
-
+mapboxgl.Map.prototype.addPopups = function() {
 
   this.parcelles.forEach((parcelle, index) => {
    

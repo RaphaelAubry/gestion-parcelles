@@ -39,9 +39,10 @@ export default class extends Controller {
     if (this.mapTarget.dataset.parcelles) {
       const geometryType = this.mapTarget.dataset.geometryType
       const parcelles = JSON.parse(this.mapTarget.dataset.parcelles)
+      
       this.map.addPolygons(parcelles, { geometryType: geometryType })
       this.map.addParcelles(parcelles)
-      this.map.addPopups(parcelles)
+      this.map.addPopups()
     }
     
     this.map.addInputs('top-left', mapboxgl.accessToken)
@@ -77,11 +78,16 @@ export default class extends Controller {
 
   #center() {
     try {
-      if (this.mapTarget.dataset.parcelles) {
-        return JSON.parse(this.mapTarget.dataset.centroid)
+      const centroid = JSON.parse(this.mapTarget.dataset.centroid)
+      const currentCityCentroid = JSON.parse(localStorage.currentCityCentroid) 
+      
+      console.log(`centroid: ${centroid}, currentCityCentroid: ${currentCityCentroid}`)
+
+      if (centroid != null) {
+        return centroid
+      } else if (currentCityCentroid != null) {
+        return currentCityCentroid
       } else {
-        // On démarre à Paris ou currentCity
-        if (localStorage.currentCityCentroid) { return JSON.parse(localStorage.currentCityCentroid) }
         return [2.333333, 48.866667]
       }
     } catch (error) {
