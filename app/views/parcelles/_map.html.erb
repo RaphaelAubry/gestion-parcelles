@@ -1,7 +1,7 @@
 <div id='map'
   data-mapbox-target='map'
   data-geometry-type="<%= geometry_type %>"
-  data-parcelles="<%= raw(parcelles.to_json) %>"
+  data-parcelles="<%= json_escape(parcelles.to_json) %>"
   data-centroid="<%= centroid %>"
   data-view-type="<%= action_name %>"
 >
