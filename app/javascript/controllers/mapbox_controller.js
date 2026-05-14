@@ -38,10 +38,11 @@ export default class extends Controller {
 
     if (this.mapTarget.dataset.parcelles) {
       const geometryType = this.mapTarget.dataset.geometryType
-      const parcelles = JSON.parse(this.mapTarget.dataset.parcelles)
-
       console.log(this.mapTarget.dataset.parcelles)
       console.log(typeof this.mapTarget.dataset.parcelles)
+      const parcelles = JSON.parse(this.mapTarget.dataset.parcelles)
+
+      
       
       this.map.addPolygons(parcelles, { geometryType: geometryType })
       this.map.addParcelles(parcelles)
