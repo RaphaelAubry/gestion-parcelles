@@ -78,8 +78,13 @@ export default class extends Controller {
 
   #center() {
     try {
-      const centroid = JSON.parse(this.mapTarget.dataset.centroid)
-      const currentCityCentroid = JSON.parse(localStorage.currentCityCentroid) 
+      const centroid = this.mapTarget.dataset.centroid
+        ? JSON.parse(this.mapTarget.dataset.centroid)
+        : null
+
+      const currentCityCentroid = localStorage.currentCityCentroid
+        ? JSON.parse(localStorage.currentCityCentroid)
+        : null
       
       console.log(`centroid: ${centroid}, currentCityCentroid: ${currentCityCentroid}`)
 
