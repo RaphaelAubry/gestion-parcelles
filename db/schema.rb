@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_05_11_145510) do
+ActiveRecord::Schema[7.0].define(version: 2026_05_19_120029) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -60,6 +60,21 @@ ActiveRecord::Schema[7.0].define(version: 2026_05_11_145510) do
     t.datetime "updated_at", null: false
     t.index ["parcelle_id"], name: "index_comments_on_parcelle_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "contracts", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.string "name"
+    t.string "holder"
+    t.string "type"
+    t.decimal "unit_price", precision: 10, scale: 2
+    t.string "unit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["type"], name: "index_contracts_on_type"
+    t.index ["user_id"], name: "index_contracts_on_user_id"
   end
 
   create_table "invitations", force: :cascade do |t|
@@ -152,5 +167,6 @@ ActiveRecord::Schema[7.0].define(version: 2026_05_11_145510) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "parcelles"
   add_foreign_key "comments", "users"
+  add_foreign_key "contracts", "users"
   add_foreign_key "parcelles", "tags"
 end

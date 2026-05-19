@@ -5,7 +5,7 @@
   <link-group>
     <%= link_to 'nouvelle parcelle', new_parcelle_path, data: { navbar_target: 'link' } %>
     <%= link_to 'marqueurs', tags_path, data: { navbar_target: 'link' } %>
-    <%= link_to 'exporter le tableau vers excel', parcelles_path(format: :xlsx), data: { navbar_target: 'link' } %>
+    <%= link_to 'exporter le tableau complet vers excel', parcelles_path(format: :xlsx), data: { navbar_target: 'link' } %>
   </link-group>
 
   <% if @parcelles.present? %>

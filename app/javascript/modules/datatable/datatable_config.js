@@ -38,6 +38,16 @@ const config = {
     { name: 'email', data: '3' },
     { name: 'created_at', data: '4' },
     { name: 'actions', data: '5' },
+  ],
+  contracts: [
+    { name: 'name', data: '0', footer: '<p data-total="total"></p>' },
+    { name: 'start_date', data: '1'},
+    { name: 'end_date', data: '2' },
+    { name: 'holder', data: '3' },
+    { name: 'type', data: '4' },
+    { name: 'unit_price', data: '5' },
+    { name: 'unit', data: '6' },
+    { name: 'actions', data: '7' },
   ]
 }
 

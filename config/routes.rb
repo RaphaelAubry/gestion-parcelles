@@ -28,4 +28,7 @@ Rails.application.routes.draw do
   post '/offers/table', to: 'offers#table'
 
   get '/mapbox_token', to: 'maps#token', as: :mapbox_token
+
+  resources :contracts
+  post '/contracts/table', to: 'contracts#table'
 end

@@ -9,6 +9,7 @@ export default class extends Controller {
 
   connect() {
     // gestion du connect
+    console.log('connect')
     if (this.element.dataset.dtInitialized) return
     this.element.dataset.dtInitialized = "true"
 
@@ -37,6 +38,7 @@ export default class extends Controller {
     }
 
     const columns = config[name]
+    console.log(columns)
     const url = `/${name}/table`
 
     this.table = new DataTable(this.element, {
