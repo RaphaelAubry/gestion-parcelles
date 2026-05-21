@@ -38,7 +38,6 @@ export default class extends Controller {
     }
 
     const columns = config[name]
-    console.log(columns)
     const url = `/${name}/table`
 
     this.table = new DataTable(this.element, {

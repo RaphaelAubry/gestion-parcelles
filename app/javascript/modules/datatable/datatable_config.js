@@ -45,7 +45,7 @@ const config = {
     { name: 'end_date', data: '2' },
     { name: 'holder', data: '3' },
     { name: 'type', data: '4' },
-    { name: 'unit_price', data: '5' },
+    { name: 'quantity', data: '5' },
     { name: 'unit', data: '6' },
     { name: 'actions', data: '7' },
   ]

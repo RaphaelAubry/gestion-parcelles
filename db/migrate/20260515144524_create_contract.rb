@@ -6,7 +6,7 @@ class CreateContract < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :holder
       t.string :type
-      t.decimal :unit_price, precision: 10, scale: 2
+      t.decimal :quantity, precision: 10, scale: 2
       t.string :unit
 
       t.timestamps

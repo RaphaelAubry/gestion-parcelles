@@ -16,7 +16,7 @@ const headers = {
   phone: "Téléphone",
   email: "Email",
   unit: "Unité",
-  unit_price: "Prix unitaire",
+  quantity: "Quantité",
   price: "Prix",
   updated_at: "Mise à jour le",
   surname: "Prénom",

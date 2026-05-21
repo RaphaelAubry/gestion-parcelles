@@ -63,6 +63,18 @@ fr:
             tag:
               required: "requis"
         tag: "marqueur"
+        contract: 
+          attributes:
+            name:
+              blank: "Le nom doit être renseigné"
+        fermage_contract:
+          attributes:  
+            name: 
+              blank: "Le nom doit être renseigné"
+        metayage_contract:
+          attributes:
+            name: 
+              blank: "Le nom doit être renseigné"
   end_date: "Date de fin"
   holder: "Titulaire"
   reference_cadastrale: "Référence cadastrale"
@@ -82,7 +94,7 @@ fr:
   price: "Prix"
   start_date: "Date de début"
   unit: "Unité"
-  unit_price: "Prix unitaire"
+  quantity: "Quantité"
   supplier: "Fournisseur"
   created_at: "Créé le"
   date:
@@ -101,3 +113,7 @@ fr:
       short: "%Y-%m-%d"
   metayage: "métayage"
   fermage: "fermage"
+  contracts:
+    types:
+      MetayageContract: "Métayage"
+      FermageContract: "Fermage"

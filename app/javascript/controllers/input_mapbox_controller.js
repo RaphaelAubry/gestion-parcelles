@@ -120,11 +120,9 @@ export default class extends Controller {
   }
 
   #find(value) {
-    console.log('find')
     const control = this.map.searchControl
 
     control.reset()
-    console.log(this.#parcelles())
     this.#parcelles()
       .filter(parcelle => [parcelle.getNumero(), parcelle.getLieuDit(), parcelle.getCity()]
                           .some(v => String(v ?? "").includes(value))

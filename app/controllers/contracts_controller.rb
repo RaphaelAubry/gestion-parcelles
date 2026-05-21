@@ -24,9 +24,15 @@ class ContractsController < ApplicationController
                      .or(@contracts.where("contracts.start_date::TEXT LIKE ?", "%#{params[:search][:value]}%"))
                      .or(@contracts.where("contracts.end_date::TEXT LIKE ?", "%#{params[:search][:value]}%"))
                      .or(@contracts.where("contracts.holder LIKE ?", "%#{params[:search][:value]}%"))
-                     .or(@contracts.where("contracts.type LIKE ?", "%#{params[:search][:value]}%"))
+                     .or(@contracts.where(<<~SQL, "%#{params[:search][:value]}%")
+                                            CASE contracts.type
+                                              WHEN 'MetayageContract' THEN 'Métayage'
+                                              WHEN 'FermageContract' THEN 'Fermage'
+                                            END ILIKE ?
+                                          SQL
+                        )
                      .or(@contracts.where("contracts.unit LIKE ?", "%#{params[:search][:value]}%"))
-                     .or(@contracts.where("contracts.unit_price::TEXT LIKE ?", "%#{params[:search][:value]}%"))
+                     .or(@contracts.where("contracts.quantity::TEXT LIKE ?", "%#{params[:search][:value]}%"))
                      .order(order)
                      .tap { |x| @filtered_count = x.count }
                      .limit(params[:length])
@@ -41,11 +47,11 @@ class ContractsController < ApplicationController
           total: @total, 
           data: @contracts.map do |c|
                   [ c.name,
-                    c.start_date,
-                    c.end_date,
+                    c.display_start_date,
+                    c.display_end_date,
                     c.holder,
-                    c.type,
-                    c.unit_price,
+                    c.display_type,
+                    c.display_quantity,
                     c.unit,
                     "<a href='/contracts/#{c.id}/edit'>modifier</a>
                      <a href='/contracts/#{c.id}' data-turbo-method='delete'>supprimer</a>
@@ -107,7 +113,7 @@ class ContractsController < ApplicationController
       :start_date,
       :end_date,
       :holder,
-      :unit_price, 
+      :quantity, 
       :unit,
       :type
     )

@@ -68,7 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2026_05_19_120029) do
     t.string "name"
     t.string "holder"
     t.string "type"
-    t.decimal "unit_price", precision: 10, scale: 2
+    t.decimal "quantity", precision: 10, scale: 2
     t.string "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
