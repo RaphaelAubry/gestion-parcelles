@@ -9,6 +9,7 @@ export default class extends Controller {
 
   connect() {
     // gestion du connect
+    console.log('connect')
     if (this.element.dataset.dtInitialized) return
     this.element.dataset.dtInitialized = "true"
 

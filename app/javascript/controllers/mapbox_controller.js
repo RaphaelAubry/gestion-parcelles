@@ -38,12 +38,8 @@ export default class extends Controller {
 
     if (this.mapTarget.dataset.parcelles) {
       const geometryType = this.mapTarget.dataset.geometryType
-      console.log(this.mapTarget.dataset.parcelles)
-      console.log(typeof this.mapTarget.dataset.parcelles)
       const parcelles = JSON.parse(this.mapTarget.dataset.parcelles)
 
-      
-      
       this.map.addPolygons(parcelles, { geometryType: geometryType })
       this.map.addParcelles(parcelles)
       this.map.addPopups()
@@ -90,8 +86,6 @@ export default class extends Controller {
         ? JSON.parse(localStorage.currentCityCentroid)
         : null
       
-      console.log(`centroid: ${centroid}, currentCityCentroid: ${currentCityCentroid}`)
-
       if (centroid != null) {
         return centroid
       } else if (currentCityCentroid != null) {

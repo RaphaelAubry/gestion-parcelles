@@ -16,10 +16,15 @@ const headers = {
   phone: "Téléphone",
   email: "Email",
   unit: "Unité",
+  quantity: "Quantité",
   price: "Prix",
   updated_at: "Mise à jour le",
   surname: "Prénom",
-  created_at: "Créé le"
+  created_at: "Créé le",
+  end_date: "Date de fin",
+  start_date: "Date de début",
+  holder: "Titulaire",
+  type: "Type"
 }
 
 export { headers }

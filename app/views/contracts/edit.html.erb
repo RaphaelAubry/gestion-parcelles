@@ -1,0 +1,4 @@
+<wrapper-form>
+  <h3>Modifier contrat <%= I18n.t("contracts.types.#{@contract.class.name}") %></h3>
+  <%= render 'form', contract: @contract %>
+</wrapper-form>

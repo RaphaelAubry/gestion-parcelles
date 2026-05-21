@@ -1,0 +1,10 @@
+<container-tableau>
+  <h3>Contrats</h3>
+  <%= render partial: 'table', locals: { columns: Contract::INSTANCE_VARIABLES } %>
+
+  <link-group>
+    <%= link_to 'nouveau contrat métayage', new_contract_path(type: "MetayageContract"), data: { navbar_target: 'link' } %>
+    <%= link_to 'nouveau contrat fermage', new_contract_path(type: "FermageContract"), data: { navbar_target: 'link' } %>
+  </link-group>
+</container-tableau>
+
