@@ -30,7 +30,6 @@ export default class extends Controller {
   }
 
   #createTable() {
-    console.log(this.nameValue)
     const name = this.nameValue
 
     if (!name || !config[name]) {
@@ -40,8 +39,7 @@ export default class extends Controller {
 
     const columns = config[name]
     const url = `/${name}/table`
-    console.log(url)
-
+  
     this.table = new DataTable(this.element, {
       serverSide: true,
       processing: true,
