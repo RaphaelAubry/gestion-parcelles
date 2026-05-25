@@ -31,4 +31,13 @@ Rails.application.routes.draw do
 
   resources :contracts
   post '/contracts/table', to: 'contracts#table'
+
+  namespace :admin do 
+    resources :grape_prices do
+      collection do
+        post :import
+        post :table
+      end
+    end
+  end
 end

@@ -21,6 +21,14 @@
             <% end %>
           </ul>
         </li-dropdown>
+        <% if allowed_to?(:index?, GrapePrice) %>
+          <li-dropdown>administration
+            <ul>
+              <%= link_to 'prix des raisins', admin_grape_prices_path,  data: { navbar_target: 'link' } %>
+            </ul>
+          </li-dropdown>
+        <% end %>
+        </ul>
       <% end %>
     </ul>
   </navbar-menu>

@@ -48,6 +48,15 @@ const config = {
     { name: 'quantity', data: '5' },
     { name: 'unit', data: '6' },
     { name: 'actions', data: '7' },
+  ],
+  "admin/grape_prices": [
+    { name: 'source', data: '0', footer: '<p data-total="total"></p>' },
+    { name: 'year', data: '1'},
+    { name: 'area', data: '2' },
+    { name: 'unit', data: '3' },
+    { name: 'town', data: '4' },
+    { name: 'grape_type', data: '5' },
+    { name: 'price', data: '6' },
   ]
 }
 
