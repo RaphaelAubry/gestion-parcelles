@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_05_19_120029) do
+ActiveRecord::Schema[7.0].define(version: 2026_05_25_073051) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -75,6 +75,18 @@ ActiveRecord::Schema[7.0].define(version: 2026_05_19_120029) do
     t.bigint "user_id", null: false
     t.index ["type"], name: "index_contracts_on_type"
     t.index ["user_id"], name: "index_contracts_on_user_id"
+  end
+
+  create_table "grape_prices", force: :cascade do |t|
+    t.string "source"
+    t.integer "year"
+    t.string "area"
+    t.string "unit"
+    t.string "town"
+    t.string "grape_type"
+    t.decimal "price", precision: 10, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "invitations", force: :cascade do |t|
@@ -159,8 +171,10 @@ ActiveRecord::Schema[7.0].define(version: 2026_05_19_120029) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "table_preferences"
+    t.integer "role", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["role"], name: "index_users_on_role"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

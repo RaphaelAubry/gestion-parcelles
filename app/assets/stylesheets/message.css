@@ -18,7 +18,6 @@ message-wrapper {
   align-items: center;
   margin: 10px 0;
   max-width: 250px;
-  color: var(--green-strong);
   message-content {
     margin: 0;
     flex-grow: 1;
@@ -29,5 +28,14 @@ message-wrapper {
   padding: var(--padding-medium);
   border-radius: var(--border-radius);
   border: 1px solid var(--green-strong);
+  color: var(--green-strong);
   background-color: rgb(182, 232, 182)
+}
+
+.alert {
+  padding: var(--padding-medium);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--red-blood);
+  color: var(--red-blood);
+  background-color: rgb(255, 161, 161)
 }

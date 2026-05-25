@@ -24,7 +24,10 @@ const headers = {
   end_date: "Date de fin",
   start_date: "Date de début",
   holder: "Titulaire",
-  type: "Type"
+  type: "Type",
+  grape_type: "Type",
+  area: "Département",
+  year: "Année"
 }
 
 export { headers }

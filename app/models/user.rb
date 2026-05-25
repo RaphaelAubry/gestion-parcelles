@@ -25,6 +25,11 @@ class User < ApplicationRecord
 
   store :table_preferences, accessors: Parcelle::INSTANCE_VARIABLES, prefix: :parcelles
 
+  enum :role, {
+    user: 0,
+    admin: 20
+  }
+
   def owns_parcelle?(parcelle)
     parcelles.include?(parcelle)
   end

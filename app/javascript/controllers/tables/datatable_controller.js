@@ -39,7 +39,7 @@ export default class extends Controller {
 
     const columns = config[name]
     const url = `/${name}/table`
-
+  
     this.table = new DataTable(this.element, {
       serverSide: true,
       processing: true,

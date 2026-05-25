@@ -1,0 +1,20 @@
+<%= form_for file_import, url: import_admin_grape_prices_path, local: true, html: { multipart: true } do |form| %>
+<%= render "shared/error_messages", resource: file_import %>
+
+<input-file-group>
+  <p>Le fichier doit contenir les en-têtes de colonne suivantes :</p>
+  <p><%= GrapePrice::HEADERS.join(" | ") %></p>
+  <p>Le séparateur doit être ; (point-virgule)</p>
+</input-file-group>
+
+<input-file-group>
+    <%= form.label :file, "Importer un CSV" %>
+    <%= form.file_field :file, accept: ".csv" %>
+  </input-file-group>
+
+  <submit-group>
+    <%= form.submit "Importer", class: 'button' %>
+    <%= link_to "Annuler", admin_grape_prices_path %>
+  </submit-group>
+  
+<% end %>

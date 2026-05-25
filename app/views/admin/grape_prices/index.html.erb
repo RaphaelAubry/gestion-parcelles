@@ -1,0 +1,8 @@
+<container-tableau>
+  <h3>Prix du raisin</h3>
+  <%= render partial: 'table', locals: { columns: GrapePrice::HEADERS } %>
+  
+  <link-group>
+    <%= link_to "Import grille de tarifs du raisin", new_admin_grape_price_path %>
+  </link-group>
+</container-tableau>
