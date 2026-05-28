@@ -7,20 +7,31 @@
   </navbar-icon>
   <navbar-menu data-navbar-target='menu' data-window-target='menu'>
     <ul>
-      <li><%= link_to :home, root_path, data: { navbar_target: 'link'} %></li>
+      <li>
+        <%= link_to :home, root_path, data: { navbar_target: 'link'} %>
+      </li>
       <% if user_signed_in? %>
-        <li><%= link_to :carte, carte_path, data: { navbar_target: 'link'} %></li>
+        <li-dropdown>cartes
+          <ul>
+            <%= link_to "mes parcelles", carte_path(user: current_user.id), data: { navbar_target: 'link'} %>
+            <% current_user.owners.each do |owner| %>
+              <%= link_to owner.email, carte_path(user: owner.id), data: { navbar_target: 'link' } %>
+            <% end %>
+          </ul>
+        </li-dropdown>
+
         <li-dropdown>tableaux
           <ul>
-            <%= link_to 'mes parcelles', parcelles_path, data: { navbar_target: 'link' } %>
+            <%= link_to 'mes parcelles', parcelles_path(user: current_user), data: { navbar_target: 'link' } %>
             <%= link_to :fournisseurs, suppliers_path, data: { navbar_target: 'link' } %>
             <%= link_to :prestations, offers_path, data: { navbar_target: 'link' } %>
             <%= link_to :contrats, contracts_path, data: { navbar_target: 'link' } %>
             <% current_user.owners.each do |owner| %>
-              <%= link_to owner.email, parcelles_path, data: { navbar_target: 'link' } %>
+              <%= link_to owner.email, parcelles_path(user: owner), data: { navbar_target: 'link' } %>
             <% end %>
           </ul>
         </li-dropdown>
+
         <% if allowed_to?(:index?, GrapePrice) %>
           <li-dropdown>administration
             <ul>
@@ -28,8 +39,12 @@
             </ul>
           </li-dropdown>
         <% end %>
-        </ul>
+
+        <li>
+          <%= link_to :revenus, "", data: { navbar_target: 'link'} %>
+        </li>
       <% end %>
+      
     </ul>
   </navbar-menu>
 

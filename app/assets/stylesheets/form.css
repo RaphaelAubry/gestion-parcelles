@@ -28,6 +28,7 @@ input-group {
     width: 100%;
     grid-template-rows: 25px;
     font-size: var(--font-small);
+    margin-top: var(--margin-high);
 }
 
 input-group input {
@@ -187,6 +188,11 @@ list-1 {
   border-radius: var(--border-radius);
   width: 215px;
   max-height: 150px;
+}
+
+wrapper-list-item {
+  display: block;
+  margin: 15px 0 15px 0;
 }
 
 list-item {

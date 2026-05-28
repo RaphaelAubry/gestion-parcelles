@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_05_25_073051) do
+ActiveRecord::Schema[7.0].define(version: 2026_05_26_105610) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -119,6 +119,8 @@ ActiveRecord::Schema[7.0].define(version: 2026_05_25_073051) do
     t.geography "polygon", limit: {:srid=>4326, :type=>"st_polygon", :geographic=>true}
     t.bigint "tag_id"
     t.string "town"
+    t.bigint "contract_id"
+    t.index ["contract_id"], name: "index_parcelles_on_contract_id"
     t.index ["tag_id"], name: "index_parcelles_on_tag_id"
   end
 
@@ -182,5 +184,6 @@ ActiveRecord::Schema[7.0].define(version: 2026_05_25_073051) do
   add_foreign_key "comments", "parcelles"
   add_foreign_key "comments", "users"
   add_foreign_key "contracts", "users"
+  add_foreign_key "parcelles", "contracts"
   add_foreign_key "parcelles", "tags"
 end

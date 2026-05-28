@@ -22,6 +22,8 @@ class Parcelle < ApplicationRecord
   has_many :users, through: :user_parcelles
   belongs_to :tag, optional: true
   has_many :comments, dependent: :destroy
+  belongs_to :contract, optional: true
+
   attribute :polygon, :st_polygon, srid: 4326, geographic: true
   before_update :default!
   before_create :default!

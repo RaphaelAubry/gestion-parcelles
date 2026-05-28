@@ -97,6 +97,39 @@
       %>
     </input-group>
   <% end %> 
+  
+  <% if action_name == "edit" %>
+    <input-group>
+      <%= form.label "parcelles associées à ce contrat", class: "move" %>
+    </input-group>
+    <wrapper-list-item>
+      <% if @contract.parcelles.empty? %>
+        <p>Aucune parcelle associée à ce contrat</p>
+      <% end %>
+
+      <% @contract.parcelles.each do |p| %>
+        <list-item>
+          <p><%= [p.reference_cadastrale, p.town, "#{p.surface} ha"].compact.join(' - ') %></p>
+          <p><%= link_to "retirer", 
+                          destroy_contract_associated_parcelle_path(@contract.id, p.id), 
+                          data: { turbo_method: :delete } %>
+          </p>
+        </list-item>  
+      <% end %>
+    </wrapper-list-item>
+  <% end %>
+
+  <% if parcelles_availables.empty? %>
+    <input-group>
+      <%= form.label "parcelles sans contrat", class: "move" %>
+    </input-group>
+    <p>Aucune parcelle disponible à rattacher à ce contrat</p>
+  <% else %>
+    <input-group>
+      <%= form.label "parcelles sans contrat", class: "move" %>
+      <%= form.select :parcelle_ids, parcelles_availables, {}, { multiple: true, size: 10 } %>
+    </input-group>
+  <% end %>
 
   <submit-group>
     <%= form.submit 'valider', class: 'button' %>

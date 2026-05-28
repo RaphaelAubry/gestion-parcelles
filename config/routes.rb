@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   resources :contracts
   post '/contracts/table', to: 'contracts#table'
+  delete '/contracts/:id/parcelle/:parcelle_id', to: 'contracts#destroy_associated_parcelle', as: :destroy_contract_associated_parcelle
 
   namespace :admin do 
     resources :grape_prices do
