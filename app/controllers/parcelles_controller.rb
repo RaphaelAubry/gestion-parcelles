@@ -5,7 +5,7 @@ class ParcellesController < ApplicationController
  
   def index
     @target_user = User.find(params[:user])
-    @parcelles = authorized_scope(Parcelle, type: :relation, as: :access, scope_options: { target_user: @target_user, current_user: current_user })
+    @parcelles = authorized_scope(Parcelle.left_outer_joins(:tag), type: :relation, as: :access, scope_options: { target_user: @target_user, current_user: current_user })
     
     authorize! @parcelles, context: { target_user: @target_user }
    

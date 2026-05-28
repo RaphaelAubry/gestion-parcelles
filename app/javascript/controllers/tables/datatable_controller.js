@@ -5,7 +5,7 @@ import { config, headers } from "modules/datatable"
 import "modules/datatable/functions"
 
 export default class extends Controller {
-  static values = { name: String, userId: String, columnAction: Boolean }
+  static values = { name: String, userId: String }
 
   connect() {
     // gestion du connect

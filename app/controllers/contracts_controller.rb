@@ -72,7 +72,7 @@ class ContractsController < ApplicationController
     @contract = contract_class.new
     authorize! @contract, with: ContractPolicy 
 
-    @parcelles_availables = parcelle_availables
+    @parcelles_availables = scope_parcelle_availables
   end
 
   def create
@@ -88,13 +88,13 @@ class ContractsController < ApplicationController
 
       redirect_to contracts_path, notice: "Contrat créé."
     else
-      @parcelles_availables = parcelle_availables
+      @parcelles_availables = scope_parcelle_availables
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    @parcelles_availables = parcelle_availables
+    @parcelles_availables = scope_parcelle_availables
   end
 
   def update
@@ -107,7 +107,7 @@ class ContractsController < ApplicationController
 
       redirect_to contracts_path, notice: "Contrat mis à jour."
     else
-      @parcelles_availables = parcelle_availables
+      @parcelles_availables = scope_parcelle_availables
       render :edit, status: :unprocessable_entity
     end
   end
@@ -122,7 +122,7 @@ class ContractsController < ApplicationController
     parcelle = Parcelle.find(params[:parcelle_id])
     parcelle.update(contract_id: nil) 
 
-    @parcelles_availables = parcelle_availables
+    @parcelles_availables = scope_parcelle_availables
 
     redirect_to edit_contract_path(@contract), notice: "Parcelle #{parcelle.reference_cadastrale} retirée."
   end
@@ -152,10 +152,10 @@ class ContractsController < ApplicationController
     )
   end
 
-  def parcelle_availables
+  def scope_parcelle_availables
     authorized_scope(Parcelle, type: :relation, as: :available_for_contract, scope_options: { user: current_user })
                                 .pluck(:reference_cadastrale, :town, :id)
-                                .map { |p| [ [p[0],p[1]].compact.join(' - '), p[2] ] }
+                                .map { |p| [ [p[0], p[1]].compact.join(' - '), p[2] ] }
                                 .sort
   end
 end
