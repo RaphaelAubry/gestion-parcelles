@@ -5,7 +5,7 @@ import { config, headers } from "modules/datatable"
 import "modules/datatable/functions"
 
 export default class extends Controller {
-  static values = { name: String }
+  static values = { name: String, userId: String, columnAction: Boolean }
 
   connect() {
     // gestion du connect
@@ -20,7 +20,7 @@ export default class extends Controller {
 
     // gestion des headers pour la table responsive
     this.table.setColumnNames(headers)
-
+   
     const setColumnNamesListener = () => { this.table.setColumnNames(headers) }
     window.addEventListener('resize',  setColumnNamesListener)
   }
@@ -38,8 +38,8 @@ export default class extends Controller {
     }
 
     const columns = config[name]
-    const url = `/${name}/table`
-  
+    const url = this.#buildUrl(name, { user: this.userIdValue })
+    
     this.table = new DataTable(this.element, {
       serverSide: true,
       processing: true,
@@ -109,5 +109,15 @@ export default class extends Controller {
         this.table.column(`${column_name}:name`).visible(value)
       })
     }
+  }
+
+  #buildUrl(name, params = {}) {
+    const url = `/${name}/table`;
+
+    const query = new URLSearchParams(
+      Object.entries(params).filter(([_, v]) => v != null && v !== "")
+    ).toString();
+
+    return query ? `${url}?${query}` : url;
   }
 }

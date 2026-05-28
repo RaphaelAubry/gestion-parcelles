@@ -7,6 +7,10 @@ class ContractPolicy < ApplicationPolicy
     new?
   end
 
+  def index?
+    true
+  end
+
   def table?
     index?
   end
@@ -24,7 +28,11 @@ class ContractPolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.user_id == user.id
+    edit?
+  end
+
+  def destroy_associated_parcelle?
+    edit?
   end
 
   relation_scope do |scope|

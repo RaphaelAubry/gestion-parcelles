@@ -1,4 +1,8 @@
-<table data-controller="datatable" data-datatable-name-value="parcelles">
+<table data-controller="datatable" 
+       data-datatable-name-value="parcelles" 
+       data-datatable-user-id-value="<%= user_id %>"
+       data_datatable-column-action-value="<%=  %>"
+>
   <thead>
     <tr>
       <% columns.each do |column| %>

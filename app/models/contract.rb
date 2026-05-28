@@ -1,9 +1,10 @@
 class Contract < ApplicationRecord
   INSTANCE_VARIABLES = %i[name start_date end_date holder type quantity unit]
 
-  validates :name, presence: true
-
   belongs_to :user
+  has_many :parcelles, dependent: :nullify
+
+  validates :name, presence: true
 
   def contract_kind
     self.class.name

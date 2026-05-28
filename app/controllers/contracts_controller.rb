@@ -1,10 +1,11 @@
 # app/controllers/contracts_controller.rb
 class ContractsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_contract, only: %i[show edit update destroy]
+  before_action :set_contract, only: %i[show edit update destroy destroy_associated_parcelle]
 
   def index
     @contracts = authorized_scope(Contract.all)
+    authorize! @contracts
 
     respond_to do |format|
       format.html
@@ -18,6 +19,7 @@ class ContractsController < ApplicationController
     end
 
     @contracts = authorized_scope(Contract.all)
+    authorize! @contracts
 
     @contracts = @contracts.tap { |x| @total_count = x.count }
                      .where("contracts.name LIKE ?", "%#{params[:search][:value]}%")
@@ -68,25 +70,44 @@ class ContractsController < ApplicationController
 
   def new
     @contract = contract_class.new
+    authorize! @contract, with: ContractPolicy 
+
+    @parcelles_availables = parcelle_availables
   end
 
   def create
-    @contract = contract_class.new(contract_params.merge(user: current_user))
+    @contract = contract_class.new(contract_params.except(:parcelle_ids))
+    authorize! @contract, with: ContractPolicy
 
+    @contract.user = current_user
+    
     if @contract.save
+      parcelle_ids = contract_params[:parcelle_ids].reject(&:blank?)
+
+      Parcelle.where(id: parcelle_ids).update_all(contract_id: @contract.id)
+
       redirect_to contracts_path, notice: "Contrat créé."
     else
+      @parcelles_availables = parcelle_availables
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
+    @parcelles_availables = parcelle_availables
   end
 
   def update
-    if @contract.update(contract_params)
+    if @contract.update(contract_params.except(:parcelle_ids))
+      parcelle_ids = contract_params[:parcelle_ids].reject(&:blank?)
+     
+      parcelle_ids.each do |id|
+        Parcelle.find(id).update(contract_id: @contract.id)
+      end
+
       redirect_to contracts_path, notice: "Contrat mis à jour."
     else
+      @parcelles_availables = parcelle_availables
       render :edit, status: :unprocessable_entity
     end
   end
@@ -97,10 +118,21 @@ class ContractsController < ApplicationController
     redirect_to contracts_path, notice: "Contrat supprimé."
   end
 
+  def destroy_associated_parcelle
+    parcelle = Parcelle.find(params[:parcelle_id])
+    parcelle.update(contract_id: nil) 
+
+    @parcelles_availables = parcelle_availables
+
+    redirect_to edit_contract_path(@contract), notice: "Parcelle #{parcelle.reference_cadastrale} retirée."
+  end
+
   private
 
   def set_contract
     @contract = Contract.find(params[:id])
+
+    authorize! @contract, with: ContractPolicy
   end
 
   def contract_class
@@ -115,7 +147,15 @@ class ContractsController < ApplicationController
       :holder,
       :quantity, 
       :unit,
-      :type
+      :type,
+      parcelle_ids: []
     )
+  end
+
+  def parcelle_availables
+    authorized_scope(Parcelle, type: :relation, as: :available_for_contract, scope_options: { user: current_user })
+                                .pluck(:reference_cadastrale, :town, :id)
+                                .map { |p| [ [p[0],p[1]].compact.join(' - '), p[2] ] }
+                                .sort
   end
 end
