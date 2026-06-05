@@ -19,11 +19,11 @@ class OffersController < ApplicationController
     authorize! @offers = authorized_scope(Offer.left_outer_joins(:supplier), type: :relation, as: :access, scope_options: { user: current_user })
 
     @offers = @offers.tap { |x| @total_count = x.count }
-                     .where("offers.name LIKE ?", "%#{params[:search][:value]}%")
-                     .or(@offers.where("offers.unit LIKE ?", "%#{params[:search][:value]}%"))
-                     .or(@offers.where("offers.price::TEXT LIKE ?", "%#{params[:search][:value]}%"))
-                     .or(@offers.where("offers.created_at::TEXT LIKE ?", "%#{params[:search][:value]}%"))
-                     .or(@offers.where("supplier.name LIKE ?", "%#{params[:search][:value]}%"))
+                     .where("offers.name ILIKE ?", "%#{params[:search][:value]}%")
+                     .or(@offers.where("offers.unit ILIKE ?", "%#{params[:search][:value]}%"))
+                     .or(@offers.where("offers.price::TEXT ILIKE ?", "%#{params[:search][:value]}%"))
+                     .or(@offers.where("offers.created_at::TEXT ILIKE ?", "%#{params[:search][:value]}%"))
+                     .or(@offers.where("supplier.name ILIKE ?", "%#{params[:search][:value]}%"))
                      .order(order)
                      .tap { |x| @filtered_count = x.count }
                      .limit(params[:length])

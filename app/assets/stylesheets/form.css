@@ -4,7 +4,7 @@
     width:  300px;
   }
 
-  form#new_comment {
+  form#new_comment, form.invoice {
     width: 100%;
   }
 }
@@ -29,6 +29,11 @@ input-group {
     grid-template-rows: 25px;
     font-size: var(--font-small);
     margin-top: var(--margin-high);
+    max-width: 300px;
+}
+
+input-groups > input-group {
+  margin-top: 0;
 }
 
 input-group input {
@@ -209,4 +214,34 @@ list-item {
 
 list-item[data-value="default"] {
   background-color: var(--select-hover);
+}
+
+/* invoice */
+
+input-groups {
+  display: grid;
+  grid-template-columns: 90px 110px 90px 110px;
+  column-gap: 15px;
+}
+
+form.invoice p {
+  margin: 25px 0 0 0;
+}
+
+form a {
+  margin: 5px 0 5px 0;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline; 
+  }
+}
+
+input-groups input-group input[name*="surface"],
+input-groups input-group input[name*="price"],
+input-groups input-group input[name*="percentage"] {
+  width: 70px;
+}
+
+input-groups input-group input[name*="quantity"] {
+  width: 90px;
 }

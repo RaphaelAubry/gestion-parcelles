@@ -1,0 +1,67 @@
+<wrapper-form>
+  <%= form_with model: @invoice, class: 'invoice' do |form| %>
+    <%= render "shared/error_messages", resource: @invoice %>
+    <%= form.hidden_field :contract_id, value: @contract.id %>
+    <%= form.hidden_field :contract_name, value: @contract.name %>
+    <%= form.hidden_field :contract_type, value: @contract.display_type %>
+    <%= form.hidden_field :contract_quantity, value: @contract.quantity %>
+    <%= form.hidden_field :contract_percentage, value: @contract.percentage %>
+
+    <h3><%= ['Facturation', @contract.display_type.downcase].join(' ') %></h3>
+    <h5>En-tête</h5>
+    <input-group data-controller='input-group'>
+      <%= form.label "Bailleur", data: { input_group_target: 'label' } %>
+      <%= form.text_field :invoicer,
+        data: { input_group_target: 'input',
+                action: 'focus->input-group#focusLabel
+                        focusout->input-group#focusoutLabel
+                        change->input-group#focusLabel'
+              } %>
+    </input-group>
+    <input-group data-controller='input-group'>
+      <%= form.label "Fermier", data: { input_group_target: 'label' } %>
+      <%= form.text_field :invoicee,
+        data: { input_group_target: 'input',
+                action: 'focus->input-group#focusLabel
+                        focusout->input-group#focusoutLabel
+                        change->input-group#focusLabel'
+              } %>
+    </input-group>
+    <input-group>
+      <%= form.label "Date de la facture", class: 'move' %>
+      <%= form.date_field :invoice_date %>
+    </input-group>
+    <select-group>
+      <%= form.label "Année culturale", class: 'move' %>
+      <%= form.select :year, (Date.current.year - 5..Date.current.year + 2).to_a %>
+    </select-group>
+
+    <h5>Valorisation de la récolte</h5>
+    
+    <%= form.fields_for :invoice_lines do |line_form| %>
+      <p>
+        <% surface_unit = line_form.object.reference_cadastrale.nil? ? "" : "ha" %>
+        <%= "#{[line_form.object.reference_cadastrale, line_form.object.lieu_dit, line_form.object.surface, surface_unit].join(' ')}" %>
+      </p>
+
+      <%= line_form.hidden_field :reference_cadastrale %>
+      <%= line_form.hidden_field :lieu_dit %>
+      
+      <% if @contract.fermage? %>
+        <%= render partial: 'line_fermage', locals: { line_form: line_form } %>
+      <% end %>
+      <% if @contract.metayage? %>
+        <%= render partial: 'line_metayage', locals: { line_form: line_form } %>
+      <% end %>
+      <% if @contract.nil? %>
+        <%= render partial: 'line', locals: { line_form: line_form } %>
+      <% end %>
+    <% end %>
+
+    <submit-group>
+      <%= form.submit 'valider', class: 'button' %>
+      <%= link_to "Annuler", invoices_path %>
+      <%= link_to "Contrats", contracts_path %>
+    </submit-group>
+  <% end %>
+</wrapper-form>

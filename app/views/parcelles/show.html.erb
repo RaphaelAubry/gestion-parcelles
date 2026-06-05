@@ -1,8 +1,28 @@
 <container-tableau>
-  <h3>Parcelle : <%= @parcelle.reference_cadastrale %></h3>
-  <h3>Commune : <%= @parcelle.town %></h3>
-  <h3>Code postal: <%= @parcelle.code_officiel_geographique %></h3>
-  <h3>Surface : <%= @parcelle.surface %> hectares</h3>
+  <description-group>
+    <h4>Parcelle : </h4>
+    <p><%= @parcelle.reference_cadastrale %></p>
+  </description-group>
+  <description-group>
+    <h4>Commune : </h4> 
+    <p><%= @parcelle.town %></p>
+  </description-group>
+  <description-group>
+    <h4>Code postal : </h4> 
+    <p><%= @parcelle.code_officiel_geographique %></p>
+  </description-group>
+  <description-group>
+    <h4>Surface : </h4> 
+    <p><%= @parcelle.surface %> hectares</p>
+  </description-group>
+  <description-group>
+    <h4>Contrat : </h4> 
+    <p><%= display_contract(@parcelle) %></p>
+  </description-group>
+  <link-group>
+    <%= link_to "modifier", edit_parcelle_path(@parcelle) %>
+  </link-group>
+
   <div data-controller='mapbox'>
     <% if @centroid.present? %>
       <%= render partial: 'map',

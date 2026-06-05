@@ -22,6 +22,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one_attached :avatar, dependent: :destroy
   has_many :contracts, dependent: :destroy
+  has_many :invoices, dependent: :destroy
 
   store :table_preferences, accessors: Parcelle::INSTANCE_VARIABLES, prefix: :parcelles
 

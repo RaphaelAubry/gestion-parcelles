@@ -41,4 +41,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :invoices
+  post '/invoices/table', to: 'invoices#table'
 end

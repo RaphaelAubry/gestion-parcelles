@@ -40,9 +40,11 @@
           </li-dropdown>
         <% end %>
 
-        <li>
-          <%= link_to :revenus, "", data: { navbar_target: 'link'} %>
-        </li>
+        <li-dropdown>revenus
+            <ul>
+              <%= link_to 'Factures', invoices_path,  data: { navbar_target: 'link' } %>
+            </ul>
+          </li-dropdown>
       <% end %>
       
     </ul>

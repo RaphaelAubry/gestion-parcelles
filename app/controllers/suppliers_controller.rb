@@ -20,9 +20,9 @@ class SuppliersController < ApplicationController
     authorize! @suppliers = authorized_scope(Supplier, type: :relation, as: :access, scope_options: { user: current_user })
 
     @suppliers = @suppliers.tap { |x| @total_count = x.count }
-                           .where("name LIKE ?", "%#{params[:search][:value]}%")
-                           .or(@suppliers.where("phone::TEXT LIKE ?", "%#{params[:search][:value]}%"))
-                           .or(@suppliers.where("email LIKE ?", "%#{params[:search][:value]}%"))
+                           .where("name ILIKE ?", "%#{params[:search][:value]}%")
+                           .or(@suppliers.where("phone::TEXT ILIKE ?", "%#{params[:search][:value]}%"))
+                           .or(@suppliers.where("email ILIKE ?", "%#{params[:search][:value]}%"))
                            .order(order)
                            .tap { |x| @filtered_count = x.count }
                            .limit(params[:length])

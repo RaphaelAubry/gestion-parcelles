@@ -3,6 +3,7 @@ class Contract < ApplicationRecord
 
   belongs_to :user
   has_many :parcelles, dependent: :nullify
+  has_many :invoices, dependent: :nullify
 
   validates :name, presence: true
 
@@ -10,26 +11,38 @@ class Contract < ApplicationRecord
     self.class.name
   end
 
+  def fermage?
+    display_type == 'Fermage'
+  end
+
+  def metayage?
+    display_type == 'Métayage'
+  end
+
   def display_type
     I18n.t("contracts.types.#{type}")
   end
 
   def display_start_date
-    start_date&.strftime("%d/%m/%Y")
+    start_date&.strftime('%d/%m/%Y')
   end
 
   def display_end_date
-    end_date&.strftime("%d/%m/%Y")
+    end_date&.strftime('%d/%m/%Y')
   end
 
   def display_quantity
     case self.class.name
-      when "MetayageContract"
+      when 'MetayageContract'
         "#{quantity.round} %"
-      when "FermageContract"
+      when 'FermageContract'
         "#{quantity.round}"
       else
         quantity.round
     end
+  end
+
+  def percentage
+    percentage ||= percentage
   end
 end

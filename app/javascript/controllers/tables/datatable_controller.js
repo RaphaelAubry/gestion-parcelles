@@ -8,8 +8,7 @@ export default class extends Controller {
   static values = { name: String, userId: String }
 
   connect() {
-    // gestion du connect
-    console.log('connect')
+    console.log(`connect : ${this.element}`)
     if (this.element.dataset.dtInitialized) return
     this.element.dataset.dtInitialized = "true"
 
