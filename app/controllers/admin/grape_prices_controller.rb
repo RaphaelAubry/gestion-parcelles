@@ -32,14 +32,15 @@ class Admin::GrapePricesController < ApplicationController
           recordsTotal: @total_count,
           recordsFiltered: @filtered_count,
           total: @total, 
-          data: @grape_prices.map do |c|
-                  [ c.source,
-                    c.year,
-                    c.area,
-                    c.unit,
-                    c.town,
-                    c.grape_type,
-                    c.price
+          data: @grape_prices.map do |gp|
+                  [ gp.source,
+                    gp.year,
+                    gp.area,
+                    gp.unit,
+                    gp.town,
+                    gp.grape_type,
+                    gp.price,
+                    "<a href='/admin/grape_prices/#{gp.id}/edit'>modifier</a>"
                   ]
                 end
           }
@@ -95,5 +96,25 @@ class Admin::GrapePricesController < ApplicationController
       @file_import.errors.add(:content, "CSV invalide, vérifier le contenu du fichier")
       return render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @grape_price = GrapePrice.find(params[:id])
+  end
+
+  def update
+    @grape_price = GrapePrice.find(params[:id])
+
+    if @grape_price.update(grape_price_params)
+      redirect_to admin_grape_prices_path, notice: "Le prix a bien été modifié"
+    else 
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def grape_price_params
+    params.require(:grape_price).permit(:price)
   end
 end
