@@ -1,0 +1,8 @@
+description-group {
+  display: flex;
+  align-items: center;
+}
+
+description-group p {
+  margin-left: 5px;
+}

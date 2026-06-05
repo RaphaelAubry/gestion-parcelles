@@ -19,8 +19,8 @@ class TagsController < ApplicationController
     authorize! @tags = authorized_scope(Tag, type: :relation, as: :access, scope_options: { user: current_user })
 
     @tags = @tags.tap { |x| @total_count = x.count }
-                 .where("name LIKE ?", "%#{params[:search][:value]}%")
-                 .or(@tags.where("description LIKE ?", "%#{params[:search][:value]}%"))
+                 .where("name ILIKE ?", "%#{params[:search][:value]}%")
+                 .or(@tags.where("description ILIKE ?", "%#{params[:search][:value]}%"))
                  .or(@tags.where("color LIKE ?", "%#{params[:search][:value]}%"))
                  .order(order)
                  .tap { |x| @filtered_count = x.count }

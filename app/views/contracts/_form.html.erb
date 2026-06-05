@@ -109,8 +109,11 @@
 
       <% @contract.parcelles.each do |p| %>
         <list-item>
-          <p><%= [p.reference_cadastrale, p.town, "#{p.surface} ha"].compact.join(' - ') %></p>
-          <p><%= link_to "retirer", 
+          <p>
+            <%= link_to [p.reference_cadastrale, p.lieu_dit, "#{p.surface} ha"].compact.join(' - '), parcelle_path(p) %>
+          </p>
+          <p>
+            <%= link_to "retirer", 
                           destroy_contract_associated_parcelle_path(@contract.id, p.id), 
                           data: { turbo_method: :delete } %>
           </p>

@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_05_26_105610) do
+ActiveRecord::Schema[7.0].define(version: 2026_06_04_123155) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
   enable_extension "postgis"
 
@@ -94,6 +95,41 @@ ActiveRecord::Schema[7.0].define(version: 2026_05_26_105610) do
     t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "invoice_lines", force: :cascade do |t|
+    t.integer "year"
+    t.decimal "price", precision: 10, scale: 2
+    t.decimal "quantity", precision: 10, scale: 2
+    t.decimal "amount", precision: 10, scale: 2
+    t.string "reference_cadastrale"
+    t.string "lieu_dit"
+    t.float "surface"
+    t.float "percentage"
+    t.string "contract_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "invoice_id"
+    t.index ["invoice_id"], name: "index_invoice_lines_on_invoice_id"
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.string "invoicee"
+    t.string "invoicer"
+    t.date "invoice_date"
+    t.integer "year"
+    t.decimal "total_amount", precision: 12, scale: 2
+    t.string "number"
+    t.bigint "contract_id"
+    t.string "contract_type"
+    t.decimal "contract_quantity", precision: 10, scale: 2
+    t.float "contract_percentage"
+    t.string "contract_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["contract_id"], name: "index_invoices_on_contract_id"
+    t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
   create_table "offers", force: :cascade do |t|
@@ -184,6 +220,9 @@ ActiveRecord::Schema[7.0].define(version: 2026_05_26_105610) do
   add_foreign_key "comments", "parcelles"
   add_foreign_key "comments", "users"
   add_foreign_key "contracts", "users"
+  add_foreign_key "invoice_lines", "invoices"
+  add_foreign_key "invoices", "contracts"
+  add_foreign_key "invoices", "users"
   add_foreign_key "parcelles", "contracts"
   add_foreign_key "parcelles", "tags"
 end

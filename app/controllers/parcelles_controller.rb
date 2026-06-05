@@ -25,15 +25,15 @@ class ParcellesController < ApplicationController
     
     @parcelles = authorized_scope(Parcelle.left_outer_joins(:tag), type: :relation, as: :access, scope_options: { target_user: @target_user, current_user: current_user })
     @parcelles = @parcelles.tap { |x| @total_count = x.count }
-                           .where("parcelles.reference_cadastrale LIKE ?", "%#{params[:search][:value]}%")
-                           .or(@parcelles.where("parcelles.lieu_dit LIKE ?", "%#{params[:search][:value]}%"))
-                           .or(@parcelles.where("parcelles.code_officiel_geographique LIKE ?", "%#{params[:search][:value]}%"))
-                           .or(@parcelles.where("parcelles.town LIKE ?", "%#{params[:search][:value]}%"))
-                           .or(@parcelles.where("parcelles.surface::TEXT LIKE ?", "%#{params[:search][:value]}%"))
-                           .or(@parcelles.where("parcelles.annee_plantation::TEXT LIKE ?", "%#{params[:search][:value]}%"))
-                           .or(@parcelles.where("parcelles.distance_rang::TEXT LIKE ?", "%#{params[:search][:value]}%"))
-                           .or(@parcelles.where("parcelles.distance_pieds::TEXT LIKE ?", "%#{params[:search][:value]}%"))
-                           .or(@parcelles.where("tags.name LIKE ?", "%#{params[:search][:value]}%"))
+                           .where("parcelles.reference_cadastrale ILIKE ?", "%#{params[:search][:value]}%")
+                           .or(@parcelles.where("parcelles.lieu_dit ILIKE ?", "%#{params[:search][:value]}%"))
+                           .or(@parcelles.where("parcelles.code_officiel_geographique ILIKE ?", "%#{params[:search][:value]}%"))
+                           .or(@parcelles.where("parcelles.town ILIKE ?", "%#{params[:search][:value]}%"))
+                           .or(@parcelles.where("parcelles.surface::TEXT ILIKE ?", "%#{params[:search][:value]}%"))
+                           .or(@parcelles.where("parcelles.annee_plantation::TEXT ILIKE ?", "%#{params[:search][:value]}%"))
+                           .or(@parcelles.where("parcelles.distance_rang::TEXT ILIKE ?", "%#{params[:search][:value]}%"))
+                           .or(@parcelles.where("parcelles.distance_pieds::TEXT ILIKE ?", "%#{params[:search][:value]}%"))
+                           .or(@parcelles.where("tags.name ILIKE ?", "%#{params[:search][:value]}%"))
                            .order(order)
                            .tap { |x| @filtered_count = x.count }
                            .limit(params[:length])
@@ -101,7 +101,7 @@ class ParcellesController < ApplicationController
       current_user.parcelles << @parcelle
 
       respond_to do |format|
-        format.html { redirect_to parcelles_path, notice: "La parcelle est enregistrée avec succès" }
+        format.html { redirect_to parcelles_path(user: current_user), notice: "La parcelle est enregistrée avec succès" }
       end
     else
       render :new, status: :unprocessable_entity
@@ -121,7 +121,7 @@ class ParcellesController < ApplicationController
   def update
     if @parcelle.update(parcelle_params)
       respond_to do |format|
-        format.html { redirect_to parcelles_path, notice: "La parcelle est modifiée avec succès" }
+        format.html { redirect_to parcelles_path(user: current_user), notice: "La parcelle est modifiée avec succès" }
       end
     else
       render 'edit'
@@ -132,7 +132,7 @@ class ParcellesController < ApplicationController
     @parcelle.destroy
 
     respond_to do |format|
-      format.html { redirect_to parcelles_path, notice: "Parcelle supprimée avec succès" }
+      format.html { redirect_to parcelles_path(user: current_user), notice: "Parcelle supprimée avec succès" }
     end
   end
 

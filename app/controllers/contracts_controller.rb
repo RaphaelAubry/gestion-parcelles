@@ -57,6 +57,7 @@ class ContractsController < ApplicationController
                     c.unit,
                     "<a href='/contracts/#{c.id}/edit'>modifier</a>
                      <a href='/contracts/#{c.id}' data-turbo-method='delete'>supprimer</a>
+                     <a href='/invoices/new/?contract_id=#{c.id}'>facturer</a>
                     "
                   ]
                 end
@@ -66,6 +67,12 @@ class ContractsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: { contract: @contract, parcelles: @contract.parcelles.map { |p| { parcelle: p, tag: p.tag } } }
+      end
+    end
   end
 
   def new
@@ -154,8 +161,8 @@ class ContractsController < ApplicationController
 
   def scope_parcelle_availables
     authorized_scope(Parcelle, type: :relation, as: :available_for_contract, scope_options: { user: current_user })
-                                .pluck(:reference_cadastrale, :town, :id)
-                                .map { |p| [ [p[0], p[1]].compact.join(' - '), p[2] ] }
+                                .pluck(:reference_cadastrale, :lieu_dit, :surface, :id)
+                                .map { |p| [ [p[0], p[1], p[2]].compact.join(' - '), p[3] ] }
                                 .sort
   end
 end
