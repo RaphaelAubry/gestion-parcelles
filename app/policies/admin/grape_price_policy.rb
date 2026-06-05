@@ -16,6 +16,14 @@ module Admin
       admin?
     end
 
+    def edit?
+      admin?
+    end
+
+    def update?
+      edit?
+    end
+
     relation_scope do |scope|
       admin? ? scope.all : scope.none
     end

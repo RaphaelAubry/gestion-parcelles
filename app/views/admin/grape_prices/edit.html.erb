@@ -1,0 +1,33 @@
+<wrapper-form>
+<h3>Modification du prix</h3>
+
+<%= form_with model: @grape_price, url: admin_grape_price_path  do |form| %>
+  <%= render "shared/error_messages", resource: @grape_price %>
+
+  <input-group>
+    <%= form.label "Département", class: 'move' %>
+    <%= form.text_field :area, readonly: true, disabled: true %>
+  </input-group>
+ 
+  <input-group>
+    <%= form.label "Année", class: 'move' %>
+    <%= form.text_field :year, readonly: true, disabled: true %>
+  </input-group>
+
+  <input-group>
+    <%= form.label "Commune", class: 'move' %>
+    <%= form.text_field :town, readonly: true, disabled: true %>
+  </input-group>
+
+  <input-group>
+    <%= form.label "Prix", class: 'move' %>
+    <%= form.text_field :price %>
+  </input-group>
+
+  <submit-group>
+    <%= form.submit 'valider', class: 'button' %>
+    <%= link_to "Annuler", admin_grape_prices_path %>
+  </submit-group>
+<% end %>
+
+</wrapper-form>
