@@ -106,9 +106,9 @@ class ContractsController < ApplicationController
 
   def update
     if @contract.update(contract_params.except(:parcelle_ids))
-      parcelle_ids = contract_params[:parcelle_ids].reject(&:blank?)
+      parcelle_ids = contract_params[:parcelle_ids]&.reject(&:blank?)
      
-      parcelle_ids.each do |id|
+      parcelle_ids&.each do |id|
         Parcelle.find(id).update(contract_id: @contract.id)
       end
 
@@ -162,7 +162,7 @@ class ContractsController < ApplicationController
   def scope_parcelle_availables
     authorized_scope(Parcelle, type: :relation, as: :available_for_contract, scope_options: { user: current_user })
                                 .pluck(:reference_cadastrale, :lieu_dit, :surface, :id)
-                                .map { |p| [ [p[0], p[1], p[2]].compact.join(' - '), p[3] ] }
+                                .map { |p| [ [p[0], p[1], p[2]].compact_blank.join(' - '), p[3] ] }
                                 .sort
   end
 end

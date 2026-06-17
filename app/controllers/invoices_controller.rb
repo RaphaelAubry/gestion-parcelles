@@ -85,9 +85,10 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new(invoice_params)
     @contract = Contract.find(params[:invoice][:contract_id])
     @invoice.user = current_user
+    @invoice.set_number
 
     if @invoice.save
-
+      
       redirect_to invoices_path, notice: "Facture créée"
     else
       if @invoice.invoice_lines.blank?

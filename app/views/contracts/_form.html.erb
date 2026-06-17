@@ -110,7 +110,7 @@
       <% @contract.parcelles.each do |p| %>
         <list-item>
           <p>
-            <%= link_to [p.reference_cadastrale, p.lieu_dit, "#{p.surface} ha"].compact.join(' - '), parcelle_path(p) %>
+            <%= link_to [p.reference_cadastrale, p.lieu_dit, "#{p.surface} ha"].compact_blank.join(' - '), parcelle_path(p) %>
           </p>
           <p>
             <%= link_to "retirer", 
