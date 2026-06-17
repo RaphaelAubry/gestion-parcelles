@@ -10,6 +10,7 @@ class Invoice < ApplicationRecord
   after_create :update_invoice_lines_year
 
   validates :invoice_date, presence: true
+  validates :year, presence: true
   validate :must_have_at_least_one_line
   
   def must_have_at_least_one_line
@@ -25,5 +26,14 @@ class Invoice < ApplicationRecord
 
   def update_invoice_lines_year
     invoice_lines.update(year: year)
+  end
+
+  def set_number
+    invoices = user.invoices.where(year: year)
+
+    num = invoices.empty? ? 1 : invoices.pluck(:number).max[5..8].to_i + 1
+    num = num.to_s
+    
+    self.number = year.to_s + contract_type[0] + num.prepend('0' * (3 - num.size))
   end
 end
