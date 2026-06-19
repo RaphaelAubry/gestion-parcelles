@@ -1,4 +1,4 @@
-class TagPolicy < ApplicationPolicy
+class PaymentPolicy < ApplicationPolicy
   def index?
     true
   end
@@ -12,11 +12,11 @@ class TagPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    new?
   end
 
   def edit?
-    record.user == user
+    record.user_id == user.id
   end
 
   def update?
@@ -30,4 +30,6 @@ class TagPolicy < ApplicationPolicy
   scope_for :relation, :access do |relation|
     relation.where(user: user)
   end
+
+
 end

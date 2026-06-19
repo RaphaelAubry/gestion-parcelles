@@ -1,0 +1,32 @@
+<wrapper-form>
+  <%= form_with model: @payment, class: 'invoice' do |form| %>
+    <%= render "shared/error_messages", resource: @payment %>
+
+    <h3>Nouveau paiement</h3>
+    
+    <input-group>
+      <%= form.label "Date de la facture", class: 'move' %>
+      <%= form.date_field :payment_date %>
+    </input-group>
+
+    <input-group>
+      <%= form.label "Montant", class: 'move' %>
+      <%= form.number_field :amount,
+        step: 0.01,
+        placeholder: "0",
+        value: @payment.amount
+      %>
+    </input-group>
+
+    <select-group>
+      <%= form.label "Facture", class: 'move' %>
+      <%= form.select :invoice_id, @invoices %>
+    </select-group>
+
+    <submit-group>
+      <%= form.submit 'valider', class: 'button' %>
+      <%= link_to "Annuler", payments_path %>
+      <%= link_to "Paiements", payments_path %>
+    </submit-group>
+  <% end %>
+</wrapper-form>

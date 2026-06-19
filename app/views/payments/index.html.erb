@@ -1,0 +1,8 @@
+<container-tableau>
+  <h3>Paiments reçus</h3>
+  <%= render partial: 'table', locals: { columns: [:payment_date, :amount, :invoice_number] } %>
+
+  <link-group>
+    <%= link_to 'nouveau paiement reçu', new_payment_path %>
+  </link-group>
+</container-tableau>

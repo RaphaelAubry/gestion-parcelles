@@ -34,7 +34,10 @@ const headers = {
   type: "Type",
   unit: "Unité",
   updated_at: "Mis à jour le",
-  year: "Année"
+  year: "Année",
+  payment_date: "Date",
+  amount: "Montant",
+  invoice_number: "Numéro de facture"
 }
 
 export { headers }

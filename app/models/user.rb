@@ -23,7 +23,8 @@ class User < ApplicationRecord
   has_one_attached :avatar, dependent: :destroy
   has_many :contracts, dependent: :destroy
   has_many :invoices, dependent: :destroy
-
+  has_many :payments, dependent: :destroy
+  
   store :table_preferences, accessors: Parcelle::INSTANCE_VARIABLES, prefix: :parcelles
 
   enum :role, {

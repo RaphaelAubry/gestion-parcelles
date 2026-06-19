@@ -1,10 +1,11 @@
 class TagsController < ApplicationController
   before_action :user
+  before_action :tag, only: [ :edit, :update, :destroy ]
 
   def index
-    authorize! @tags = authorized_scope(Tag, type: :relation, as: :access, scope_options: { user: current_user })
     authorize! @user = current_user, to: :edit?, with: UserPolicy
-
+    @tags = authorized_scope(Tag, type: :relation, as: :access)
+    
     respond_to do |format|
       format.html
       format.json { render json: @tags }
@@ -16,7 +17,7 @@ class TagsController < ApplicationController
       order = params[:order]["0"][:name].present? ? params[:order]["0"][:name] + " " + params[:order]["0"][:dir].upcase : ""
     end
 
-    authorize! @tags = authorized_scope(Tag, type: :relation, as: :access, scope_options: { user: current_user })
+    @tags = authorized_scope(Tag, type: :relation, as: :access)
 
     @tags = @tags.tap { |x| @total_count = x.count }
                  .where("name ILIKE ?", "%#{params[:search][:value]}%")
@@ -53,11 +54,13 @@ class TagsController < ApplicationController
 
   def new
     @tag = Tag.new
+    authorize! @tag
   end
 
   def create
-    @tag = Tag.create(tag_params)
+    @tag = Tag.new(tag_params)
     @tag.user = @user
+    authorize! @tag
 
     if @tag.save
       respond_to do |format|
@@ -69,11 +72,9 @@ class TagsController < ApplicationController
   end
 
   def edit
-    @tag = Tag.find(params[:id])
   end
 
   def update
-    @tag = Tag.find(params[:id])
     @tag.update(tag_params)
 
     if @tag.save
@@ -86,7 +87,6 @@ class TagsController < ApplicationController
   end
 
   def destroy
-    @tag = Tag.find(params[:id])
     @tag.destroy
 
     respond_to do |format|
@@ -98,6 +98,11 @@ class TagsController < ApplicationController
 
   def tag_params
     params.require(:tag).permit(:name, :description, :color, :user_id)
+  end
+
+  def tag
+    @tag = Tag.find(params[:id])
+    authorize! @tag
   end
 
   def user
