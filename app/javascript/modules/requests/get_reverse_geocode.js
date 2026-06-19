@@ -16,6 +16,7 @@ async function getReverseGeocode(point) {
           if (!response.ok) {
             console.log('getReverseGeocode')
             console.log(response.url)
+            await response.text()
             throw new Error(`statut de la réponse: ${response.status}`)
           } else {
             const json = await response.json()
@@ -24,7 +25,8 @@ async function getReverseGeocode(point) {
             }
           }
         } catch (error) {
-          console.log(error.message)
+          console.log('getReverseGeocode error:', error.message);
+          return null
         }
 
       } else {

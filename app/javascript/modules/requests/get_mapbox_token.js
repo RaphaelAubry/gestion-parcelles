@@ -9,6 +9,7 @@ async function getMapboxToken() {
     if (!response.ok) {
       console.log('getMapboxToken')
       console.log(response.url)
+      await response.text()
       throw new Error(`getMapboxToken statut de la réponse: ${response.status}`)
 
     } else {
@@ -16,7 +17,8 @@ async function getMapboxToken() {
       return data.token
     }
   } catch (error) {
-    console.log(error.message)
+    console.log('getMapBoxToken error:', error.message);
+    return null
   }
 }
 
