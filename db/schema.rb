@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_06_04_123155) do
+ActiveRecord::Schema[7.0].define(version: 2026_06_18_085637) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -160,6 +160,17 @@ ActiveRecord::Schema[7.0].define(version: 2026_06_04_123155) do
     t.index ["tag_id"], name: "index_parcelles_on_tag_id"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.date "payment_date"
+    t.decimal "amount", precision: 10, scale: 2
+    t.bigint "invoice_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invoice_id"], name: "index_payments_on_invoice_id"
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
   create_table "suppliers", force: :cascade do |t|
     t.string "name"
     t.integer "phone"
@@ -225,4 +236,6 @@ ActiveRecord::Schema[7.0].define(version: 2026_06_04_123155) do
   add_foreign_key "invoices", "users"
   add_foreign_key "parcelles", "contracts"
   add_foreign_key "parcelles", "tags"
+  add_foreign_key "payments", "invoices"
+  add_foreign_key "payments", "users"
 end

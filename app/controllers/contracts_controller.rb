@@ -4,9 +4,9 @@ class ContractsController < ApplicationController
   before_action :set_contract, only: %i[show edit update destroy destroy_associated_parcelle]
 
   def index
+    authorize! Contract, to: :index?
     @contracts = authorized_scope(Contract.all)
-    authorize! @contracts
-
+   
     respond_to do |format|
       format.html
       format.json { render json: @contracts }
@@ -14,13 +14,14 @@ class ContractsController < ApplicationController
   end
 
   def table
+    authorize! Contract, to: :table?
+
     if params[:order]
       order = params[:order]["0"][:name].present? ? params[:order]["0"][:name] + " " + params[:order]["0"][:dir].upcase : ""
     end
 
     @contracts = authorized_scope(Contract.all)
-    authorize! @contracts
-
+    
     @contracts = @contracts.tap { |x| @total_count = x.count }
                      .where("contracts.name LIKE ?", "%#{params[:search][:value]}%")
                      .or(@contracts.where("contracts.start_date::TEXT LIKE ?", "%#{params[:search][:value]}%"))
@@ -89,7 +90,7 @@ class ContractsController < ApplicationController
     @contract.user = current_user
     
     if @contract.save
-      parcelle_ids = contract_params[:parcelle_ids].reject(&:blank?)
+      parcelle_ids = contract_params[:parcelle_ids]&.reject(&:blank?)
 
       Parcelle.where(id: parcelle_ids).update_all(contract_id: @contract.id)
 

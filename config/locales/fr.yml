@@ -79,6 +79,12 @@ fr:
           attributes:
             invoice_date:
               blank: "La date de facture doit être renseignée"
+        payment:
+          attributes:
+            payment_date: 
+              blank: "La date de paiement doit être renseignée"
+            amount:
+              blank: "Le montant doit être renseigné"
   end_date: "Date de fin"
   holder: "Titulaire"
   reference_cadastrale: "Référence cadastrale"
@@ -111,6 +117,9 @@ fr:
   source: "Source"
   area: "Département"
   grape_type: "Type"
+  payment_date: "Date"
+  amount: "Montant"
+  invoice_number: "Numéro de facture"
   date:
     month_names: [~, "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
     day_names: ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"]

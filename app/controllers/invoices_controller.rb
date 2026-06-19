@@ -2,20 +2,22 @@ class InvoicesController < ApplicationController
   include InvoiceContractable
   
   before_action :authenticate_user!
+  before_action :invoice, only: [ :edit, :update, :destroy ]
 
   def index
+    authorize! Invoice, to: :index?
     @invoices = authorized_scope(Invoice.all)
-    authorize! @invoices
   end
 
   def table
+    authorize! Invoice, to: :table?
+
     if params[:order]
       order = params[:order]["0"][:name].present? ? params[:order]["0"][:name] + " " + params[:order]["0"][:dir].upcase : ""
     end
 
     @invoices = authorized_scope(Invoice.all)
-    authorize! @invoices
-
+    
     @invoices = @invoices.tap { |x| @total_count = x.count }
                      .where("invoices.invoicer LIKE ?", "%#{params[:search][:value]}%")
                      .or(@invoices.where("invoices.invoicee ILIKE ?", "%#{params[:search][:value]}%"))
@@ -114,17 +116,10 @@ class InvoicesController < ApplicationController
   end
 
   def edit
-    @invoice = Invoice.find(params[:id])
-
-    authorize! @invoice
-
     @contract = build_invoice_contract(@invoice)
   end
 
   def update
-    @invoice = Invoice.find(params[:id])
-    authorize! @invoice
-
     if @invoice.update(invoice_params)
 
       redirect_to invoices_path
@@ -135,7 +130,6 @@ class InvoicesController < ApplicationController
   end
 
   def destroy
-    @invoice = Invoice.find(params[:id])
     @invoice.destroy
 
     redirect_to invoices_path, notice: "Facture supprimée."
@@ -169,5 +163,10 @@ class InvoicesController < ApplicationController
         :_destroy
       ]   
     )
+  end
+
+  def invoice
+    @invoice = Invoice.find(params[:id])
+    authorize! @invoice
   end
 end

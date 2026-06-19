@@ -59,6 +59,12 @@ const config = {
     { name: 'contract_name', data: '6' },
     { name: 'actions', data: '7', orderable: false, searchable: false }
   ],
+  payments: [
+    { name: 'payment_date', data: '0'},
+    { name: 'amount', data: '1' },
+    { name: 'invoice_number', data: '2'},
+    { name: 'actions', data: '3', orderable: false, searchable: false }
+  ],
   "admin/grape_prices": [
     { name: 'source', data: '0', footer: '<p data-total="total"></p>' },
     { name: 'year', data: '1'},

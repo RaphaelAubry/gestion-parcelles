@@ -3,6 +3,7 @@ class Invoice < ApplicationRecord
 
   has_many :invoice_lines, inverse_of: :invoice, dependent: :nullify
   belongs_to :user
+  has_many :payments, dependent: :nullify
 
   accepts_nested_attributes_for :invoice_lines, allow_destroy: true, reject_if: :all_blank
 
