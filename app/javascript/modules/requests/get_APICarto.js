@@ -9,7 +9,7 @@ async function getAPICarto(params = {}, options = {}) {
         if (!response.ok) {
           console.log('getAPICarto')
           console.log(response.url)
-          
+          await response.text()
           throw new Error(`statut de la réponse: ${response.status}`)
 
         } else {
@@ -18,7 +18,8 @@ async function getAPICarto(params = {}, options = {}) {
         }
       }
     } catch (error) {
-      console.log(error.message)
+      console.log('getAPICarto error:', error.message);
+      return null
     }
 }
 
