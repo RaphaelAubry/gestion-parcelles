@@ -9,6 +9,7 @@ async function getAPICarto(params = {}, options = {}) {
         if (!response.ok) {
           console.log('getAPICarto')
           console.log(response.url)
+          
           throw new Error(`statut de la réponse: ${response.status}`)
 
         } else {

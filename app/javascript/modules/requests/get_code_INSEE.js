@@ -12,6 +12,7 @@ async function getCodeINSEE(point) {
         if (!response.ok) {
           console.log('getCodeINSEE')
           console.log(response.url)
+          await response.text()
           throw new Error(`statut de la réponse: ${response.status}`)
 
         } else {
@@ -22,7 +23,8 @@ async function getCodeINSEE(point) {
           }
         }
       } catch (error) {
-        console.log(error.message)
+        console.log('getCodeINSEE error:', error.message);
+        return null
       }
 
   } else {
