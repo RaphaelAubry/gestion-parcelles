@@ -1,5 +1,5 @@
 <wrapper-form>
-  <%= form_with model: @payment, class: 'invoice' do |form| %>
+  <%= form_with model: [:finances, @payment], class: 'invoice' do |form| %>
     <%= render "shared/error_messages", resource: @payment %>
 
     <h3>Nouveau paiement</h3>
@@ -25,8 +25,8 @@
 
     <submit-group>
       <%= form.submit 'valider', class: 'button' %>
-      <%= link_to "Annuler", payments_path %>
-      <%= link_to "Paiements", payments_path %>
+      <%= link_to "Annuler", finances_payments_path %>
+      <%= link_to "Paiements", finances_payments_path %>
     </submit-group>
   <% end %>
 </wrapper-form>

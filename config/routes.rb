@@ -42,9 +42,18 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :invoices
-  post '/invoices/table', to: 'invoices#table'
+  namespace :finances do
+    resources :invoices
+    post '/invoices/table', to: 'invoices#table'
 
-  resources :payments
-  post '/payments/table', to: 'payments#table'
+    resources :payments
+    post '/payments/table', to: 'payments#table'
+
+
+    get '/reports', to: 'reports#index'
+    get '/reports/invoices', to: 'reports#invoices'
+    post '/reports/invoices_table', to: 'reports#invoices_table'
+  end
+
+  
 end

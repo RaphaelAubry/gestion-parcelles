@@ -1,0 +1,8 @@
+<container-tableau>
+  <h3>Solde des factures</h3>
+  <%= render partial: 'table', locals: { columns: [:year, :number, :total_amount, :balance] } %>
+
+  <link-group>
+    <%= link_to 'Rapports disponibles', finances_reports_path %>
+  <link-group>
+</container-tableau>

@@ -58,7 +58,7 @@ class ContractsController < ApplicationController
                     c.unit,
                     "<a href='/contracts/#{c.id}/edit'>modifier</a>
                      <a href='/contracts/#{c.id}' data-turbo-method='delete'>supprimer</a>
-                     <a href='/invoices/new/?contract_id=#{c.id}'>facturer</a>
+                     <a href='/finances/invoices/new/?contract_id=#{c.id}'>facturer</a>
                     "
                   ]
                 end

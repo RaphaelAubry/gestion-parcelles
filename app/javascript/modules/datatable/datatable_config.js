@@ -49,7 +49,7 @@ const config = {
     { name: 'unit', data: '6' },
     { name: 'actions', data: '7', orderable: false, searchable: false }
   ],
-  invoices: [
+  "finances/invoices": [
     { name: 'invoicer', data: '0' },
     { name: 'invoicee', data: '1'},
     { name: 'invoice_date', data: '2' },
@@ -59,11 +59,18 @@ const config = {
     { name: 'contract_name', data: '6' },
     { name: 'actions', data: '7', orderable: false, searchable: false }
   ],
-  payments: [
+  "finances/payments": [
     { name: 'payment_date', data: '0'},
     { name: 'amount', data: '1' },
     { name: 'invoice_number', data: '2'},
     { name: 'actions', data: '3', orderable: false, searchable: false }
+  ],
+  "finances/reports/invoices": [
+    { name: 'year', data: '0'},
+    { name: 'number', data: '1'},
+    { name: 'total_amount', data: '2' },
+    { name: 'balance', data: '3' },
+    { name: 'actions', data: '4', orderable: false, searchable: false }
   ],
   "admin/grape_prices": [
     { name: 'source', data: '0', footer: '<p data-total="total"></p>' },
@@ -74,7 +81,7 @@ const config = {
     { name: 'grape_type', data: '5' },
     { name: 'price', data: '6' },
     { name: 'actions', data: '7', orderable: false, searchable: false },
-  ]
+  ],
 }
 
 export { config }

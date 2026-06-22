@@ -13,7 +13,7 @@
       <% if user_signed_in? %>
         <li-dropdown>cartes
           <ul>
-            <%= link_to "mes parcelles", carte_path(user: current_user.id), data: { navbar_target: 'link'} %>
+            <%= link_to :parcelles, carte_path(user: current_user.id), data: { navbar_target: 'link'} %>
             <% current_user.owners.each do |owner| %>
               <%= link_to owner.email, carte_path(user: owner.id), data: { navbar_target: 'link' } %>
             <% end %>
@@ -22,7 +22,7 @@
 
         <li-dropdown>tableaux
           <ul>
-            <%= link_to 'mes parcelles', parcelles_path(user: current_user), data: { navbar_target: 'link' } %>
+            <%= link_to :parcelles, parcelles_path(user: current_user), data: { navbar_target: 'link' } %>
             <%= link_to :fournisseurs, suppliers_path, data: { navbar_target: 'link' } %>
             <%= link_to :prestations, offers_path, data: { navbar_target: 'link' } %>
             <%= link_to :contrats, contracts_path, data: { navbar_target: 'link' } %>
@@ -40,10 +40,11 @@
           </li-dropdown>
         <% end %>
 
-        <li-dropdown>revenus
+        <li-dropdown>finances
             <ul>
-              <%= link_to 'Factures', invoices_path,  data: { navbar_target: 'link' } %>
-              <%= link_to 'Paiements', payments_path,  data: { navbar_target: 'link' } %>
+              <%= link_to 'factures', finances_invoices_path,  data: { navbar_target: 'link' } %>
+              <%= link_to 'paiements', finances_payments_path,  data: { navbar_target: 'link' } %>
+              <%= link_to 'rapports disponibles', finances_reports_path,  data: { navbar_target: 'link' } %>
             </ul>
           </li-dropdown>
       <% end %>
