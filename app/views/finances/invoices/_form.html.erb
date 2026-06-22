@@ -1,5 +1,5 @@
 <wrapper-form>
-  <%= form_with model: @invoice, class: 'invoice' do |form| %>
+  <%= form_with model: [:finances, @invoice], class: 'invoice' do |form| %>
     <%= render "shared/error_messages", resource: @invoice %>
     <%= form.hidden_field :contract_id, value: @contract.id %>
     <%= form.hidden_field :contract_name, value: @contract.name %>
@@ -60,7 +60,7 @@
 
     <submit-group>
       <%= form.submit 'valider', class: 'button' %>
-      <%= link_to "Annuler", invoices_path %>
+      <%= link_to "Annuler", finances_invoices_path %>
       <%= link_to "Contrats", contracts_path %>
     </submit-group>
   <% end %>

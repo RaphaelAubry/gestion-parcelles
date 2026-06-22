@@ -5,7 +5,7 @@ import { config, headers } from "modules/datatable"
 import "modules/datatable/functions"
 
 export default class extends Controller {
-  static values = { name: String, userId: String }
+  static values = { name: String, userId: String, request: String }
 
   connect() {
     console.log(`connect : ${this.element}`)
@@ -30,6 +30,7 @@ export default class extends Controller {
 
   #createTable() {
     const name = this.nameValue
+    const request = this.requestValue
 
     if (!name || !config[name]) {
       console.warn(`[datatable] config manquante pour ${name}`)
@@ -37,7 +38,7 @@ export default class extends Controller {
     }
 
     const columns = config[name]
-    const url = this.#buildUrl(name, { user: this.userIdValue })
+    const url = this.#buildUrl(request, { user: this.userIdValue })
     
     this.table = new DataTable(this.element, {
       serverSide: true,
@@ -110,8 +111,8 @@ export default class extends Controller {
     }
   }
 
-  #buildUrl(name, params = {}) {
-    const url = `/${name}/table`;
+  #buildUrl(request, params = {}) {
+    const url = `/${request}`;
 
     const query = new URLSearchParams(
       Object.entries(params).filter(([_, v]) => v != null && v !== "")
